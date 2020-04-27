@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.BoardMapper">
+
+	<insert id="setArticle">
+		INSERT INTO 
+			board 
+		SET
+			subject = #{subject},
+			content = #{content},
+			writer = #{writer},
+			regdate = now(),
+			filename = #{filename},
+			fileOriName = #{fileOriName},
+			fileurl = #{fileurl}
+	</insert>
+	<select id="getArticleList" resultType="boardvo">
+		SELECT * FROM board ORDER BY id DESC
+	</select>
+
+</mapper>

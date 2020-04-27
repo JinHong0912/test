@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <%-- <c:if test = "${sessionScope.userid == null} && ${sessionScope.auth == null}">
+    <script>
+    	alert("로그인 후 사용하실 수 있습니다.");
+    	window.location.href = "/user/login"
+				
+    </script>
+  </c:if> --%>
+ <c:if test = "${sessionScope.userid == null}">
+ 	<script>
+		alert("정상적인 접근이 아닙니다.\n 로그인 후 사용해 주세요.");
+		window.location.replace("/user/login");
+ 	</script>
+ </c:if>
+ 
+ <c:if test="${sessionScope.auth eq '일반' }">
+ <script>
+		alert("접근 권한이 없습니다.\n 관리자의 승인이 필요합니다.");
+		window.location.replace("/user/login");
+ 	</script>
+ 
+ </c:if>
+ 
+  <style>
+	#warp {
+		background-color: #eee;
+		width: 100%;
+		height: 100%;
+		
+		}
+
+		.user-info-item{
+			display:flex;
+			justify-content: space-between;
+			padding:50px 10%;
+		}
+
+		.user-logout{
+			margin-left: 20px;
+		}
+	
+
+</style>
+
+ <!-- info -->
+	<div class="user-info-item">
+		<div class="user-info">
+			<span> ID : <strong>${sessionScope.userid}</strong>
+			사용자 이름 : <strong>${sessionScope.username}</strong>
+			 권한 : <strong>${sessionScope.auth}</strong>님이 로그인 중입니다...
+			</span>
+		</div>
+
+		<div class="user-logout">
+			<a href="/admin/home"><strong>메인으로</strong></a> 
+			<a href="/user/logout"><strong>로그아웃</strong></a>
+
+		</div>
+
+	</div>
+    

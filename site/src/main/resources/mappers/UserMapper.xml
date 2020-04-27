@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UserMapper">
+
+
+	<!-- 회원등록 -->
+	<insert id="addUser">
+		INSERT INTO
+		<!-- (userid, passwd, name, phone, email, domain, regdate) -->
+		users
+		SET
+		userid = #{userid},
+		passwd = #{passwd},
+		name = #{name},
+		phone = #{phone},
+		email = #{email},
+		domain = #{domain},
+		regdate = now()
+
+		<!--VALUES (#{userid}, #{passwd}, #{name}, #{phone}, #{email}, #{domain}, 
+			#{now}) -->
+	</insert>
+	<sql id="search">
+
+		<choose><!-- 필수 -->
+			<when test="search == all">
+				WHERE userid LIKE CONCAT ('%',#{words}, '%')
+				OR name
+				LIKE CONCAT ('%',#{words}, '%')
+			</when> <!-- if -->
+			<otherwise><!-- else -->
+				WHERE ${searchOpt} LIKE CONCAT ('%',#{words}, '%')
+			</otherwise>
+		</choose>
+
+	</sql>
+
+	<!-- 회원게시판 보기 -->
+	<!-- resultType : query 결과를 저장하는 객체 -->
+	<select id="getUserList" resultType="uservo">
+		<!-- SELECT * FROM users ORDER BY id DESC -->
+
+		SELECT
+			*
+		FROM
+			users
+		<include refid="search"></include>
+		ORDER BY
+				id
+		DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+
+	<!-- 회원수 보기 -->
+	<select id="getTotalCount" resultType="int">
+
+		SELECT
+		COUNT(*)
+		
+		FROM users <include refid="search"></include>
+	</select>
+
+
+	<!-- 회원권한 수정 -->
+	<update id="authUpdate">
+
+		UPDATE
+		users
+		SET
+		auth= #{auth}
+		WHERE
+		userid = #{userid}
+
+	</update>
+
+	<!-- 회원 수정 -->
+	<!-- <update id="userUpdate"> UPDATE users SET userid= #{userid},passwd 
+		= #{passwd}, name= #{name} , phone= #{phone}, email= #{email}, domain = #{domain}, 
+		WHERE id = #{id} </update> -->
+
+	<!-- 회원 한명 검색 -->
+	<select id="getUserOne" resultType="uservo">
+		SELECT
+		*
+		FROM
+		users
+		WHERE
+		id = #{id}
+
+	</select>
+
+	<update id="userUpdate">
+		UPDATE
+		users
+		SET
+		userid = #{userid},
+		passwd = #{passwd},
+		name = #{name},
+		phone = #{phone},
+		email = #{email},
+		domain = #{domain}
+
+		WHERE
+		id = #{id}
+
+	</update>
+	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM users WHERE userid = #{userid}
+	
+	</select>
+
+	<!-- 회원삭제 -->
+
+	<!--<delete id="getUserDel" > DELETE FROM users WHERE id = #{id} </delete> -->
+
+
+	<!-- 선생님 -->
+
+	<delete id="deleteUser">
+
+		DELETE FROM
+		users
+		WHERE
+		id = #{id}
+
+	</delete>
+
+	<!-- 로그인 부분 -->
+	<!-- <select id="loginCheck" resultType="String"> -->
+	<select id="loginCheck" resultType="uservo"><!-- 세션에 값을 주기 위해서 -->
+		SELECT
+		userid, name, auth
+		FROM
+		users
+		WHERE userid = #{userid} AND passwd = #{passwd}
+	</select>
+
+</mapper>
