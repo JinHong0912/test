@@ -4,10 +4,6 @@
 <configuration>
 	<typeAliases>
 		<!-- 긴 별명을 변경하는 문장 : alias = "uservo" 긴 문장을 이렇게 사용 한다. -->
-		<<!-- 긴 별명을 변경하는 문장 : alias = "uservo" 긴 문장을 이렇게 사용 한다. -->
-		<typeAlias type="com.example.site.model.UserVO" alias = "uservo"/>
-		<typeAlias type="com.example.site.model.BoardVO" alias = "boardvo"/>
-	   <typeAlias type="com.example.site.model.CommentVO" alias = "commentvo"/> 
-	
+		<typeAlias type="com.greenart.sample.model.UserVO" alias = "uservo"/>
 	</typeAliases>
 </configuration>

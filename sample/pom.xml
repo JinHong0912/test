@@ -9,10 +9,11 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>site</artifactId>
+	<groupId>com.greenart</groupId>
+	<artifactId>sample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>site</name>
+	<packaging>war</packaging>
+	<name>sample</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -20,65 +21,79 @@
 	</properties>
 
 	<dependencies>
+		<!-- embeded tomcat jasper:개발할 때만 필요하고 배포할 때는 삭제 + approperties(server 
+			port 삭제) -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>9.0.34</version>
+		</dependency>
+		<!-- ***************************************** -->
 
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<!-- devtool :개발 할 때만 필요하고 배포 할 때는 삭제 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<!-- ***************************************** -->
+
+		<!-- 파일 업로드 :commons 2개 (io, apache commons lang3) -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.10</version>
 		</dependency>
+		<!-- ***************************************** -->
 
-		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<!-- json(데이터 처리하는 javascript) -->
+
+		<!-- ***************************************** -->
+
+		<!-- jstl : jsp 프로그램 처리하기 위한 태그 -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<!-- ***************************************** -->
 
-		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>2.0.4</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<!-- mybatis 3개 :org.mybatis, spring, starter -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.5.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.4</version>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+
+		<!-- ***************************************** -->
+
+		<!-- mysql 8.0.19 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.19</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>9.0.34</version>
-		</dependency>
+		<!-- ***************************************** -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,6 +105,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

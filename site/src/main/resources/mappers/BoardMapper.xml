@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
+	<sql id="search">
+
+		<choose><!-- 필수 -->
+			<when test="searchOpt == 'all'">
+				WHERE subject LIKE CONCAT ('%',#{words}, '%')
+				OR writer LIKE CONCAT ('%',#{words}, '%')
+				OR content LIKE CONCAT('%',#{words}, '%')
+			</when> <!-- if -->
+			<otherwise><!-- else -->
+				WHERE ${searchOpt} LIKE CONCAT ('%',#{words}, '%')
+			</otherwise>
+		</choose>
+
+	</sql>
 
 	<insert id="setArticle">
-		INSERT INTO 
-			board 
+		INSERT INTO
+		board
 		SET
-			subject = #{subject},
-			content = #{content},
-			writer = #{writer},
-			regdate = now(),
-			filename = #{filename},
-			fileOriName = #{fileOriName},
-			fileurl = #{fileurl}
+		subject = #{subject},
+		content =
+		#{content},
+		writer = #{writer},
+		regdate = now(),
+		filename = #{filename},
+		fileOriName = #{fileOriName},
+		fileurl = #{fileurl}
+
 	</insert>
 	<select id="getArticleList" resultType="boardvo">
-		SELECT * FROM board ORDER BY id DESC
+		SELECT * FROM board
+
+		<include refid="search"></include>
+
+		ORDER BY id DESC
 	</select>
+
+	<select id="getArticleOne" resultType="boardvo">
+		SELECT * FROM board WHERE
+		id = #{id}
+
+	</select>
+
+
+
+
+	<update id="hitUp">
+		UPDATE board SET hit = hit + 1 WHERE id = #{id}
+	</update>
+
+	<delete id="deleteboard">
+
+		DELETE FROM board WHERE id = #{id}
+
+	</delete>
+
+	<update id="bupdate">
+		UPDATE board SET subject = #{subject} , content=
+		#{content} WHERE id = #{id};
+	</update>
 
 </mapper>

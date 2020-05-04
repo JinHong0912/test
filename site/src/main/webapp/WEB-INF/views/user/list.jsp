@@ -151,11 +151,13 @@ a.number:hover{
 		<div class="valign">
 			<form name="" id="" method="get" action="/user/list">
 				<select name="searchOpt">
-					<option value="all" <c:out value="${searchOpt == 'all' ? 'selected' : ''}"/>>전체</option>
-					<option value="userid" <c:out value="${searchOpt == 'userid' ? 'selected' : ''}"/>>아이디</option>
-					<option value="name" <c:out value="${searchOpt == 'name' ? 'selected' : ''}"/>>이름</option>
-				</select> 
-				<input type="text" name="words" id="words" value="${words}">
+					<option value="all"
+						<c:out value="${searchOpt == 'all' ? 'selected' : ''}"/>>전체</option>
+					<option value="userid"
+						<c:out value="${searchOpt == 'userid' ? 'selected' : ''}"/>>아이디</option>
+					<option value="name"
+						<c:out value="${searchOpt == 'name' ? 'selected' : ''}"/>>이름</option>
+				</select> <input type="text" name="words" id="words" value="${words}">
 				<button type="submit" id="search" class="btn">검색</button>
 				<a href="/user/list" id="search" class="btn">전체보기</a>
 			</form>

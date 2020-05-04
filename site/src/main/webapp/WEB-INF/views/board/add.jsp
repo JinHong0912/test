@@ -42,11 +42,11 @@ input[type="text"] {
 			</tr>
 			<tr>
 				<td>게시물 작성자</td>
-				<td><input type="text" name="writer" id="writer"></td>
+				<td><input type="text" value="${sessionScope.username}" readonly name="writer" id="writer"></td>
 			</tr>
 			<tr>
 				<td>게시물 내용</td>
-				<td><textarea name="content" id="editor" rows="" cols=""></textarea></td>
+				<td><textarea name="content" id="editor">${view.content}</textarea></td>
 				<script>
 					CKEDITOR.replace("editor");
 					CKEDITOR.config.height = 400;
@@ -54,7 +54,7 @@ input[type="text"] {
 			</tr>
 			<tr>
 				<td>게시물 첨부파일</td>
-				<td><input type="file" name="file"></td>
+				<td><input type="file" name="files"></td>
 			</tr>
 		</table>
 		<div class="bottom-btn">
