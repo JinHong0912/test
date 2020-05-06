@@ -8,7 +8,7 @@ public interface UserDao {
 
 	public int idCheck(String userid);
 	
-	public int setUser(UserVO vo);
+	public int setUser(UserVO uvo);
 
 	//접근제한자 List<UserVO>출력 메소그명 입력	
 	public List<UserVO> getUsersList(); 

@@ -22,8 +22,8 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public int setUser(UserVO vo) {
-		return sql.insert(namespace + ".setUser" , vo);
+	public int setUser(UserVO uvo) {
+		return sql.insert(namespace + ".setUser" , uvo);
 	}
 
 	@Override

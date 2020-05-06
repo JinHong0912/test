@@ -8,7 +8,7 @@ public interface UserService {
 
 	public int idCheck(String userid);
 	
-	public int setUser(UserVO vo);
+	public int setUser(UserVO uvo);
 	
 	public List<UserVO> getUsersList(); 
 }

@@ -70,7 +70,9 @@
 				</form>
 			</div>
 		</div>
+
 	</main>
 </body>
+
 <script src="/js/login.js"></script>
 <%@include file="include/foot.jspf"%>

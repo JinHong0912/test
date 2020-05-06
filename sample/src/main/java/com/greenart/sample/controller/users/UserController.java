@@ -21,22 +21,32 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	//href 형식으로 들어오면 여기로
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() {
 		return "users/register";
 	}
 
+	//action 방식으로 들어오면 여기로
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public String setRegister(@ModelAttribute UserVO vo) {// Model 저장 View 화면 이동 //ModelAndView 저장도 하면서 보여 주는 것이다
-		int result = userService.setUser(vo);// 긴 문장을 간략화 하기 위해서 사용
+	public String setRegister(@ModelAttribute UserVO uvo) {// Model 저장 View 화면 이동 //ModelAndView 저장도 하면서 보여 주는 것이다
+		int result = userService.setUser(uvo);// 긴 문장을 간략화 하기 위해서 사용
 		StringBuilder sb = new StringBuilder();
+		String msg = "회원가입이 완료 되었습니다.";
+		String error = "시스템 오류입니다. 관리자에 문의하세요.";
 		
 		if (result > 0) {
-			String msg = "회원가입이 완료 되었습니다.";
 			sb.append("<script>");
 			sb.append("alert('" + msg + "');");
 			sb.append("location.replace('/login');");
+			sb.append("</script>");
+
+		}else{
+			sb = new StringBuilder();
+			sb.append("<script>");
+			sb.append("alert('" + error + "');");
+			sb.append("location.replace('/users/login');");
 			sb.append("</script>");
 
 		}
