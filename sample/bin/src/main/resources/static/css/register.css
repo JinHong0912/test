@@ -1,0 +1,44 @@
+@charset 'utf-8';
+/* register에만 필요한 css */
+
+body{
+    background-color: #172b4d;
+}
+
+#login-box{
+    width: 450px;
+    height: auto; /* 내용물의 높이에 맞게 작동 */
+    background-color: #fff;
+    box-sizing: 2px 2px 2px #555;
+    padding: 50px 40px;
+}
+
+/* input fontawesome */
+
+.form-icon{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    /* fontawesome 배경색 지우기 */
+}
+
+.form-icon i{
+    color:#8898aa;
+    font-size: 20px;
+}
+::placeholder{
+    font-size: 14px;
+    color: #3889aa;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+
+
+
+
+
