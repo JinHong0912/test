@@ -8,20 +8,20 @@ public class HomeController {
 
 	
 	// website main
-	@RequestMapping("")//localhost:9999/home
+	@RequestMapping("")//localhost:8888/home
 	public String getHome() {
 		return "home";//views/home.jsp
 		
 	}
 
 	//login
-	@RequestMapping("/login")//localhost:9999/login
+	@RequestMapping("/login")//localhost:8888/login
 	public String getLogin() {
 		return "login";//views/login.jsp
 		
 	}
 	//admin
-	@RequestMapping("/admin")//localhost:9999/admin
+	@RequestMapping("/admin")//localhost:8888/admin
 	public String getAdmin() {
 		return "admin/users/userList";//views/admin.jsp
 		

@@ -1,5 +1,7 @@
 package com.greenart.sample.controller.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.greenart.sample.model.UserVO;
 import com.greenart.sample.service.users.UserService;
@@ -58,6 +61,18 @@ public class UserController {
 		return str;
 	}
 
-	
+	@RequestMapping("")
+	public ModelAndView getUsersList() {
+		List<UserVO> uvo = userService.getUsersList();
+		
+		ModelAndView mav = new ModelAndView();
+		if( uvo != null) {
+		mav.addObject("template", "users");
+		mav.addObject("usersList", uvo);
+		mav.setViewName("admin/admin");
+	}
+		return mav;
+		
+	}
 	
 }

@@ -1,5 +1,7 @@
 package com.greenart.sample.repository.users;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,5 +25,12 @@ public class UserDaoImpl implements UserDao{
 	public int setUser(UserVO vo) {
 		return sql.insert(namespace + ".setUser" , vo);
 	}
+
+	@Override
+	public List<UserVO> getUsersList(){
+		return sql.selectList(namespace+ ".getUsersList");
+		
+	}
+
 
 }

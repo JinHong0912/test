@@ -1,0 +1,130 @@
+@charset 'utf-8';
+
+
+#container{
+    display: flex;
+}
+
+#nav{
+flex-basis: 16%;
+}
+
+#main{
+flex-basis: 84%;
+}
+
+#nav-top{
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    box-shadow: 0 1px 5px #304161;
+
+}
+
+/* admin nav menu 부분*/
+
+#nav-wrap{
+    display: flex;
+}
+
+.icon{
+    flex-basis: 20%;
+}
+.icon-title{
+    flex-basis: 60%;
+}
+.icon-arrow{
+    flex-basis: 20%;
+}
+
+.icon-title a:hover{
+    color: #fe5e71;
+    transition: .5s;
+}
+
+/* user info 부분 */
+#main-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    padding: 0 2%;
+    box-shadow: 0 1px 5px #ccc;
+}
+.info-img img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: bottom;
+}
+
+.info-text{
+    line-height: 30px;
+}
+
+.msg-cnt{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+
+}
+/* main-main 부분 */
+
+#main-main{
+    padding: 2%;
+    width: 100%;
+    height: 95vh;
+    /* height: 100vh; */
+    box-sizing: border-box;
+}
+
+.main-content{
+    width: 100%;
+    height: auto;
+}
+
+/* main total 정보 박스 4개(total box) */
+
+.main-top-box-wrap, .title-wrap, .search-wrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-top-box{
+    flex-basis: 24%;
+    width: 100%;
+    height: 150px;
+    padding: 30px;
+
+}
+.box-top{
+    height: 75px;
+}
+.box-bottom{
+    height: 75px;
+}
+
+.item-title{
+width: 70%;;
+}
+.item-icon{
+width: 30%;
+}
+
+/* list 박스  부분 paging desigh*/
+
+.member-page-number{
+    background-color: #2952ff;
+    border: 1px solid #2962ff;
+    color: #fff;
+
+ }
+.member-page-number:hover{
+    background-color: transparent;
+    color: #2962ff;
+    border: 1px solid #2962ff;
+    transition: .5s;
+}

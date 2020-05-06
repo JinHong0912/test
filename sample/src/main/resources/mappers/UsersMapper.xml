@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.UsersMapper">
 
-	<!-- idCheck(ajax) -->
+	<!-- idCheck(ajax) 회원가입 아이디확인하는 부분-->
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM users WHERE userID = #{userID}
 	</select>
 
-	<!-- register -->
+	<!-- register 회원가입 입력하는 부분 -->
 	<insert id ="setUser">
 		INSERT INTO	
 			users
@@ -19,10 +19,14 @@
 			userEmail = #{userEmail},
 			userDomain = #{userDomain},
 			userRegdate = now()
-
-		
 	</insert>
 	
-
+	<!-- getUsersList 결과 가지고 오는 부분 -->
+	<select id="getUsersList" resultType="uservo">
+		SELECT 
+			uid, userID, auth, userName, userEmail, userDomain, date_format(userRegdate,'%Y-%m-%d') as userRegdate
+		FROM users ORDER BY uid DESC
+	
+	</select>
 
 </mapper>
