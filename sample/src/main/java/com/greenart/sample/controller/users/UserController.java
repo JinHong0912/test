@@ -50,7 +50,7 @@ public class UserController {
 			sb.append("</script>");
 
 		}
-
+//
 		return sb.toString();
 
 	}
