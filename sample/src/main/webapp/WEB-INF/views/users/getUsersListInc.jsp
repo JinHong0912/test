@@ -5,8 +5,8 @@
 <!-- if에 따라 바뀌는 부분 -->
 <div id="main-member" class="bg-color-8 br-3 margin-t20 padding-a-20">
 	<div class="title-wrap">
-		<span class="font-16 bold">1. 회원목록</span> <span class="btnn">검색된
-			내용은 <strong>10명</strong>입니다.
+		<span class="font-16 bold">1. 회원목록</span> <span class="font-16 noto">검색된
+			내용은 <strong>${usersCount}명</strong> 입니다.
 		</span>
 	</div>
 
@@ -49,7 +49,16 @@
 					<td class="td-5">${usersList.uid}</td>
 					<td class="td-15 bold eng">${usersList.userID}</td>
 					<td class="td-15">${usersList.userName}</td>
-					<td class="td-10"></td>
+					<td class="td-10">
+						<select id="auth" class="sel-100" onChange="authUpdate(this.value,'${usersList.userID}');"
+						<c:if test="${usersList.auth eq '관리자'}">disabled</c:if> >
+								<option value="관리자" <c:if test="${usersList.auth eq '관리자'}">selected</c:if> >관리자</option>
+								<option value="회원"	<c:if test="${usersList.auth eq '회원'}">selected</c:if>>회원</option>
+								<option value="일반"	<c:if test="${usersList.auth eq '일반'}">selected</c:if>>일반</option>
+						
+						
+						</select>
+					</td>
 					<td class="td-15">${usersList.userEmail}@${usersList.userDomain}</td>
 					<td class="td-15">${usersList.userRegdate}</td>
 					<td class="td-20">
@@ -69,3 +78,4 @@
 		</div>
 	</div>
 </div>
+<script src="/js/users.js"></script>

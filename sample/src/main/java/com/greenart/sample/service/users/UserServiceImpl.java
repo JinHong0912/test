@@ -1,6 +1,7 @@
 package com.greenart.sample.service.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,21 @@ public class UserServiceImpl implements UserService{
 	public List<UserVO> getUsersList() {
 	
 		return dao.getUsersList();
+	}
+
+
+	@Override
+	public int getUsersCount() {
+		
+		return dao.getUsersCount();
+		
+	}
+
+
+	@Override
+	public int authUpdate(Map<String, Object> map) {
+		
+		return dao.authUpdate(map);
 	}
 
 }

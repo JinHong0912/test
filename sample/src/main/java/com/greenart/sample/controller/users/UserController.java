@@ -1,6 +1,7 @@
 package com.greenart.sample.controller.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class UserController {
 
 	}
 		
-
+	//아이디 중복 확인하는 부분
 	@RequestMapping("/idCheck")
 	@ResponseBody // javascript 사용시
 	public String idCheck(@RequestParam String userid) {// ajax 쪽에서 넘어
@@ -71,18 +72,35 @@ public class UserController {
 		return str;
 	}
 
+	//리스트에서 불러 오는 부분 & 얼마나 검색 되는지 확인하는 부분
 	@RequestMapping("")
 	public ModelAndView getUsersList() {
 		List<UserVO> uvo = userService.getUsersList();
+		int usersCount = userService.getUsersCount();
 		
 		ModelAndView mav = new ModelAndView();
 		if( uvo != null) {
 		mav.addObject("template", "users");
 		mav.addObject("usersList", uvo);
+		mav.addObject("usersCount", usersCount);
 		mav.setViewName("admin/admin");
 	}
 		return mav;
 		
+	}
+	
+	@RequestMapping("/authUpdate")
+	@ResponseBody
+	public String authUpdate (@RequestParam Map<String, Object> map) {
+		int result = userService.authUpdate(map);
+		String msg = null;
+		
+		if( result > 0) {
+			msg ="success";	
+		}else {
+			msg ="failure";
+		}
+		return msg;			
 	}
 	
 }
