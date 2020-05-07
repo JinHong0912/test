@@ -26,7 +26,7 @@
 					<option value="boardCode">게시판코드</option>
 				</select> <input type="search" name="words" id="words"
 					class="input-150  bo-blue" value="" />
-				<button type="button" id="search-btn" class="btn-50 bold bo-blue">검색</button>
+				<button type="sudmit" id="search-btn" class="btn-50 bold bo-blue">검색</button>
 				<button type="button" class="btn-80 bold bo-gray"
 					onClick="javascript:location.href='/board' ">전체보기</button>
 			</form>

@@ -33,16 +33,16 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public List<UserVO> getUsersList() {
+	public List<UserVO> getUsersList(String searchOpt, String  words) {
 	
-		return dao.getUsersList();
+		return dao.getUsersList(searchOpt, words);
 	}
 
 
 	@Override
-	public int getUsersCount() {
+	public int getUsersCount(String searchOpt, String  words) {
 		
-		return dao.getUsersCount();
+		return dao.getUsersCount(searchOpt, words);
 		
 	}
 
@@ -51,6 +51,20 @@ public class UserServiceImpl implements UserService{
 	public int authUpdate(Map<String, Object> map) {
 		
 		return dao.authUpdate(map);
+	}
+
+
+	@Override
+	public int setUsersDeleteAll(int uid) {
+		
+		return dao.setUsersDeleteAll(uid);
+	}
+
+
+	@Override
+	public int setUsersDelete(int uid) {
+		
+		return dao.setUsersDelete(uid);
 	}
 
 }

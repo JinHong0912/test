@@ -22,21 +22,55 @@
 	</insert>
 	
 	<!-- getUsersList 결과 가지고 오는 부분 -->
-	<select id="getUsersList" resultType="uservo">
+	<select id="getUsersList"  resultType="uservo">
 		SELECT 
 			uid, userID, auth, userName, userEmail, userDomain, date_format(userRegdate,'%Y-%m-%d') as userRegdate
-		FROM users ORDER BY uid DESC
+		FROM users
+		
+		<include refid="search"></include>
+		
+		 ORDER BY uid DESC
 	
 	</select>
 	
 	<!-- 데이터 검색 부분 -->
 	<select id="getUsersCount" resultType="int">
-		SELECT COUNT(*) FROM users	
+		SELECT COUNT(*) FROM 
+		users	
+		<include refid="search"></include>
 	</select>
 	
 	<update id="authUpdate" parameterType="hashMap">
 		<!-- UPDATE 테이블 SET 변경할 컬럼 = 값 WHERE 조건 = 값 ; -->
-		UPDATE users SET auth = #{auth} WHERE userID = #{userID}
+		UPDATE users SET auth = #{auth} WHERE uid = #{uid}
 	</update>
+
+
+	<delete id ="setUsersDeleteAll">
+		DELETE FROM users WHERE uid = #{uid}
+	</delete>
+
+	<delete id ="setUsersDelete">
+		DELETE FROM users WHERE uid = #{uid}
+	</delete>
+
+	<!-- 컬럼(column)변수($), 데이터 변수(#) -->
+	<sql id="search">
+		<choose>
+			<when test = "searchOpt == 'all' ">
+				WHERE userID LIKE CONCAT('%',#{words},'%')
+				OR userName LIKE CONCAT('%',#{words},'%')
+				OR userEmail LIKE CONCAT('%',#{words},'%')
+			</when>
+		
+			<otherwise>
+				WHERE ${searchOpt} LIKE CONCAT('%',#{words},'%')
+			</otherwise>
+		</choose>
+	</sql>
+
+
+
+
 
 </mapper>

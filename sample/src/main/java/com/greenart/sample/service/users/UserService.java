@@ -11,9 +11,14 @@ public interface UserService {
 	
 	public int setUser(UserVO uvo);
 	
-	public List<UserVO> getUsersList(); 
+	public List<UserVO> getUsersList(String searchOpt, String  words); 
 	
-	public int getUsersCount();
+	public int getUsersCount(String searchOpt, String  words);
 
 	public int authUpdate(Map<String, Object> map); 
+
+	public int setUsersDeleteAll(int uid);
+
+	public int setUsersDelete(int uid);
+
 }

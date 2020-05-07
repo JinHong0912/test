@@ -12,10 +12,15 @@ public interface UserDao {
 	public int setUser(UserVO uvo);
 
 	//접근제한자 List<UserVO>출력 메소드명 입력	
-	public List<UserVO> getUsersList(); 
+	public List<UserVO> getUsersList(String searchOpt, String  words); 
 	
 	//접근제한자(public) 화면출력(int) 메소드이름(getUsersCount) (입력)
-	public int getUsersCount();
+	public int getUsersCount(String searchOpt, String  words);
 	
 	public int authUpdate(Map<String, Object> map); 
+
+	public int setUsersDeleteAll(int uid);
+
+	public int setUsersDelete(int uid);
+
 }

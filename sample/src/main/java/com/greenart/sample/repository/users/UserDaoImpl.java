@@ -1,5 +1,6 @@
 package com.greenart.sample.repository.users;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,21 +29,38 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<UserVO> getUsersList(){
-		return sql.selectList(namespace+ ".getUsersList");
+	public List<UserVO> getUsersList(String searchOpt, String  words){
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchOpt", searchOpt);
+		map.put("words", words);
+		return sql.selectList(namespace+ ".getUsersList", map);
 		
 	}
 	
 	//Service는 괄호 안에 값을 여러게 가능 -> ex(namespace + ".getUsersCount",A,B,C), dao는 여러개 X (collection -hashMap, dto) 사용해야 한다.	
 	@Override
-	public int getUsersCount() {
-		return sql.selectOne(namespace + ".getUsersCount");
+	public int getUsersCount(String searchOpt, String  words) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchOpt", searchOpt);
+		map.put("words", words);
+		return sql.selectOne(namespace + ".getUsersCount", map);
 	}
 
 	@Override
 	public int authUpdate(Map<String, Object> map) {
 		return sql.update(namespace + ".authUpdate", map);
 	 }
+
+	@Override
+	public int setUsersDeleteAll(int uid) {
+		return sql.delete(namespace + ".setUsersDeleteAll", uid );
+	}
+
+	@Override
+	public int setUsersDelete(int uid) {
+		
+		return sql.delete(namespace + ".setUsersDelete", uid );
+	}
 
 
 }

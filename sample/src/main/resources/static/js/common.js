@@ -9,3 +9,18 @@ $(function(){
         }
     });
 });
+
+
+//전체 선택 부분!!!
+$(function () {
+	$("#checkAll").click(function() {
+		if($("#checkAll").is(":checked")){//체크
+			$(".chk").prop("checked", true);
+			
+			
+		}else{//체크해제
+			$(".chk").prop("checked", false);
+			
+		}
+	});
+});

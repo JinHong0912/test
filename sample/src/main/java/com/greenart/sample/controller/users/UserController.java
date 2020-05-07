@@ -73,16 +73,23 @@ public class UserController {
 	}
 
 	//리스트에서 불러 오는 부분 & 얼마나 검색 되는지 확인하는 부분
+	//defaultValue 초기값
 	@RequestMapping("")
-	public ModelAndView getUsersList() {
-		List<UserVO> uvo = userService.getUsersList();
-		int usersCount = userService.getUsersCount();
+	public ModelAndView getUsersList(@RequestParam(defaultValue = "userID") String searchOpt,
+									 @RequestParam(defaultValue = "") String  words) {
+		List<UserVO> uvo = userService.getUsersList(searchOpt, words);
+		int usersCount = userService.getUsersCount(searchOpt, words);
 		
 		ModelAndView mav = new ModelAndView();
 		if( uvo != null) {
 		mav.addObject("template", "users");
 		mav.addObject("usersList", uvo);
 		mav.addObject("usersCount", usersCount);
+		//생략해도 되는 내용
+		mav.addObject("searchOpt", searchOpt);
+		mav.addObject("words", words);
+		
+		
 		mav.setViewName("admin/admin");
 	}
 		return mav;
@@ -102,5 +109,49 @@ public class UserController {
 		}
 		return msg;			
 	}
+	
+	
+	
+	
+	@RequestMapping("/setUsersDeleteAll")
+	@ResponseBody
+	public String setUsersDeleteAll(@RequestParam(value = "chkArr[]") List<String> chkArr) {
+		
+		int uid,result = 0;
+		String msg = null;
+		
+		//for(데이터 타입 변수 : 값
+		for(String list : chkArr) {//1 ,2,3, 
+			uid =  Integer.parseInt(list);
+			userService.setUsersDeleteAll(uid);
+		}
+		result = 1;
+		
+		if( result == 1) {
+			msg="success";
+			
+		}else {
+			msg ="error";
+		}
+		return msg;
+		
+	}
+	
+	
+	@RequestMapping("/setUsersDelete")
+	public String setUsersDelete(@RequestParam int uid) {
+		userService.setUsersDelete(uid);
+		
+		return "redirect:/users";
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
