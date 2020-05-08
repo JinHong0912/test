@@ -147,7 +147,7 @@
                 <!-- 개인정보 -->
                 <div id="main-top" class="">
                     <div id="main-top-left" class="">
-                        <span class="info-img"> <img src="images/admin/icon.png" alt="">
+                        <span class="info-img"> <img src="../images/admin/icon.png" alt="">
                         </span> <span class="info-text bold font-15"> 
                         <strong>${sessionScope.userName}(${sessionScope.auth})</strong>님   안녕하세요.
                         </span> <span class="pos-rel"> <i class="fa fa-bell"></i> <span
