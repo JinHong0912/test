@@ -3,6 +3,8 @@ package com.greenart.sample.controller.users;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -145,13 +147,35 @@ public class UserController {
 		return "redirect:/users";
 		
 	}
+	//Model 빨리 하고 싶으면
+	@RequestMapping("/loginCheck")
+	public ModelAndView loginCheck(@ModelAttribute UserVO uvo, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		if( uvo.getUserID().equals("") && uvo.getPasswd().equals("")) {
+			mav.addObject("msg" , "아이디나 비밀번호를 확인하세요.");
+			mav.setViewName("/login");
+			
+		}else {
+			UserVO vo = userService.loginCheck(uvo, session);
+			if( vo == null) {
+				mav.addObject("msg","아이디나 비밀번호를 확인하세요.");
+				mav.setViewName("/login");
+
+			}else {
+				mav.setViewName("redirect:/users");
+			}
+			
+			
+		}
+
+		return mav;
+		
+		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}
+		
+	}
+
+
+

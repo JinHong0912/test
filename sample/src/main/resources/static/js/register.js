@@ -17,10 +17,10 @@ $(function(){
         var repasswdMsg = "비밀번호를 확인하세요.";
         var passwdConfirmMsg = "비밀번호가 일치하지 않습니다.";
         
-        var userNameMsg   = "이름을 입력하세요."
-        var userEmailMsg  = "이메일을 입력하세요."
-        var userDomainMsg = "이메일 주소를 입력하세요."
-        var userPhoneMsg  = "사용자 휴대전화를 입력하세요."
+        var userNameMsg   = "이름을 입력하세요.";
+        var userEmailMsg  = "이메일을 입력하세요.";
+        var userDomainMsg = "이메일 주소를 입력하세요.";
+        var userPhoneMsg  = "사용자 휴대전화를 입력하세요.";
 
         
         //userid
@@ -88,21 +88,10 @@ $(function(){
         }
 
 
-            
-        // 14자리 + 영어 + 숫자만 허용하는 함수 
-        function checkValue(data){// data = id 값이다.
-            //유효성 검사(정규식 표현) 
-            // 숫자 & 영어 && 7자리 부터 12자리까지만
-            var exp1 = /^[a-z0-9]{7,14}$/;
-            var exp2 = /[a-z]/g;
-            var exp3 = /[0-9]/g;
-
-            return ( exp1.test(data) && exp2.test(data) && exp3.test(data) );
-        }
-
     });
 
 });
+
 // url select
 $(function (){
     // select -> onChange(js), change(자바스크립트)
@@ -116,7 +105,7 @@ $(function (){
       }else{
         $("#userDomain").val(data);
         $("#userDomain").attr("readonly", true);
-
+        return false;
 
         }
 
@@ -124,5 +113,97 @@ $(function (){
     });
 
 });
+//아이디 중복 확인 
+$(function() {
+	$("#userID").blur(function() {
+			$.ajax({
+			type : "POST",
+			url : "/users/idCheck",
+			data : {
+
+				"userid" : $("#userID").val()
+			},
+			success : function(data) {
+				if ($.trim(data) == "NO") {
+					$("#confirm").html("사용 할 수 없는 아이디입니다.");
+					$("#userID").val("");
+					$("#userID").focus();
+					
+				} else {
+					$("#confirm").html("사용 할 수 있는 아이디입니다.");
+					}
+					return false;
+			}
+
+		});
+
+	});
+
+});
+//논리연산자
+//OR = || : 또는 userid, userName
+//AND = && : 그리고 userid userName 두개다 만족해야함
+//
+//비트연산자
+//& : 0000 
+//|
+
+//유효성 체크 (한글 제외 유효성 검사)
+$(function(){
+		$("#userID").blur(function(){
+			var userID = $.trim( $("#userID").val() );//trim 공백제거
+			var hangul = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;//사용시에는 test 사용 
+			
+			if(hangul.test(userID) ){
+				alert("아이디에 한글은 사용하실 수 없습니다.");
+				$("#userID").val("");
+				$("#userID").foucus();
+				return false;
+			}
+			
+		});
+});
+//이름에 영어가 들어가면 안되는 유효성 검사
+$(function(){
+	$("#userName").blur(function(){
+		var userName = $.trim( $("#userName").val() );
+		var eng =/[a-zA-Z0-9]/;//영어 ,숫자 안들어 가게
+		
+		if( eng.test(userName) ){
+			alert("이름은 한글만 사용 할 수 있습니다.");
+			$("#userName").val("");
+			$("#userName").focus();
+			return false;
+		}
+	
+	});
 
 
+});
+
+$(function() {
+	$("#userID").blur(function() {
+			$.ajax({
+			type : "POST",
+			url : "/users/idCheck",
+			data : {
+
+				"userid" : $("#userID").val()
+			},
+			success : function(data) {
+				if ($.trim(data) == "NO") {
+					$("#confirm").html("사용 할 수 없는 아이디입니다.");
+					$("#userID").val("");
+					$("#userID").focus();
+					
+				} else {
+					$("#confirm").html("사용 할 수 있는 아이디입니다.");
+					}
+					return false;
+			}
+
+		});
+
+	});
+
+});

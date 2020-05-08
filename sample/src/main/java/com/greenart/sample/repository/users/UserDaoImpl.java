@@ -62,5 +62,11 @@ public class UserDaoImpl implements UserDao{
 		return sql.delete(namespace + ".setUsersDelete", uid );
 	}
 
+	@Override
+	public UserVO loginCheck(UserVO uvo) {
+		return sql.selectOne(namespace + ".loginCheck" , uvo);
+	}
+
+	
 
 }

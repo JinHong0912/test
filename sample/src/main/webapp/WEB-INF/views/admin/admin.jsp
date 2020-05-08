@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- session(Object) 없이 접속 했을 때 -->
+<c:if test ="${sessionScope.auth ne '관리자' && sessionScope.auth ne '회원'}">
+	<script>
+		alert("접근 권한이 없습니다.\n 관리자 승인 후에 접속해 주세요.");
+		window.location.replace("/login");
+	</script>
+</c:if>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,9 +25,12 @@
     <link rel="stylesheet" href="/css/admin/admin.css">
     <!-- js -->
     <script src="https://kit.fontawesome.com/8838b56230.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com./jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="/js/jquer-3.5.1-min.js"></script>
     <script src="js/common.js"></script>
+
+
+<!--     <script src="https://code.jquery.com./jquery-2.2.4.min.js" -->
+<!--         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> -->
 
 
 </head>
@@ -152,8 +165,8 @@
                 <div id="main-top" class="">
                     <div id="main-top-left" class="">
                         <span class="info-img"> <img src="images/admin/icon.png" alt="">
-                        </span> <span class="info-text bold font-15"> <strong>그린컴퓨터아카데미</strong>님
-                            안녕하세요.
+                        </span> <span class="info-text bold font-15"> 
+                        <strong>${sessionScope.userName}(${sessionScope.auth})</strong>님   안녕하세요.
                         </span> <span class="pos-rel"> <i class="fa fa-bell"></i> <span
                                 class="msg-cnt bg-color-10 align font-12 gray-80">2</span>
                         </span>

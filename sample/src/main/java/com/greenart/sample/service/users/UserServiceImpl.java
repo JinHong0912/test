@@ -3,6 +3,8 @@ package com.greenart.sample.service.users;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +67,27 @@ public class UserServiceImpl implements UserService{
 	public int setUsersDelete(int uid) {
 		
 		return dao.setUsersDelete(uid);
+	}
+
+
+	@Override
+	public UserVO loginCheck(UserVO uvo, HttpSession session) {
+		UserVO result = dao.loginCheck(uvo);
+		
+		if( result != null) {
+			session.setAttribute("userID", result.getUserID());
+			session.setAttribute("userName", result.getUserName());
+			session.setAttribute("auth", result.getAuth());
+		}
+		
+		return result;
+	}
+
+	//로그아웃 session을 끊어 주는 부분
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
+		
 	}
 
 }

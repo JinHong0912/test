@@ -69,8 +69,9 @@
 		</choose>
 	</sql>
 
-
-
-
+	<select id="loginCheck" resultType="uservo">
+		SELECT userID, userName, auth FROM users
+		WHERE userID = #{userID} AND passwd = #{passwd}
+	</select>
 
 </mapper>

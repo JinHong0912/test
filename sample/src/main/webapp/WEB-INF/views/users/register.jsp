@@ -16,9 +16,9 @@
 
 					<!-- input $ icon -->
 					<div class="pos-rel">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="far fa-address-card"></i>
-						</button>
+						</span>
 						<input type="text" name="userID" id="userID"
 							class="input-full br-3 padding-lr-40"
 							placeholder="Indentification" maxlength="20" autofocus
@@ -26,45 +26,45 @@
 					</div>
 
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="fas fa-unlock-alt"></i>
-						</button>
+						</span>
 						<input type="password" name="passwd" id="passwd"
 							class="input-full br-3 padding-lr-40" placeholder="Passowrd"
 							maxlength="20" autofocus tabindex="2">
 					</div>
 					<!-- jquery 확인용 -> db 저장(X) -->
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="far fa-check-circle"></i>
-						</button>
+						</span>
 						<input type="password" name="repasswd" id="repasswd"
 							class="input-full br-3 padding-lr-40" placeholder="RePassowrd"
 							maxlength="20" autofocus tabindex="3">
 					</div>
 
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="fas fa-signature"></i>
-						</button>
+						</span>
 						<input type="text" name="userName" id="userName"
 							class="input-full br-3 padding-lr-40" placeholder="userName"
 							maxlength="20" autofocus tabindex="4">
 					</div>
 
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="fas fa-envelope-open-text"></i>
-						</button>
+						</span>
 						<input type="text" name="userEmail" id="userEmail"
 							class="input-full br-3 padding-lr-40" placeholder="Your E-Mail"
 							maxlength="50" autofocus tabindex="5">
 					</div>
 
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="fas fa-inbox"></i>
-						</button>
+						</span>
 						<input type="text" name="userDomain" id="userDomain"
 							class="input-200 br-3 padding-lr-40" placeholder="Domain"
 							maxlength="50" value="naver.com" readonly autofocus tabindex="6">
@@ -80,9 +80,9 @@
 					</div>
 
 					<div class="pos-rel margin-t10">
-						<button class="form-icon">
+						<span class="form-icon">
 							<i class="fas fa-phone-volume"></i>
-						</button>
+						</span>
 						<input type="text" name="userPhone" id="userPhone"
 							class="input-full br-3 padding-lr-40"
 							placeholder="Your Phone Number" maxlength="15" autofocus
@@ -109,39 +109,6 @@
 	</main>
 </body>
 
-<script src="js/register.js"></script>
-<script>
-$(function() {
-	$("#userID").blur(function() {
-			$.ajax({
-			type : "POST",
-			url : "/users/idCheck",
-			data : {
-
-				"userid" : $("#userID").val()
-			},
-			success : function(data) {
-				if ($.trim(data) == "NO") {
-					$("#confirm").html("사용 할 수 없는 아이디입니다.");
-					$("#userID").val("");
-					$("#userID").focus();
-					
-				} else {
-					$("#confirm").html("사용 할 수 있는 아이디입니다.");
-				
-					}
-			}
-
-		});
-
-	});
-
-});
-
-
-
-
-
-</script>
+<script src="/js/register.js"></script>
 
 <%@include file="../include/foot.jspf"%>

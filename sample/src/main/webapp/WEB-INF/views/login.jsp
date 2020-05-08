@@ -13,22 +13,22 @@
 
 				<!-- main btn -->
 				<div class="social eng align margin-t20">
-					<button class="social-icon">
-						<i class="far fa-building"></i> <span class="eng bold"> <a
-							href="#">Go Mall</a>
+					<span class="social-icon">
+						<i class="far fa-building"></i> <span class="eng bold"> 
+						<a href="localhost:8888">Go Mall</a>
 						</span>
-					</button>
+					</span>
 
-					<button class="social-icon">
+					<span class="social-icon">
 						<i class="fas fa-suitcase-rolling"></i> <span class="eng bold">
-							<a href="#">Tour Site</a>
+							<a href="#submit">Tour Site</a>
 						</span>
 					</button>
 				</div>
 				<hr class="margin-tb-30" />
 				<h2 class="eng align font-20 skyblue ">Insert Your ID &
 					Password</h2>
-				<p id="confirm" class="align tomato bold margin-tb-20">&nbsp;</p>
+				<p id="confirm" class="align tomato bold margin-tb-20">${msg}</p>
 
 				<form method="post" action="/users/loginCheck">
 					<!-- input $ icon -->

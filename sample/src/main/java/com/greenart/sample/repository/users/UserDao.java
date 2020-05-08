@@ -23,4 +23,7 @@ public interface UserDao {
 
 	public int setUsersDelete(int uid);
 
+	//public 출력 loginCheck(입력) 한개가 아닐때 배열을 사용!!
+	public UserVO loginCheck(UserVO uvo);
+	
 }
