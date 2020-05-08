@@ -13,7 +13,7 @@ public interface UserService {
 	
 	public int setUser(UserVO uvo);
 	
-	public List<UserVO> getUsersList(String searchOpt, String  words); 
+	public List<UserVO> getUsersList(int start,int end,String searchOpt, String  words); 
 	
 	public int getUsersCount(String searchOpt, String  words);
 
@@ -27,4 +27,5 @@ public interface UserService {
 
 	public void logout(HttpSession session);
 
+	public UserVO getUsersView(int uid);
 }

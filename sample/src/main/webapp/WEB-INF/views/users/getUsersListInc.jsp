@@ -69,7 +69,9 @@
 					</td>
 					<td class="td-5">${usersList.uid}</td>
 					<td class="td-15 bold eng">${usersList.userID}</td>
-					<td class="td-15">${usersList.userName}</td>
+					<td class="td-15">
+							<a href="/users/getUsersView?uid=${usersList.uid}">${usersList.userName}</a>
+					</td>
 					<td class="td-10"><select id="auth" class="sel-100"
 						onChange="authUpdate(this.value,'${usersList.uid}');"
 						<c:if test="${usersList.auth eq '관리자'}">disabled</c:if>>
@@ -97,8 +99,11 @@
 			</c:forEach>
 		</table>
 		<div class="page-grp margin-t10">
-			<span class=""> <a href="#"
-				class="page-number member-page-number">1</a></span>
+			<c:forEach begin="1" end="${pageNum}" var="num">
+				<span class=""> 
+				<a href="/users?num=${num}&searchOpt=${searchOpt}&words=${words}&template=${template}&mypage=${mypage}" class="page-number member-page-number">${num}</a>	
+				</span>
+			</c:forEach>
 		</div>
 	</div>
 </div>

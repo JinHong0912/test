@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<script src="../js/jquery-3.5.1.min.js"></script>
 <!-- session(Object) 없이 접속 했을 때 -->
 <c:if test ="${sessionScope.auth ne '관리자' && sessionScope.auth ne '회원'}">
 	<script>
@@ -10,6 +10,7 @@
 		window.location.replace("/login");
 	</script>
 </c:if>
+ 
 
 
 <!DOCTYPE html>
@@ -34,25 +35,7 @@
 
 
 </head>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자바 기반 디지털 컨버전스 2기</title>
-    <!-- css -->
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/admin/admin.css">
-    <!-- js -->
-    <script src="https://kit.fontawesome.com/8838b56230.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com./jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="js/common.js"></script>
-
-
-</head>
 
 <body>
     <header></header>
@@ -62,7 +45,7 @@
 
                 <!-- admin logo -->
                 <div id="nav-top" class="align">
-                    <a href="/users" class="eng gray-80 font-20">Administrator</a>
+                    <a href="/users?template=users&mypage=list" class="eng gray-80 font-20">Administrator</a>
                 </div>
 
                 <!--admin nav menu -->
@@ -76,7 +59,7 @@
                             <i class="fas fa-male gray-80"></i>
                         </div>
                         <div class="icon-title">
-                            <a href="/users" class="eng gray-80">Member Management Page</a>
+                            <a href="/users?template=users&mypage=list" class="eng gray-80">Member Management Page</a>
                         </div>
                         <div class="icon-arrow ralign">
                             <i class="fas fa-angle-right gray-80"></i>
@@ -287,10 +270,18 @@
                         <!-- total box 끝나는 부분 -->
 
                         <!-- if부분 -->
-                        <c:if test="${template eq 'users'}">
-                            <%@ include file = "../users/getUsersListInc.jsp"%>
+                        <c:if test="${template eq 'users' && mypage eq 'list'}">
+                            <%@ include file="../users/getUsersListInc.jsp"%>
+                        </c:if>
+                        
+                        <c:if test="${template eq 'users' && mypage eq 'view'}">
+                            <%@ include file = "../users/getUsersViewInc.jsp"%>
                         </c:if>
 
+					    <c:if test="${template eq 'users' && mypage eq 'modify'}">
+                            <%@ include file = "../users/getUsersModifyInc.jsp"%>
+                        </c:if>
+						
 						<c:if test="${template eq 'board'}">
                             <%@ include file = "../board/getBoardListInc.jsp"%>
                         </c:if>
@@ -304,5 +295,6 @@
     <footer></footer>
 
 </body>
+<script src="../js/common.js"></script>
 
 </html>

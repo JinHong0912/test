@@ -35,9 +35,9 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public List<UserVO> getUsersList(String searchOpt, String  words) {
+	public List<UserVO> getUsersList(int start,int end, String searchOpt, String  words) {
 	
-		return dao.getUsersList(searchOpt, words);
+		return dao.getUsersList(start, end, searchOpt, words);
 	}
 
 
@@ -88,6 +88,13 @@ public class UserServiceImpl implements UserService{
 	public void logout(HttpSession session) {
 		session.invalidate();
 		
+	}
+
+
+	@Override
+	public UserVO getUsersView(int uid) {
+	
+		return dao.getUsersView(uid);
 	}
 
 }

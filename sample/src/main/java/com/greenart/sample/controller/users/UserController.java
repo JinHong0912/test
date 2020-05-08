@@ -24,13 +24,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	//href 형식으로 들어오면 여기로
+	// href 형식으로 들어오면 여기로
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() {
 		return "users/register";
 	}
 
-	//action 방식으로 들어오면 여기로
+	// action 방식으로 들어오면 여기로
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public String setRegister(@ModelAttribute UserVO uvo) {// Model 저장 View 화면 이동 //ModelAndView 저장도 하면서 보여 주는 것이다
@@ -38,14 +38,14 @@ public class UserController {
 		StringBuilder sb = new StringBuilder();
 		String msg = "회원가입이 완료 되었습니다.";
 		String error = "시스템 오류입니다. 관리자에 문의하세요.";
-		
+
 		if (result > 0) {
 			sb.append("<script>");
 			sb.append("alert('" + msg + "');");
 			sb.append("location.replace('/login');");
 			sb.append("</script>");
 
-		}else{
+		} else {
 			sb = new StringBuilder();
 			sb.append("<script>");
 			sb.append("alert('" + error + "');");
@@ -57,8 +57,8 @@ public class UserController {
 		return sb.toString();
 
 	}
-		
-	//아이디 중복 확인하는 부분
+
+	// 아이디 중복 확인하는 부분
 	@RequestMapping("/idCheck")
 	@ResponseBody // javascript 사용시
 	public String idCheck(@RequestParam String userid) {// ajax 쪽에서 넘어
@@ -74,108 +74,139 @@ public class UserController {
 		return str;
 	}
 
-	//리스트에서 불러 오는 부분 & 얼마나 검색 되는지 확인하는 부분
-	//defaultValue 초기값
+	// 리스트에서 불러 오는 부분 & 얼마나 검색 되는지 확인하는 부분
+	// defaultValue 초기값
 	@RequestMapping("")
-	public ModelAndView getUsersList(@RequestParam(defaultValue = "userID") String searchOpt,
-									 @RequestParam(defaultValue = "") String  words) {
-		List<UserVO> uvo = userService.getUsersList(searchOpt, words);
+	public ModelAndView getUsersList(
+			
+			@RequestParam(defaultValue = "1") int num,
+			@RequestParam(defaultValue = "userID") String searchOpt,
+			@RequestParam(defaultValue = "") String words) {
+		
 		int usersCount = userService.getUsersCount(searchOpt, words);
 		
+			int end = 10;
+			int start = (num - 1) * end;
+			int pageNum = (int) Math.ceil( (double)usersCount / end);
+		
+		List<UserVO> uvo = userService.getUsersList(start, end, searchOpt, words);
+
 		ModelAndView mav = new ModelAndView();
-		if( uvo != null) {
-		mav.addObject("template", "users");
-		mav.addObject("usersList", uvo);
-		mav.addObject("usersCount", usersCount);
-		//생략해도 되는 내용
-		mav.addObject("searchOpt", searchOpt);
-		mav.addObject("words", words);
-		
-		
-		mav.setViewName("admin/admin");
-	}
+		if (uvo != null) {
+			mav.addObject("template", "users");
+			mav.addObject("mypage", "list");
+			mav.addObject("usersList", uvo);
+			mav.addObject("usersCount", usersCount);
+			// 생략해도 되는 내용
+			mav.addObject("searchOpt", searchOpt);
+			mav.addObject("words", words);
+			
+			mav.addObject("pageNum", pageNum);
+			mav.setViewName("admin/admin");
+		}
 		return mav;
-		
+
 	}
-	
+
 	@RequestMapping("/authUpdate")
 	@ResponseBody
-	public String authUpdate (@RequestParam Map<String, Object> map) {
+	public String authUpdate(@RequestParam Map<String, Object> map) {
 		int result = userService.authUpdate(map);
 		String msg = null;
-		
-		if( result > 0) {
-			msg ="success";	
-		}else {
-			msg ="failure";
+
+		if (result > 0) {
+			msg = "success";
+		} else {
+			msg = "failure";
 		}
-		return msg;			
+		return msg;
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/setUsersDeleteAll")
 	@ResponseBody
 	public String setUsersDeleteAll(@RequestParam(value = "chkArr[]") List<String> chkArr) {
-		
-		int uid,result = 0;
+
+		int uid, result = 0;
 		String msg = null;
-		
-		//for(데이터 타입 변수 : 값
-		for(String list : chkArr) {//1 ,2,3, 
-			uid =  Integer.parseInt(list);
+
+		// for(데이터 타입 변수 : 값
+		for (String list : chkArr) {// 1 ,2,3,
+			uid = Integer.parseInt(list);
 			userService.setUsersDeleteAll(uid);
 		}
 		result = 1;
-		
-		if( result == 1) {
-			msg="success";
-			
-		}else {
-			msg ="error";
+
+		if (result == 1) {
+			msg = "success";
+
+		} else {
+			msg = "error";
 		}
 		return msg;
-		
+
 	}
-	
-	
+
 	@RequestMapping("/setUsersDelete")
 	public String setUsersDelete(@RequestParam int uid) {
 		userService.setUsersDelete(uid);
-		
+
 		return "redirect:/users";
-		
+
 	}
-	//Model 빨리 하고 싶으면
+
+	// Model 빨리 하고 싶으면
 	@RequestMapping("/loginCheck")
 	public ModelAndView loginCheck(@ModelAttribute UserVO uvo, HttpSession session) {
-		
+
 		ModelAndView mav = new ModelAndView();
-		if( uvo.getUserID().equals("") && uvo.getPasswd().equals("")) {
-			mav.addObject("msg" , "아이디나 비밀번호를 확인하세요.");
+		if (uvo.getUserID().equals("") && uvo.getPasswd().equals("")) {
+			mav.addObject("msg", "아이디나 비밀번호를 확인하세요.");
 			mav.setViewName("/login");
-			
-		}else {
+
+		} else {
 			UserVO vo = userService.loginCheck(uvo, session);
-			if( vo == null) {
-				mav.addObject("msg","아이디나 비밀번호를 확인하세요.");
+			if (vo == null) {
+				mav.addObject("msg", "아이디나 비밀번호를 확인하세요.");
 				mav.setViewName("/login");
 
-			}else {
+			} else {
+
+				
+				  mav.addObject("template", "users"); 
+				  mav.addObject("mypage", "list");
+				 
 				mav.setViewName("redirect:/users");
 			}
-			
-			
+
 		}
 
 		return mav;
-		
-		}
-	
-	
-		
+
 	}
 
+	@RequestMapping("/getUsersView")
+	public ModelAndView getUsersView(@RequestParam int uid) {
+		UserVO uvo = userService.getUsersView(uid);
 
+		ModelAndView mav = new ModelAndView();
 
+		mav.addObject("template","users");
+		mav.addObject("mypage","view");
+		mav.addObject("usersView", uvo);
+		mav.setViewName("admin/admin");
+		return mav;
+
+	}
+
+	@RequestMapping("/getUsersModify")
+	public ModelAndView getUsersModify() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("template", "users");
+		mav.addObject("mypage", "modify");
+		mav.setViewName("admin/admin");
+		return mav;
+
+	}
+
+}

@@ -29,7 +29,7 @@
 		
 		<include refid="search"></include>
 		
-		 ORDER BY uid DESC
+		 ORDER BY uid DESC limit #{start}, #{end}
 	
 	</select>
 	
@@ -69,9 +69,26 @@
 		</choose>
 	</sql>
 
+
 	<select id="loginCheck" resultType="uservo">
 		SELECT userID, userName, auth FROM users
 		WHERE userID = #{userID} AND passwd = #{passwd}
 	</select>
+
+
+	<select id="getUsersView" resultType="uservo">
+		SElECT * FROM users WHERE uid = #{uid}
+	</select>
+	
+	<update id=""></update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

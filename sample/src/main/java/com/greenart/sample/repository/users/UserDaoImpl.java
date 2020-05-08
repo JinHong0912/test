@@ -29,8 +29,10 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<UserVO> getUsersList(String searchOpt, String  words){
+	public List<UserVO> getUsersList(int start,int end,String searchOpt, String  words){
 		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		map.put("searchOpt", searchOpt);
 		map.put("words", words);
 		return sql.selectList(namespace+ ".getUsersList", map);
@@ -65,6 +67,12 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public UserVO loginCheck(UserVO uvo) {
 		return sql.selectOne(namespace + ".loginCheck" , uvo);
+	}
+
+	@Override
+	public UserVO getUsersView(int uid) {
+		
+		return sql.selectOne(namespace + ".getUsersView", uid);
 	}
 
 	
