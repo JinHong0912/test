@@ -72,23 +72,28 @@
                 	<option value="#B00020">#B00020</option>
                 	<option value="#1A237E">#1A237E</option>	
                 	<option value="#2962FF">#2962FF</option>
-                
+					<option value="#FFE277">#FFE277</option>
+					<option value="#FF427F">#FF427F</option>
+					<option value="#C3EDEA">#C3EDEA</option>
+					<option value="#FFD8A6">#FFD8A6</option>
+					<option value="#C70039">#C70039</option>                
                 </select>
                 <span id="clrBox" class="clrBox margin-l10"></span>
                 
                 </td>
                 <td class="bg-color-10 f6 w-15 align">게시판 생성자</td>
-                <td class="w-35 padding-lr-5"></td>
+                <td class="w-35 padding-lr-5">
+                	 <input type="text" name="boardMaker" id="boardMaker" class="input-180 padding-lr-5" value="${sessionScope.userName}" readonly>
+                </td>
             </tr>
             <tr><td colspan="4" class="tbl-line"></td></tr>
             <tr class="tr-45">
                 <td class="bg-color-10 f6 w-15 align">게시판 타입</td>
-                <td class="w-35 padding-lr-5">
+                <td class="w-85 padding-lr-5" colspan="3">
            	  	   <input type="radio" name="boardType" id="boardType" class="radio-btn" value="일반게시판" checked"/><span>일반게시판</span>
              	   <input type="radio" name="boardType" id="boardType" class="radio-btn" value="겔러리게시판" checked/><span>겔러리게시판</span>
                 </td>
-                <td class="bg-color-10 f6 w-15 align">게시판 생성일</td>
-                <td class="w-35 padding-lr-5"></td>
+                
             </tr>
             <tr><td colspan="4" class="tbl-line"></td></tr>
             
@@ -98,7 +103,7 @@
                 <button type="button" onclick="location.href='/board" class="btn-50 bo-gray bold font-12">목록</button>
             </div>
             <div class="btn-left float-r">
-                <button type="submit" class="btn-80 bo-blue bold font-12">게시판 생성</button>
+                <button type="submit" id="board-btn" class="btn-80 bo-blue bold font-12">게시판 생성</button>
                 <button type="reset" onclick="" class="btn-80 bo-blue bold font-12">게시판 취소</button>
             </div>
             <div class="clearfix"></div>

@@ -31,61 +31,63 @@ $(function(){
             
         }
         
-        // if( checkValue($.trim( userID.val() )) == false){
-        //     alert("아이디는 영어 + 숫자 + 7이상 14이하로 입력하셔야 합니다.");
-        //     userID.val("");//input reset
-        //     userID.focus();
-        //     return false;
-        // }
+//         if( checkValue($.trim( userID.val() )) == false){
+//             alert("아이디는 영어 + 숫자 + 7이상 14이하로 입력하셔야 합니다.");
+//             userID.val("");//input reset
+//             userID.focus();
+//             return false;
+//         }
 
         //passwd
-//        if( $.trim( passwd.val() ) == ''){
-//            alert(passwdMsg);
-//            passwd.focus();
-//            return false; //submit    
-//        }
-//       
-       //repasswd
-//        if( $.trim( repasswd.val() ) == ''){
-//            alert(repasswdMsg);
-//            repasswd.focus();
-//            return false; //submit    
-//        }
+        if( $.trim( passwd.val() ) == ''){
+            alert(passwdMsg);
+            passwd.focus();
+            return false; //submit    
+        }
        
        //check passwd
-//        if( $.trim( passwd.val() ) != $.trim( repasswd.val())){
-//            alert(passwdConfirmMsg);
-//            passwd.val("");
-//            repasswd.val("");
-//            passwd.focus();
-//            return false; //submit    
-//        }
+        if($(this).data("option")!='no_passwd'){
+            //repasswd
+             if( $.trim( repasswd.val() ) == ''){
+                 alert(repasswdMsg);
+                 repasswd.focus();
+                 return false; //submit
+             }
+            
+            if( $.trim( passwd.val() ) != $.trim( repasswd.val())){
+                alert(passwdConfirmMsg);
+                passwd.val("");
+                repasswd.val("");
+                passwd.focus();
+                return false; //submit    
+            }
+        }
 
         //userName
-//        if( $.trim( userName.val() ) == ''){
-//            alert(userNameMsg);
-//            userName.focus();
-//            return false; //submit    
-//        }
+        if( $.trim( userName.val() ) == ''){
+            alert(userNameMsg);
+            userName.focus();
+            return false; //submit    
+        }
        
         //userEmail
-//        if( $.trim(userEmail.val() ) == ''){
-//            alert(userEmailMsg);
-//            userEmail.focus();
-//            return false; //submit    
-//        }
+        if( $.trim(userEmail.val() ) == ''){
+            alert(userEmailMsg);
+            userEmail.focus();
+            return false; //submit    
+        }
        
-//        if( $.trim( userDomain.val() ) == ''){
-//            alert(userDomainMsg);
-//            userDomain.focus();
-//            return false; //submit    
-//        }
+        if( $.trim( userDomain.val() ) == ''){
+            alert(userDomainMsg);
+            userDomain.focus();
+            return false; //submit    
+        }
        //userPhone
-//        if( $.trim( userPhone.val() ) == ''){
-//            alert(userPhoneMsg);
-//            userPhone.focus();
-//            return false; //submit    
-//        }
+        if( $.trim( userPhone.val() ) == ''){
+            alert(userPhoneMsg);
+            userPhone.focus();
+            return false; //submit    
+        }
 
 
     });

@@ -91,7 +91,7 @@
 
 					<!-- register btn -->
 					<div class="margin-t10">
-						<button id="reg-btn" class="btn-full bg-color-12 eng f6">
+						<button  type="submit" id="reg-btn" class="btn-full bg-color-12 eng f6">
 							Registration</button>
 					</div>
 

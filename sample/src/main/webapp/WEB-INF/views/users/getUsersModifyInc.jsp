@@ -51,16 +51,17 @@
             <i class="fas fa-male"></i>
             사용자 상세보기
         </h1>
-		<form method="post" action="/users/getUsersModify">
+		<form method="post" action="/users/userUpdate">
+		<input type="hidden" name="uid" value="${usersView.uid}"/>
         <table>
             <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 아이디</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="userID" id="userID" value="" class="input-200 w-35"/>
+                	<input type="text" name="userID" id="userID" value="${usersView.userID}" class="input-200 w-35"/>
                 </td>
                 <td class="bg-color-5 f6 w-15 align">사용자 비밀번호</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="passwd" id="passwd" value="" class="input-200 w-35"/>
+                	<input type="text" name="passwd" id="passwd" value="${usersView.passwd}" class="input-200 w-35"/>
                 </td>
             </tr>
             <tr>
@@ -69,10 +70,10 @@
              <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 이름</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="userName" id="userName" value="" class="input-200 w-35"/>
+                	<input type="text" name="userName" id="userName" value="${usersView.userName}" class="input-200 w-35"/>
                 </td>
                 <td class="bg-color-5 f6 w-15 align">사용자 권한</td>
-                <td class="w-35 padding-lr-5"></td>
+                <td class="w-35 padding-lr-5">${usersView.auth}</td>
             </tr>
             <tr>
                 <td colspan="4" class="tbl-line"></td>
@@ -80,11 +81,11 @@
             <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 연락처</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="userPhon" id="userPhon" value="" class="input-200 w-35"/>
+                	<input type="text" name="userPhone" id="userPhone" value="${usersView.userPhone}" class="input-200 w-35"/>
                 </td>
                 <td class="bg-color-5 f6 w-15 align">사용자 가입일</td>
                 <td class="w-35 padding-lr-5">
-               		
+               		${usersView.userRegdate}
                 </td>
             </tr>
             <tr>
@@ -93,8 +94,8 @@
             <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 이메일</td>
                 <td colspan="3" class="w-85 padding-lr-5">
-                	<input type="text" name="userEmail" id="userEmail" value="" class="input-200 w-35"/>@
-                	<input type="text" name="userDomain" id="userDomain" value="" class="input-200 w-35"/>
+                	<input type="text" name="userEmail" id="userEmail" value="${usersView.userEmail}" class="input-200 w-35"/>@
+                	<input type="text" name="userDomain" id="userDomain" value="${usersView.userDomain}" class="input-200 w-35"/>
                 </td>
             </tr>
             <tr>
@@ -116,7 +117,7 @@
                 <button type="button" onclick="location.href='/users'" class="btn-50 bo-gray bold font-12">목록</button>
             </div>
             <div class="btn-left float-r">
-                <button type="submit" id="reg-btn" onclick="location.href='/users/getUsersViewInc'"
+                <button type="submit" id="reg-btn" data-option="no_passwd"
                     class="btn-80 bo-blue bold font-12">수정하기</button>
                 <button type="reset" onclick="location.href='/users'"
                     class="btn-80 bo-blue bold font-12">취소하기</button>
@@ -129,5 +130,5 @@
 
 <!-- 회원보기 -->
 
-<script src="/js/users.js"></script>
 <script src="/js/register.js"></script>
+<script src="/js/users.js"></script>

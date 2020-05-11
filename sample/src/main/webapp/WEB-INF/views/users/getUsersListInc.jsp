@@ -88,7 +88,7 @@
 					<td class="td-15">${usersList.userEmail}@${usersList.userDomain}</td>
 					<td class="td-15">${usersList.userRegdate}</td>
 					<td class="td-20">
-						<button type="button" onClick="javascript:location.href='/users'"
+						<button type="button" onClick="javascript:location.href='/users/getUsersModify?uid=${usersList.uid}'"
 							class="btn-50 bold bo-blue">수정</button>
 						<button type="button" onClick="selectedDelete('${usersList.uid}');"
 							class="btn-50 bold bo-blue">삭제</button>

@@ -91,7 +91,7 @@
 	 				  userPhone= #{userPhone}, 
 	 				  userEmail= #{userEmail}, 
 	 				  userDomain = #{userDomain} 
-	 		WHERE	  uid = #{uid}  		
+	 		WHERE	  uid = #{uid}
 	</update>
 		
 

@@ -39,21 +39,23 @@
 				<td class="td-5"><input type="checkbox" id="checkAll" /></td>
 				<td class="td-5">NO.</td>
 				<td class="td-15">게시판코드</td>
-				<td class="td-15">게시판이름</td>
+				<td class="td-10">게시판이름</td>
 				<td class="td-10">게시판생성자</td>
-				<td class="td-15">게시판색상</td>
+				<td class="td-10">게시판색상</td>
 				<td class="td-15">게시판작성일</td>
 				<td class="td-20">비고</td>
 			</tr>
 			<c:forEach var="boardList" items="${boardList}">
 				<tr class="tr-50 align font-16">
-					<td class="td-5"><input type="checkbox" class="chk" data-bid="" /></td>
-					<td class="td-5">${boardList.bid}</td>
-					<td class="td-15 bold eng">${boardList.boardCode}</td>
-					<td class="td-15">${boardList.boardName}</td>
-					<td class="td-15">${boardList.boardMaker}</td>
-					<td class="td-10">${boardList.boardColor}</td>
-					<td class="td-15">${boardList.boardRegdate}</td>
+					<td class=""><input type="checkbox" class="chk" data-bid="" /></td>
+					<td class="">${boardList.bid}</td>
+					<td class="bold eng">${boardList.boardCode}</td>
+					<td class=""><a href = "/article?boardCode=${boardList.boardName}" target="_blank"> ${boardList.boardName}</a></td>
+					<td class="">${boardList.boardMaker}</td>
+					<td class="">
+						<span class="clrBox f6" style="background-color:${boardList.boardColor}; padding: 5px 10px">${boardList.boardColor}</span>
+					</td>
+					<td class="td-10">${boardList.boardRegdate}</td>
 					<td class="td-20">
 						<button type="button" onClick="" class="btn-50 bold bo-blue">수정</button>
 						<button type="button" onClick="" class="btn-50 bold bo-blue">삭제</button>

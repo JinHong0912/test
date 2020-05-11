@@ -6,8 +6,8 @@
 $(function(){
 		$("#boardColor").change(function () {
 //			alert(this.value);
-			$("#clrBox").css({
-				backgroundColor : $(this).val();
+			$(".clrBox").css({
+				backgroundColor : $(this).val()
 			});
 		});
 });
@@ -25,6 +25,7 @@ $(function(){
 /* board check*/
 	$(function () {
 		$("#board-btn").click(function () {
+//			alert("aaaaa");
 			var boardCode = $("#boardCode");
 			var boardName = $("#boardName");
 		

@@ -199,11 +199,13 @@ public class UserController {
 	}
 
 	@RequestMapping("/getUsersModify")
-	public ModelAndView getUsersModify() {
+	public ModelAndView getUsersModify(int uid) {
 		ModelAndView mav = new ModelAndView();
+		UserVO uvo = userService.getUsersView(uid);
 
 		mav.addObject("template", "users");
 		mav.addObject("mypage", "modify");
+		mav.addObject("usersView", uvo);
 		mav.setViewName("admin/admin");
 		return mav;
 
@@ -220,7 +222,7 @@ public class UserController {
 			sb = new StringBuilder();
 			sb.append("<script>");
 			sb.append("alert('회원정보가 수정 되었습니다.');");
-			sb.append("window.location.replace('/users/getUsersViewInc?uid="+uvo.getUid()+"');");
+			sb.append("window.location.replace('/users/getUsersView?uid="+uvo.getUid()+"');");
 			sb.append("</script>");
 		
 		}else {
