@@ -90,8 +90,8 @@
             <tr class="tr-45">
                 <td class="bg-color-10 f6 w-15 align">게시판 타입</td>
                 <td class="w-85 padding-lr-5" colspan="3">
-           	  	   <input type="radio" name="boardType" id="boardType" class="radio-btn" value="일반게시판" checked"/><span>일반게시판</span>
-             	   <input type="radio" name="boardType" id="boardType" class="radio-btn" value="겔러리게시판" checked/><span>겔러리게시판</span>
+           	  	   <input type="radio" name="boardType" id="boardType" class="radio-btn bold kor" value="일반게시판" checked"/><span>일반게시판</span>
+             	   <input type="radio" name="boardType" id="boardType" class="radio-btn bold kor" value="겔러리게시판" checked/><span>겔러리게시판</span>
                 </td>
                 
             </tr>
