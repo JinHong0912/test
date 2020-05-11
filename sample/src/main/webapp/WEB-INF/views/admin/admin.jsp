@@ -282,8 +282,12 @@
                             <%@ include file = "../users/getUsersModifyInc.jsp"%>
                         </c:if>
 						
-						<c:if test="${template eq 'board'}">
+						<c:if test="${template eq 'board' && mypage eq 'list'}">
                             <%@ include file = "../board/getBoardListInc.jsp"%>
+                        </c:if>
+                        
+                        <c:if test="${template eq 'board' && mypage eq 'insert'}">
+                            <%@ include file = "../board/setBoardInc.jsp"%>
                         </c:if>
                         <!-- //if -->
                     </div>

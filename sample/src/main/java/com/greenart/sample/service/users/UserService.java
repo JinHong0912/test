@@ -28,4 +28,6 @@ public interface UserService {
 	public void logout(HttpSession session);
 
 	public UserVO getUsersView(int uid);
+	
+	public int userUpdate(UserVO uvo);
 }

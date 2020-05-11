@@ -1,4 +1,4 @@
-package com.greenart.sample.controller.users;
+package com.greenart.sample.controller.board;
 
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,31 @@ public class BoardController {
 	public ModelAndView getBoardList() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("template","board");
+		mav.addObject("mypage","list");
 		mav.setViewName("admin/admin");
 		return mav;
 	}
+
+	@RequestMapping("/setBoardInc")
+	public ModelAndView setBoardInc() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("template","board");
+		mav.addObject("mypage","insert");
+		mav.setViewName("admin/admin");
+		return mav;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

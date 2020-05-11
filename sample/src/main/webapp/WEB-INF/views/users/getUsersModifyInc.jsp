@@ -60,7 +60,7 @@
                 </td>
                 <td class="bg-color-5 f6 w-15 align">사용자 비밀번호</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="userName" id="userName" value="" class="input-200 w-35"/>
+                	<input type="text" name="passwd" id="passwd" value="" class="input-200 w-35"/>
                 </td>
             </tr>
             <tr>
@@ -80,7 +80,7 @@
             <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 연락처</td>
                 <td class="w-35 padding-lr-5">
-                	<input type="text" name="userName" id="userName" value="" class="input-200 w-35"/>
+                	<input type="text" name="userPhon" id="userPhon" value="" class="input-200 w-35"/>
                 </td>
                 <td class="bg-color-5 f6 w-15 align">사용자 가입일</td>
                 <td class="w-35 padding-lr-5">
@@ -94,7 +94,7 @@
                 <td class="bg-color-5 f6 w-15 align">사용자 이메일</td>
                 <td colspan="3" class="w-85 padding-lr-5">
                 	<input type="text" name="userEmail" id="userEmail" value="" class="input-200 w-35"/>@
-                	<input type="text" name="userName" id="userName" value="" class="input-200 w-35"/>
+                	<input type="text" name="userDomain" id="userDomain" value="" class="input-200 w-35"/>
                 </td>
             </tr>
             <tr>
@@ -116,9 +116,9 @@
                 <button type="button" onclick="location.href='/users'" class="btn-50 bo-gray bold font-12">목록</button>
             </div>
             <div class="btn-left float-r">
-                <button type="submit" id="reg-btn" onclick="location.href='/users/getUsersModify'"
+                <button type="submit" id="reg-btn" onclick="location.href='/users/getUsersViewInc'"
                     class="btn-80 bo-blue bold font-12">수정하기</button>
-                <button type="button" onclick="location.href='/users'"
+                <button type="reset" onclick="location.href='/users'"
                     class="btn-80 bo-blue bold font-12">취소하기</button>
             </div>
             <div class="clearfix"></div>

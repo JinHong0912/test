@@ -40,4 +40,31 @@ public class HomeController {
 		return "admin/users/userList";//views/admin.jsp
 		
 	}
+
+	@RequestMapping("/shopHome")
+	public String getShopHome() {
+		return "/shophome/shopHome";
+	}
+
+
+	@RequestMapping("/product")
+	public String getProduct() {
+		return "/shophome/product";
+	}
+
+	@RequestMapping("/categories")
+	public String getCategories() {
+		return "/shophome/categories";
+	}
+
+
+
+
+
+
+
+
+
+
+
 }

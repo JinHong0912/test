@@ -209,4 +209,30 @@ public class UserController {
 
 	}
 
+//	 회원 수정 부분
+	@RequestMapping("/userUpdate")
+	@ResponseBody
+	public String update(UserVO uvo) {
+		int result = userService.userUpdate(uvo);
+		StringBuilder sb = null; 
+		
+		if( result > 0) {
+			sb = new StringBuilder();
+			sb.append("<script>");
+			sb.append("alert('회원정보가 수정 되었습니다.');");
+			sb.append("window.location.replace('/users/getUsersViewInc?uid="+uvo.getUid()+"');");
+			sb.append("</script>");
+		
+		}else {
+			sb.append("<script>");
+			sb.append("alert('회원정보가 수정 되지 않았습니다.');");
+			sb.append("window.location.replace('/users/getUsersModifyInc');");
+			sb.append("</script>");
+		}
+		
+		return sb.toString();
+	}	
+
+	
+	
 }

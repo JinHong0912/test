@@ -75,6 +75,12 @@ public class UserDaoImpl implements UserDao{
 		return sql.selectOne(namespace + ".getUsersView", uid);
 	}
 
+	@Override
+	public int userUpdate(UserVO uvo) {
+		
+		return sql.update(namespace + ".userUpdate", uvo);
+	}
+
 	
 
 }

@@ -37,29 +37,26 @@
 		<table>
 			<tr class="tr-50 f6 bg-color-5 align font-16">
 				<td class="td-5"><input type="checkbox" id="checkAll" /></td>
-				<td class="td-5">번호</td>
-				<td class="td-15">회원아이디</td>
-				<td class="td-15">회원이름</td>
-				<td class="td-10">회원권한</td>
-				<td class="td-15">회원이메일</td>
-				<td class="td-15">회원가입일</td>
+				<td class="td-5">NO.</td>
+				<td class="td-15">게시판코드</td>
+				<td class="td-15">게시판이름</td>
+				<td class="td-10">게시판생성자</td>
+				<td class="td-15">게시판색상</td>
+				<td class="td-15">게시판작성일</td>
 				<td class="td-20">비고</td>
 			</tr>
-			<c:forEach var="usersList" items="${usersList}">
+			<c:forEach var="boardList" items="${boardList}">
 				<tr class="tr-50 align font-16">
-					<td class="td-5"><input type="checkbox" class="chk"
-						data-uid="" /></td>
-					<td class="td-5">${usersList.uid}</td>
-					<td class="td-15 bold eng">${usersList.userID}</td>
-					<td class="td-15">${usersList.userName}</td>
-					<td class="td-10"></td>
-					<td class="td-15">${usersList.userEmail}@${usersList.userDomain}</td>
-					<td class="td-15">${usersList.userRegdate}</td>
+					<td class="td-5"><input type="checkbox" class="chk" data-bid="" /></td>
+					<td class="td-5">${boardList.bid}</td>
+					<td class="td-15 bold eng">${boardList.boardCode}</td>
+					<td class="td-15">${boardList.boardName}</td>
+					<td class="td-15">${boardList.boardMaker}</td>
+					<td class="td-10">${boardList.boardColor}</td>
+					<td class="td-15">${boardList.boardRegdate}</td>
 					<td class="td-20">
-						<button type="button" onClick="javascript:location.href='/users'"
-							class="btn-50 bold bo-blue">수정</button>
-						<button type="button" onClick="javascript:location.href='/users'"
-							class="btn-50 bold bo-blue">삭제</button>
+						<button type="button" onClick="" class="btn-50 bold bo-blue">수정</button>
+						<button type="button" onClick="" class="btn-50 bold bo-blue">삭제</button>
 					</td>
 				</tr>
 				<tr>
@@ -71,6 +68,18 @@
 			<span class=""> <a href="#"
 				class="page-number member-page-number">1</a>
 			</span>
+		</div>
+	</div>
+	
+	<!-- board confie -->
+	
+	
+		<div class="page-grp margin-t10">
+			<c:forEach begin="1" end="${pageNum}" var="num">
+				<span class=""> 
+				<a href="/users?num=${num}&searchOpt=${searchOpt}&words=${words}&template=${template}&mypage=${mypage}" class="page-number member-page-number">${num}</a>	
+				</span>
+			</c:forEach>
 		</div>
 	</div>
 </div>

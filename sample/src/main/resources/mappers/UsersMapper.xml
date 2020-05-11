@@ -80,15 +80,19 @@
 		SElECT * FROM users WHERE uid = #{uid}
 	</select>
 	
-	<update id=""></update>
 	
 	
 	
-	
-	
-	
-	
-	
-	
+		<!-- 회원 상세 수정 -->
+	<update id="userUpdate">
+	 UPDATE users SET userID= #{userID},
+	 				  passwd= #{passwd}, 
+	 				  userName= #{userName} , 
+	 				  userPhone= #{userPhone}, 
+	 				  userEmail= #{userEmail}, 
+	 				  userDomain = #{userDomain} 
+	 		WHERE	  uid = #{uid}  		
+	</update>
+		
 
 </mapper>

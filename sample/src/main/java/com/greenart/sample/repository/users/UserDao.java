@@ -28,5 +28,8 @@ public interface UserDao {
 	
 	public UserVO getUsersView(int uid);
 	
+	// 회원 수정 부분
+	public int userUpdate(UserVO uvo);
+	
 
 }

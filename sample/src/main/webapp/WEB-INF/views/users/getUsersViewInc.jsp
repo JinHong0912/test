@@ -50,7 +50,7 @@
         <table>
             <tr class="tr-45">
                 <td class="bg-color-5 f6 w-15 align">사용자 아이디</td>
-                <td class="w-35 padding-lr-5">${usersView.uid}</td>
+                <td class="w-35 padding-lr-5">${usersView.userID}</td>
                 <td class="bg-color-5 f6 w-15 align">사용자 비밀번호</td>
                 <td class="w-35 padding-lr-5">********</td>
             </tr>

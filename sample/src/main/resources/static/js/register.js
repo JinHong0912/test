@@ -39,53 +39,53 @@ $(function(){
         // }
 
         //passwd
-        if( $.trim( passwd.val() ) == ''){
-            alert(passwdMsg);
-            passwd.focus();
-            return false; //submit    
-        }
-       
-        //repasswd
-        if( $.trim( repasswd.val() ) == ''){
-            alert(repasswdMsg);
-            repasswd.focus();
-            return false; //submit    
-        }
+//        if( $.trim( passwd.val() ) == ''){
+//            alert(passwdMsg);
+//            passwd.focus();
+//            return false; //submit    
+//        }
+//       
+       //repasswd
+//        if( $.trim( repasswd.val() ) == ''){
+//            alert(repasswdMsg);
+//            repasswd.focus();
+//            return false; //submit    
+//        }
        
        //check passwd
-        if( $.trim( passwd.val() ) != $.trim( repasswd.val())){
-            alert(passwdConfirmMsg);
-            passwd.val("");
-            repasswd.val("");
-            passwd.focus();
-            return false; //submit    
-        }
+//        if( $.trim( passwd.val() ) != $.trim( repasswd.val())){
+//            alert(passwdConfirmMsg);
+//            passwd.val("");
+//            repasswd.val("");
+//            passwd.focus();
+//            return false; //submit    
+//        }
 
         //userName
-        if( $.trim( userName.val() ) == ''){
-            alert(userNameMsg);
-            userName.focus();
-            return false; //submit    
-        }
+//        if( $.trim( userName.val() ) == ''){
+//            alert(userNameMsg);
+//            userName.focus();
+//            return false; //submit    
+//        }
        
         //userEmail
-        if( $.trim(userEmail.val() ) == ''){
-            alert(userEmailMsg);
-            userEmail.focus();
-            return false; //submit    
-        }
+//        if( $.trim(userEmail.val() ) == ''){
+//            alert(userEmailMsg);
+//            userEmail.focus();
+//            return false; //submit    
+//        }
        
-        if( $.trim( userDomain.val() ) == ''){
-            alert(userDomainMsg);
-            userDomain.focus();
-            return false; //submit    
-        }
+//        if( $.trim( userDomain.val() ) == ''){
+//            alert(userDomainMsg);
+//            userDomain.focus();
+//            return false; //submit    
+//        }
        //userPhone
-        if( $.trim( userPhone.val() ) == ''){
-            alert(userPhoneMsg);
-            userPhone.focus();
-            return false; //submit    
-        }
+//        if( $.trim( userPhone.val() ) == ''){
+//            alert(userPhoneMsg);
+//            userPhone.focus();
+//            return false; //submit    
+//        }
 
 
     });
