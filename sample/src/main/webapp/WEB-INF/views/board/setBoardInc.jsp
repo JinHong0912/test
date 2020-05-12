@@ -9,36 +9,17 @@
 	<div class="title-wrap">
 		<span class="font-16 bold noto">2. 게시판 설정 상세보기</span> 
 		<span class="font-16 noto">
-			<c:if test="${words eq ''}">
+		<%-- 	<c:if test="${words eq ''}">
 				전체 생성된 게시판은 <strong>${boardCount}명</strong> 입니다.
-			</c:if>
+			</c:if> --%>
 		
-			<c:if test="${words ne ''}">
+			<%-- <c:if test="${words ne ''}">
 				검색 된 게시판은 <strong>${boardCount}명</strong> 입니다.
-			</c:if>
+			</c:if> --%>
 		</span>
 	</div>
 
-	<div class="search-wrap margin-tb-20">
-		<span class="font-16 bold">
-			<button type="button" id="selectDelete-btn" class="btn-70 bold bo-pink">선택삭제</button>
-		</span>
-		<span class="">
-			<form method="post" action="/board">
-				<select name="searchOpt" id="searchOpt" class="sel-120">
-					<option value="all" <c:if test="${searchOpt eq 'all'}">selected</c:if> >전체</option>
-					<option value="boardCode" <c:if test="${searchOpt eq 'boardCode'}">selected</c:if>  >게시판코드</option>
-					<option value="boardName" <c:if test="${searchOpt eq 'boardName'}">selected</c:if> >게시판이름</option>
-					
-				</select> <input type="search" name="words" id="words"
-					class="input-150  bo-blue" value="${words}" />
-				<button type="submit" id="search-btn" class="btn-50 bold bo-blue">검색</button>
-				<button type="button" class="btn-80 bold bo-gray"
-					onClick="javascript:location.href='/board' ">목록보기</button>
-			</form>
-		</span>
-	</div>
-    
+	
 	<!-- 회원보기 -->
     <!-- list 박스  부분-->
     <div id="board-view" class="margin-t30">
@@ -52,13 +33,14 @@
                 <td class="bg-color-10 f6 w-15 align">게시판 코드</td>
                 <td class="w-35 padding-lr-5">
                 <input type="text" name="boardCode" id="boardCode" class="input-180 padding-lr-5">
- 
-                ${boardView.boardCode}</td>
+                ${boardView.boardCode}
+                <span id="confirm" class="font-14 bold orange"></span>
+                </td>
                 <td class="bg-color-10 f6 w-15 align">게시판 이름</td>
                 <td class="w-35 padding-lr-5">
                 ${boardView.boardName}
                   <input type="text" name="boardName" id="boardName" class="input-180 padding-lr-5">
-                <span id="confirm" class="font-14 bold orange"></span>
+                
                
                 </td>
             </tr>
@@ -100,7 +82,7 @@
         </table>
         <div class="btn-grp margin-t20">
             <div class="btn-left float-l">
-                <button type="button" onclick="location.href='/board" class="btn-50 bo-gray bold font-12">목록</button>
+                <button type="button" onclick="javascript:location.href='/board'" class="btn-50 bo-gray bold font-12">목록</button>
             </div>
             <div class="btn-left float-r">
                 <button type="submit" id="board-btn" class="btn-80 bo-blue bold font-12">게시판 생성</button>

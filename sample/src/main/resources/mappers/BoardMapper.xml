@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
 
+<!-- 컬럼(column)변수($), 데이터 변수(#) -->
+<sql id="search">
+		<choose>
+			<when test = "searchOpt == 'all' ">
+				WHERE boardName LIKE CONCAT('%',#{words},'%')
+				OR boardCode LIKE CONCAT('%',#{words},'%')
+
+			</when>
+		
+			<otherwise>
+				WHERE ${searchOpt} LIKE CONCAT('%',#{words},'%')
+			</otherwise>
+		</choose>
+	</sql>
+	
+	
 <!-- 입력하고 난 후에 집어 넣는 것 -->
 
 	<insert id="setBoard">
@@ -13,22 +29,38 @@
 			boardType = #{boardType},
 			boardRegdate = now()
 	</insert>	
-
+	
+	<!-- 테이블 자동 생성 부분 -->
 	<insert id="createTblArticle" parameterType="String">${sql} <!--DAOImp에서 만들어 놓은 쿼리 변수를 가져오기 --></insert>
 	<insert id="createTblComment" parameterType="String">${sql} </insert>
 			
 	<select id="getBoardList" resultType="boardvo">
-		SELECT * FROM board ORDER BY bid DESC
-	
-	
+		SELECT * FROM board <include refid="search"></include>	ORDER BY bid DESC
 	</select>
+	
+	<!-- 게시판 목록 확인 -->
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) FROM board <include refid="search"></include>
+	</select>
+	
+	
+	
+	<!-- board list 삭제 -->
+	<delete id="setBoardDelete">
+		DELETE FROM board WHERE boardCode = #{boardCode}
+	</delete>
+	
+	<!-- 자동생성 테이블 삭제  동시에 같이 만들기-->
+	<update id="dropTblArticle">
+		${sql}
+	</update>	
 
-
-
-
-
-
-
-
+	<update id="dropTblComment">
+		${sql}
+	</update>
+	
+	<select id="getBoardCode" resultType="int">
+		SELECT COUNT(*) FROM board WHERE boardCode = #{boardCode}
+	</select>
 
 </mapper>

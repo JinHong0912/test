@@ -34,9 +34,41 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList() {
+	public List<BoardVO> getBoardList(String searchOpt, String words) {
 		
-		return boardDao.getBoardList();
+		return boardDao.getBoardList(searchOpt, words);
+	}
+
+	//게시판 목록 확인 
+	@Override
+	public int getBoardCount(String searchOpt, String words) {
+		
+		return boardDao.getBoardCount(searchOpt, words);
+	}	
+	
+	
+	@Override
+	public int setBoardDelete(String boardCode) {
+		
+		return boardDao.setBoardDelete(boardCode);
+	}
+
+	@Override
+	public int dropTblArticle(String boardCode) {
+		
+		return boardDao.dropTblArticle(boardCode);
+	}
+
+	@Override
+	public int dropTblComment(String boardCode) {
+		
+		return boardDao.dropTblComment(boardCode);
+	}
+
+	@Override
+	public int getBoardCode(String boardCode) {
+	
+		return boardDao.getBoardCode(boardCode);
 	}
 
 }

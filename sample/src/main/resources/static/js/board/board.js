@@ -50,3 +50,34 @@ $(function(){
 		});
 });
 	
+	/*boardCode 중복확인*/
+	
+	$(function () {
+		$("#boardCode").blur(function () {
+		/*	alert("aaaa")*/
+			$.ajax({
+					type : "POST",
+					url  : "/board/getBoardCodeCheck",
+					data : {
+							boardCode :$("#boardCode").val() 
+					},
+					success : function(data) {
+						if( data == "YES"){
+							$("#confirm").html("사용할 수 있는 게시판 코드입니다.");
+						}else{
+							$("#confirm").html("사용 중인 게시판 코드입니다.");
+							$("#boardCode").val("");
+							$("#boardCode").focus();
+						}
+		
+					},
+					error : function() {
+						alert("시스템 오류입니다.");
+						window.location.reload();	
+					}
+			});		
+		});
+			
+	});
+	
+	

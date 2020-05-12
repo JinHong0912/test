@@ -1,6 +1,8 @@
 package com.greenart.sample.repository.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class BoardDaoImpl implements BoardDao{
 		
 	
 	}
-
+//	자동으로 생성되는 테이블
 	@Override
 	public int createTblArticle(String boardCode) {
 		String sql="";
@@ -45,7 +47,7 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return session.update(NAMESPACE + ".createTblArticle", sql);
 	}
-
+//	자동으로 생성되는 테이블
 	@Override
 	public int createTblComment(String boardCode) {
 		String sql ="";
@@ -62,9 +64,42 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public List<BoardVO> getBoardList() {
-		
-		return session.selectList(NAMESPACE + ".getBoardList");
+	public List<BoardVO> getBoardList(String searchOpt, String words) {
+		Map<String, Object> map = new HashMap<>();
+			map.put("searchOpt", searchOpt);
+			map.put("words", words);
+		return session.selectList(NAMESPACE + ".getBoardList", map);
+	}
+	
+	//게시판 목록 확인 
+	@Override
+	public int getBoardCount(String searchOpt, String words) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchOpt", searchOpt);
+		map.put("words", words);
+		return session.selectOne(NAMESPACE + ".getBoardCount", map);
 	}
 
+		
+	@Override
+	public int setBoardDelete(String boardCode) {
+		
+		return session.delete(NAMESPACE + ".setBoardDelete", boardCode);
+	}
+	@Override
+	public int dropTblArticle(String boardCode) {
+		String str = "DROP TABLE gat_article_" + boardCode;
+		return session.update(NAMESPACE + ".dropTblArticle", str);
+	}
+	@Override
+	public int dropTblComment(String boardCode) {
+		String str = "DROP TABLE gat_comment_" + boardCode;
+		return session.update(NAMESPACE + ".dropTblComment", str);
+	}
+	@Override
+	public int getBoardCode(String boardCode) {
+	
+		return session.selectOne(NAMESPACE + ".getBoardCode", boardCode);
+	}
+	
 }

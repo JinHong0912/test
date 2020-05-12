@@ -266,7 +266,7 @@
                 </div>
                 <hr class="hr">
                 <div class="sub-area align">
-                    <a href="/shophome/categories.jsp" class="menu font-15 black-70 bold-600">MEN</a>
+                    <a href="categories.jsp" class="menu font-15 black-70 bold-600">MEN</a>
                     <a href="#" class="menu font-15 black-70 bold-600">WOMEN</a>
                     <a href="#" class="menu font-15 black-70 bold-600">KIDS</a>
                     <a href="#" class="menu font-15 black-70 bold-600">ACCESSORIES <i class="fal fa-chevron-down"></i></a>
