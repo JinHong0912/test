@@ -9,11 +9,11 @@
 		<span class="font-16 bold noto">2. 게시판 생성 목록</span> 
 		<span class="font-16 noto">
 			<c:if test="${words eq ''}">
-				전체 생성된 게시판은 <strong> ${boardCount}개 </strong>입니다.
+				전체 생성된 게시판은 <strong class="bold font-18"> ${boardCount}개 </strong>입니다.
 			</c:if>
 		
 			<c:if test="${words ne ''}">
-				검색된 게시판은<strong> ${boardCount}개 </strong>입니다.
+				검색된 게시판은<strong class="bold font-18"> ${boardCount}개 </strong>입니다.
 			</c:if>
 		</span>
 	</div>
@@ -66,7 +66,7 @@
 					<td class=""><input type="checkbox" class="chk" data-bid="" /></td>
 					<td class="">${boardList.bid}</td>
 					<td class="bold eng">${boardList.boardCode}</td>
-					<td class=""><a href = "/article?boardCode=${boardList.boardName}" target="_blank"> ${boardList.boardName}</a></td>
+					<td class=""><a href = "/article?boardCode=${boardList.boardCode}" target="_blank"> ${boardList.boardName}</a></td>
 					<td class="">${boardList.boardMaker}</td>
 					<td class="">
 						<span class="clrBox f6" style="background-color:${boardList.boardColor}; padding: 5px 10px">${boardList.boardColor}</span>
