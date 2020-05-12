@@ -76,7 +76,7 @@ public class UserController {
 
 	// 리스트에서 불러 오는 부분 & 얼마나 검색 되는지 확인하는 부분
 	// defaultValue 초기값
-	@RequestMapping("")
+	@RequestMapping(value = "")
 	public ModelAndView getUsersList(
 			
 			@RequestParam(defaultValue = "1") int num,
