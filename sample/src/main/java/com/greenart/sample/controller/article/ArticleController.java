@@ -28,12 +28,14 @@ public class ArticleController {
 	@RequestMapping("")
 	public ModelAndView getArticleList(@RequestParam String boardCode) {
 		BoardVO bvo = articleService.getBoardConfig(boardCode);
-		List<ArticleVO> avo = articleService.getArticleList(boardCode);
+		List<ArticleVO> avo = articleService.getArticleList(boardCode);//작성되 게시판이 몇 줄이 있는지 확인하는 줄
+		int cnt = articleService.getArticleCount(boardCode);//작성된 게시판 정렬
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("boardConfig", bvo);
+		mav.addObject("boardConfig", bvo);//게시판 색이 변경 되는지
 		mav.addObject("boardCode", boardCode);
 		mav.addObject("articleList", avo);
+		mav.addObject("cnt", cnt);//작성된 게시판 정렬
 		mav.setViewName("/article/getArticleList");
 		
 		return mav;
@@ -71,9 +73,21 @@ public class ArticleController {
 		
 	
 	}
-	
-	
-	
+//	작성 게시물 상세 보기
+	@RequestMapping("/getArticleView")
+	public ModelAndView getArticleView(@RequestParam String boardCode, @RequestParam int aid) {
+		ArticleVO avo = articleService.getArticleView(boardCode, aid);
+		
+		BoardVO bvo = articleService.getBoardConfig(boardCode);
+		ModelAndView mav = new ModelAndView();	
+		mav.addObject("boardConfig", bvo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("articleView", avo);
+		mav.setViewName("/article/getArticleView");
+
+		return mav;
+		
+	}
 	
 	
 	

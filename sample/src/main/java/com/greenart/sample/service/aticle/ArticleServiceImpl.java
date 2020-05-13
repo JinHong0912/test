@@ -33,7 +33,18 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		return articleDao.getArticleList(boardCode);
 	}
+
+	@Override
+	public int getArticleCount(String boardCode) {
 	
+		return articleDao.getArticleCount(boardCode);
+	}
+
+	@Override
+	public ArticleVO getArticleView(String boardCode, int aid) {
+		
+		return articleDao.getArticleView(boardCode, aid);
+	}
 	
 
 }

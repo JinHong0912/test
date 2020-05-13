@@ -14,4 +14,9 @@ public interface ArticleDao {
 		public void setArticle(ArticleVO avo);
 		
 		public List<ArticleVO> getArticleList(String boardCode);
+
+		public int getArticleCount(String boardCode);
+
+		public ArticleVO getArticleView(String boardCode, int aid);
+
 }

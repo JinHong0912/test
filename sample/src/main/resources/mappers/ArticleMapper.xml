@@ -40,11 +40,21 @@
 		
 		SELECT aid, subject, writer, hit, date_format(regdate, '%Y-%m-%d') as regdate
 		FROM gat_article_${boardCode}
-		ORDER BY ref DESC, re_step ASC;
+		ORDER BY ref DESC, re_step ASC
 	
 	</select>
+	
+	<!--작성한 전체 게시물 순서정렬 -->
+	<select id="getArticleCount" resultType="int">
+		SELECT COUNT(aid) FROM gat_article_${boardCode}
+	</select>
 
-
-
-
+	<!-- 작성한 게시판 목록 확인 -->
+	<select id="getArticleView" parameterType="hashMap" resultType="articlevo">
+		
+		SELECT aid, subject, writer, content, hit, date_format(regdate, '%Y-%m-%d') as regdate
+		FROM gat_article_${boardCode}
+		WHERE aid = #{aid}
+	
+	</select>
 </mapper>

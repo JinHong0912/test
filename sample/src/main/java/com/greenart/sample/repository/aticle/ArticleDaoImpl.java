@@ -35,6 +35,23 @@ public class ArticleDaoImpl implements ArticleDao{
 		
 		return session.selectList(NAMESPACE + ".getArticleList", boardCode);
 	}
+
+	@Override
+	public int getArticleCount(String boardCode) {
+		
+		return session.selectOne(NAMESPACE + ".getArticleCount", boardCode);
+	}
+
+	@Override
+	public ArticleVO getArticleView(String boardCode, int aid) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("aid", aid);
+		return session.selectOne(NAMESPACE + ".getArticleView", map);
+	}
+
+
 	
 	
 }
