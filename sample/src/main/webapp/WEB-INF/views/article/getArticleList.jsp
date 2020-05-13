@@ -4,6 +4,7 @@
 
 <%@ include file = "part/head.jspf" %>
 
+
 <body>
     <div id="tbl-spacing">
         <div id="article-top" class="margin-b20">
@@ -33,7 +34,7 @@
 	</div>
     <table>
         <tr class="tr-50 f6 align font-16 bold eng" style="background-color:${boardConfig.boardColor}">
-            <td class="w-5"><input type="checkbox" name="chk"></td>
+            <td class="w-5"><input type="checkbox" name="chk" id="checkAll"></td>
             <td class="w-5">NO.</td>
             <td class="w-40">Subject.</td>
             <td class="w-10">Writer.</td>
@@ -41,19 +42,25 @@
             <td class="w-10">Date.</td>
             <td class="w-20">Etc.</td>
         </tr>
+		
+		<!--작성된 게시판 루프 -->
+        <c:forEach var="articleList" items="${articleList}">
         <tr class="tr-50 align font-16 bold noto">
-            <td><input type="checkbox" name="chk"></td>
-            <td>123</td>
-            <td>그린컴퓨터학원입니다</td>
-            <td>관리자</td>
-            <td>10</td>
-            <td>2020-12-26</td>
+            <td><input type="checkbox" name="chk" class="chk" data-code="${boardCode}" data-aid="${articleList.aid}"></td>
+            <td>${articleList.aid}</td>
+            <td class="lalign">${articleList.subject} 
+            	<span class="tomato">(10)</span>
+            </td>
+            <td>${articleList.writer}</td>
+            <td>${articleList.hit}</td>
+            <td>${articleList.regdate}</td>
             <td>
                 <button type="botton" onclick="" class="btn-80 bo-blue font-13">게시물수정</button>
-                <button type="botton" onclick="" class="btn-80 bo-blue font-13">게시물삭제</button>
+                <button type="botton" onclick="location.href='/article/setArticleDelete?boardCode=${boardCode}&aid=${articleList.aid}'" class="btn-80 bo-blue font-13">게시물삭제</button>
 
             </td>
         </tr>
+        </c:forEach>
         <tr>
             <td colspan="7" class="tbl-line"></td>
         </tr>

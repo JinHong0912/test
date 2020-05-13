@@ -18,27 +18,33 @@
 		<!-- 예외처리 ) 기존 ref 값을 + 1을 해서 뒤에 게시물의 ref으로 사용   max == count 와 같다-->
 		SELECT IFNULL(max(ref), 0) + 1 FROM gat_article_${boardCode}<!-- 만약에 널값이 들어가 있으면 0으로 바꾸고/치환하고 1을 더하라 -->
 		
+		
+		<!--게시판 생성 부분 -->
 		</selectKey>
+			INSERT INTO gat_article_${boardCode}
+			SET 
+				subject 	= #{subject},
+				writer	 	= #{writer},
+				content 	= #{content},
+				fileName 	= #{fileName},
+				fileOriName = #{fileOriName},
+				fileUrl 	= #{fileUrl},
+				regdate 	= now(),
+				ref			= #{ref},<!-- 게시물정렬 --><!-- 기존에 있는 값을 가져와서 +1 -->
+				re_step		= 0, 	 <!-- 답글 그룹처리 -->
+				re_level	= 0 	 <!-- 몇번째 답글 -->
+		</insert>
 	
-		INSERT INTO gat_article_${boardCode}
-		SET 
-			subject 	= #{subject},
-			writer	 	= #{writer},
-			content 	= #{content},
-			fileName 	= #{fileName},
-			fileOriName = #{fileOriName},
-			fileUrl 	= #{fileUrl},
-			regdate 	= now(),
-			ref			= #{ref},<!-- 게시물정렬 --><!-- 기존에 있는 값을 가져와서 +1 -->
-			re_step		= 0, 	 <!-- 답글 그룹처리 -->
-			ref_level	= 0 	 <!-- 몇번째 답글 -->
+	<!-- 작성한 게시판 목록 확인 -->
+	<select id="getArticleList" resultType="articlevo">
+		
+		SELECT aid, subject, writer, hit, date_format(regdate, '%Y-%m-%d') as regdate
+		FROM gat_article_${boardCode}
+		ORDER BY ref DESC, re_step ASC;
 	
-	</insert>
-	
-	
-	
-	
-	
+	</select>
+
+
 
 
 </mapper>

@@ -15,8 +15,15 @@ public class ArticleVO {
 	private int ref;
 	private int re_step;
 	private int re_level;
+	private String boardCode;
 
 	
+	public String getBoardCode() {
+		return boardCode;
+	}
+	public void setBoardCode(String boardCode) {
+		this.boardCode = boardCode;
+	}
 	public int getAid() {
 		return aid;
 	}

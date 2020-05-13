@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.greenart.sample.model.ArticleVO;
 import com.greenart.sample.model.BoardVO;
 
 @Repository
@@ -21,6 +22,18 @@ public class ArticleDaoImpl implements ArticleDao{
 	@Override
 	public BoardVO getBoardConfig(String boardCode) {
 		return session.selectOne(NAMESPACE + ".getBoardConfig", boardCode);
+	}
+
+	@Override
+	public void setArticle(ArticleVO avo) {
+		session.selectOne(NAMESPACE + ".setArticle", avo);
+		
+	}
+
+	@Override
+	public List<ArticleVO> getArticleList(String boardCode) {
+		
+		return session.selectList(NAMESPACE + ".getArticleList", boardCode);
 	}
 	
 	
