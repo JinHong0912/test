@@ -30,7 +30,7 @@ input[type="text"] {
 	height: 40px;
 }
 </style>
-<
+
 <script src="/ckeditor/ckeditor.js"></script>
 <div class="tbl-users">
 
@@ -65,7 +65,7 @@ input[type="text"] {
 
 
 </div>
-<
+
 <script>
 	initSample();
 </script>
