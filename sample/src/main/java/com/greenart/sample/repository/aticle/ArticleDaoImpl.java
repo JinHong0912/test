@@ -26,7 +26,7 @@ public class ArticleDaoImpl implements ArticleDao{
 
 	@Override
 	public void setArticle(ArticleVO avo) {
-		session.selectOne(NAMESPACE + ".setArticle", avo);
+		session.insert(NAMESPACE + ".setArticle", avo);
 		
 	}
 
