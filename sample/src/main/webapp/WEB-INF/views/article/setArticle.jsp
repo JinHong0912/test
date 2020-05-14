@@ -29,7 +29,7 @@
 			
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold" style="background-color:${boardConfig.boardColor}">게시물 작성자</td>
-				<td class="w-85 padding-lr-10"><input type="text" class="input-150" maxlength="5" value="${sessionScope.username}" readonly name="writer" id="writer"></td>
+				<td class="w-85 padding-lr-10"><input type="text" class="input-150" maxlength="5" value="${sessionScope.userName}" readonly name="writer" id="writer"></td>
 			</tr>
 			
 			<tr><td colspan="2" class="tbl-line"></td></tr><!-- 구분선 -->

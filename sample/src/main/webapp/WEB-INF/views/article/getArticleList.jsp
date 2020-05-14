@@ -5,6 +5,7 @@
 
 
 <%@ include file="part/head.jspf"%>
+<script src="../js/article.js"></script>
 
 <body>
 	<div id="tbl-spacing">
@@ -18,6 +19,7 @@
 			<span class="font-16 bold">
 				<button type="button" id="selectDelete-btn"
 					class="btn-70 bold bo-pink">선택삭제</button>
+
 				<button type="button"
 					onClick="javascript:location.href='/article/setArticle?boardCode=${boardCode}'"
 					class="btn-80 bold bo-blue">게시물 쓰기</button>
@@ -57,13 +59,12 @@
 					<td><input type="checkbox" name="chk" class="chk"
 						data-code="${boardCode}" data-aid="${articleList.aid}"></td>
 					<td>${cnt - status.index}</td>
-					<td class="lalign bold kor">
-						<a href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
+					<td class="lalign bold kor"><a
+						href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
 							<!--작성된 게시판 제목 길이 잘라 주는 부분 -->
 							${cutString.strCutBytes(articleList.subject, 30, 2)} <span
 							class="tomato">(10)</span>
-						</a>
-					</td>
+					</a></td>
 					<td>${articleList.writer}</td>
 					<td>${articleList.hit}</td>
 					<td>${articleList.regdate}</td>
@@ -84,5 +85,6 @@
 		<div class="page-grp margin-t20">패이지 번호</div>
 	</div>
 </body>
+
 
 <%@ include file="part/foot.jspf"%>

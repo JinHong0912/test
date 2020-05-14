@@ -17,4 +17,17 @@ public interface ArticleService {
 	public int getArticleCount(String boardCode);
 	
 	public ArticleVO getArticleView(String boardCode, int aid);
+	
+	//게시물 삭제
+	public int setArticleDelete(String boardCode, int aid);
+	
+	public int setArticleDeleteAll(String boardCode, int aid);
+	
+	//답글 삭제
+	public ArticleVO getArticleReplyInfo(ArticleVO avo);
+	
+	public int setArticleRef(ArticleVO avo);
+	
+	public int setArticleReply(ArticleVO avo);
+
 }

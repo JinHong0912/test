@@ -10,36 +10,34 @@
 <body>
     <div id="tbl-spacing">
         <div id="article-top" class="margin-b20">
-            <span class="float-l bold font-18 noto">게시물 상세보기 페이지 입니다.</span>
+            <span class="float-l bold font-18 noto">게시물 답변 페이지 입니다.</span>
             <span class="float-r noto font-18"><strong>[ ${boardConfig.boardName} ]</strong> 게시판 입니다.</span>
             <div class="clearfix"></div>
         </div>
  		
  		<!-- 글쓰기 -->
- 		
+ 		<form method="POST" action="/article/setArticleReply" enctype="multipart/form-data">
+ 		<input type="hidden" name="boardCode" value="${boardCode}"/>
+ 		<input type="hidden" name="aid" value="${articleView.aid}"/>
  		<table>
  			<tr><td colspan="2" class="tbl-line"></td></tr><!-- 구분선 -->
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold" style="background-color:${boardConfig.boardColor}">게시물 제목</td>
-				<td class="w-85 padding-lr-5">
-					${articleView.subject}
-				</td>
+				<td class="w-85 padding-lr-10"><input type="text" class="input-full padding-lr-10" name="subject" value="[답변] ${articleView.subject}" id="subject" autofocus></td>
 			</tr>
 			
 			<tr><td colspan="2" class="tbl-line"></td></tr><!-- 구분선 -->
 			
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold" style="background-color:${boardConfig.boardColor}">게시물 작성자</td>
-				<td class="w-85 padding-lr-10">
-					${articleView.writer}
-				</td>
+				<td class="w-85 padding-lr-10"><input type="text" class="input-150" maxlength="5" value="${sessionScope.username}" readonly name="writer" id="writer"></td>
 			</tr>
 			
 			<tr><td colspan="2" class="tbl-line"></td></tr><!-- 구분선 -->
 			
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold" style="background-color:${boardConfig.boardColor}">게시물 내용</td>
-				<td class="w-85 padding-lr-10"><textarea name="content" id="editor">${articleView.content}</textarea></td>
+				<td class="w-85 padding-lr-10"><textarea name="content" id="editor">${view.content}</textarea></td>
 			
 				<!--------글쓰기에 필요한 부분 ---------->
 				<script>
@@ -47,7 +45,6 @@
 					CKEDITOR.config.height = 200;
 				</script>
 				<!---+-------------------------+--->
-				
 			</tr>
 			
 			<tr><td colspan="2" class="tbl-line"></td></tr><!-- 구분선 -->
@@ -65,36 +62,14 @@
 				<!-- onclick="location.href는 GRT 방식" -->
 					<button type="button" class="btn-80 bo-gray bold" onclick="location.href='/article?boardCode=${boardCode}'">목록보기</button>
 				<span class="float-r">
-					<button type="button" class="btn-80 bo-blue bold" onclick="location.href='/article/getArticleReply?aid=${articleView.aid}&boardCode=${boardCode}'">답글쓰기</button>
-					<button type="button" class="btn-80 bo-blue bold" onclick="location.href='/article?boardCode=${boardCode}'">게시물 수정</button>
-					<button type="button" class="btn-80 bo-blue bold" onclick="location.href='/article?boardCode=${boardCode}'">게시물 삭제</button>
+					<button type="submit" id="reg-btn" class="btn-80 bo-blue bold" >게시물등록</button>
+					<button type="button" class="btn-80 bo-blue bold" onclick="location.href='/article?boardCode=${boardCode}'">등록취소</button>
 				</span>
 				<div class="clearfix"></div>
 			</div>
-		
-		<!-- 글쓰기 마지막 부분 -->
-		
-		<!-- 5월 14일 댓글 달기 -->
- 		<div class=" margin-t30">
- 			<form name="" id="">
- 			<div class="comment-wrap">
- 				<div class="comment-left float-l">
- 					<input type="hidden" name="who" id="who" value="${sessionScope.userName}"/>
- 					<input type="hidden" name="boardCode" value="${boardCode}"/><!-- 어떤 게시판안에 댓글을 달것인지-->
- 					<input type="hidden" name="aid" value="${articleView.aid}"/><!-- 어떤 게시판에 댓글이 달렸는지 -->
- 					<textarea class="bo-blue padding-a-10 font-16 bold eng" id="comment"></textarea>
- 				</div>
- 				<div class="comment-right float-r">
- 					<button type="button" id="commentSetBtn" class="comment-box font-18 bold orange">댓글달기</button>
- 				</div>
-			</div>
- 			</form>
- 		</div>
-		
-		<div class="comment-list">
-			<div class="commentList"></div>
-		</div>
+		</form>
 </div>
+
 </body>
 
 <!-- 글쓰기에 필요한 부분 -->
@@ -114,22 +89,6 @@
 		});
 			
 });
-
-/* textarea 유호성 검사  */
-	$(function (){
-		$("#commentSetBtn").click(function () {
-		if( $.trim($("#comment").val()) == ''){
-			alert("댓글 내용을 입력하세요.");
-			$("#commentSetBtn").foucs();
-			return false;
-		}
-		var aid = '${boardCode}';
-		alert(aid);
-		alert('${articleView.aid}');
-	});
-			
-});
-
 </script>
 
 <%@ include file = "part/foot.jspf" %>

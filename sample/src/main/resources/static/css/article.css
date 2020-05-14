@@ -1,20 +1,47 @@
 @charset "UTF-8";
  
  
- #tbl-spacing{
-            padding: 20px 10%;
-        }
+#tbl-spacing{
+       padding: 20px 10%;
+}
 
-        .w-5{ width: 5%; }
-        .w-10{ width: 10%; }
-        .w-15{ width: 15%; }
-        .w-20{ width: 20%; }
-        .w-30{ width: 30%; }
-        .w-40{ width: 40%; }
-		.w-85{ width: 85%; }
-        .tbl-line{
-            width: 100%;
-            height: 1px;
-            background-color: #eee;
+.w-5{ width: 5%; }
+.w-10{ width: 10%; }
+.w-15{ width: 15%; }
+.w-20{ width: 20%; }
+.w-30{ width: 30%; }
+.w-40{ width: 40%; }
+.w-85{ width: 85%; }
+     
+.tbl-line{
+	width: 100%;
+    height: 1px;
+    background-color: #eee;
+}
 
-        }
+.comment-wrap{
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.comment-left{
+	width:87%;
+}
+.comment-right{
+	width: 12%;
+	
+}
+textarea{
+	width: 100%;
+	height:100px;
+	resize: vertical;
+}
+.comment-box{
+	width: 100%;
+	height:100px;
+
+}
+.bg-1{
+	background-color: green;
+}

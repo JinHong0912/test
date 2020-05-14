@@ -42,7 +42,7 @@ public class ArticleController {
 	}
 	
 	
-	@RequestMapping("/setArticle")
+	@RequestMapping(value ="/setArticle", method = RequestMethod.GET)
 	public ModelAndView getArticle(@RequestParam String boardCode) {
 		BoardVO bvo = articleService.getBoardConfig(boardCode);
 		ModelAndView mav = new ModelAndView();
@@ -65,7 +65,7 @@ public class ArticleController {
 		String msg ="입력하신 게시물이 저장되었습니다.";
 		
 			sb.append("<script>");//<script>
-			sb.append("alert('" + msg + "');");//alert('');
+			sb.append("alert('" + msg+"tst : "+avo.getRef() + "');");//alert('');
 			sb.append("location.replace('/article?boardCode="+avo.getBoardCode()+"')");
 			sb.append("</script>");//</script>
 		
@@ -89,8 +89,96 @@ public class ArticleController {
 		
 	}
 	
+	//게시판 목록 삭제
+	@RequestMapping("/setArticleDelete")
+	@ResponseBody
+	public String setArticleDelete(@RequestParam String boardCode, int aid) {
+		
+		int result = articleService.setArticleDelete(boardCode, aid);
+		
+		StringBuilder sb = null;
+//		StringBuilder sb = new StringBuilder();
+		if( result > 0) {
+			String msg ="선택하신 게시물이 삭제 되었습니다.";
+				sb = new StringBuilder();
+				sb.append("<script>");//<script>
+				sb.append("alert('" + msg + "');");//alert('');
+				sb.append("location.replace('/article?boardCode="+boardCode+"')");
+				sb.append("</script>");//</script>
+			
+			}
+		return sb.toString();
+
+	}
+	
+//	전체 선택 삭제 부분
+	@RequestMapping("/setArticleDeleteAll")
+	@ResponseBody
+	public String setArticleDeleteAll(@RequestParam String boardCode, @RequestParam(value = "chkArr[]") List<String> chkArr) {
+//		String msg = null;
+		
+		int num = 0;
+		for( String list : chkArr) { //list[0]="10" list[1]="11" list[2]=""12
+			num = Integer.parseInt(list);
+			articleService.setArticleDeleteAll(boardCode, num);
+		}
+			
+		return "success";
+	}
+	
+	@RequestMapping("/getArticleReply")
+	public ModelAndView getArticleReply(@RequestParam String boardCode, @RequestParam int aid) {
+		
+		BoardVO bvo = articleService.getBoardConfig(boardCode);
+		ArticleVO avo = articleService.getArticleView(boardCode, aid);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("boardConfig", bvo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("aid", aid);
+		mav.addObject("articleView", avo);
+		mav.setViewName("/article/getArticleReply");
+
+		return mav;
+		
+	}
+	
+	@RequestMapping("/setArticleReply")
+	@ResponseBody
+	public String setArticleReply (@ModelAttribute ArticleVO avo) {
+	int result = articleService.setArticleReply(avo);
+	
+	StringBuilder sb = new StringBuilder();
+	String msg = null;
+	
+	if( result > 0) {
+			sb = new StringBuilder();
+			msg ="선택하신 게시물에 답변이 저장 되었습니다.";
+			sb.append("<script>");//<script>
+			sb.append("alert('" + msg + "');");//alert('');
+			sb.append("location.replace('/article?boardCode="+avo.getBoardCode()+"')");
+			sb.append("</script>");//</script>
+		
+		return sb.toString();
+		
+		
+	}else {
+		
+		sb = new StringBuilder();
+		msg ="시스쳄 오류입니다. 관리자에게 문의하세요.";
+		sb.append("<script>");//<script>
+		sb.append("alert('" + msg + "');");//alert('');
+		sb.append("location.replace('/article?boardCode="+avo.getBoardCode()+"')");
+		sb.append("</script>");//</script>
+	
+	return sb.toString();
+	}
 	
 	
+	}
 	
 	
 }
+
+
+
+

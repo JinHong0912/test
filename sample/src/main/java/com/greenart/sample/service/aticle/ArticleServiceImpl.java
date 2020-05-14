@@ -45,6 +45,45 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		return articleDao.getArticleView(boardCode, aid);
 	}
+
+	@Override
+	public int setArticleDelete(String boardCode, int aid) {
+		
+		return articleDao.setArticleDelete(boardCode, aid);
+	}
+
+	@Override
+	public int setArticleDeleteAll(String boardCode, int aid) {
+		
+		return articleDao.setArticleDeleteAll(boardCode, aid);
+	}
+
+	@Override
+	public ArticleVO getArticleReplyInfo(ArticleVO avo) {
+		
+		return null;
+	}
+
+	@Override
+	public int setArticleRef(ArticleVO avo) {
+		
+		return 0;
+	}
+
+	@Override
+	public int setArticleReply(ArticleVO avo) {
+		ArticleVO dto = articleDao.getArticleReplyInfo(avo);
+		avo.setRef(dto.getRef());
+		avo.setRe_step(dto.getRe_step());
+		avo.setRe_level(dto.getRe_level());
+		
+		int result = 0;
+		
+		result += articleDao.setArticleRef(avo);
+		result += articleDao.setArticleReply(avo);
+			
+		return result;	
+	}
 	
 
 }

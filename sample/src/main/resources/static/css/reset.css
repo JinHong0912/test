@@ -20,7 +20,7 @@ table {
     width:100%;
 }
 
-input, button {
+input, button textarea{
     border:0;
     outline:0;
     background-color: #fff;

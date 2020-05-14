@@ -50,6 +50,43 @@ public class ArticleDaoImpl implements ArticleDao{
 		map.put("aid", aid);
 		return session.selectOne(NAMESPACE + ".getArticleView", map);
 	}
+	
+	//게시물 삭제
+	@Override
+	public int setArticleDelete(String boardCode, int aid) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("aid", aid);
+		return session.delete(NAMESPACE+".setArticleDelete", map);
+	}
+
+	@Override
+	public int setArticleDeleteAll(String boardCode, int aid) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("aid", aid);
+		return session.delete(NAMESPACE+".setArticleDeleteAll", map);
+	}
+
+	@Override
+	public ArticleVO getArticleReplyInfo(ArticleVO avo) {
+		
+		return session.selectOne(NAMESPACE + ".getArticleReplyInfo", avo);
+	}
+
+	@Override
+	public int setArticleRef(ArticleVO avo) {
+		
+		return session.update(NAMESPACE + ".setArticleRef", avo);
+	}
+
+	@Override
+	public int setArticleReply(ArticleVO avo) {
+		
+		return session.insert(NAMESPACE + ".setArticleReply", avo);
+	}
 
 
 	
