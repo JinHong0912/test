@@ -30,4 +30,9 @@ public interface ArticleService {
 	
 	public int setArticleReply(ArticleVO avo);
 
+	public void hitUp(String boardCode, int aid);
+	
+	//게시물 수정 부분
+	public int setArticleUpdate(ArticleVO avo);
+	
 }

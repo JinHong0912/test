@@ -32,5 +32,11 @@ public interface ArticleDao {
 		
 		public int setArticleReply(ArticleVO avo);
 		
-		
+		public void hitUp(String boardCode, int aid);
+
+		//수정 부분
+		public int setArticleUpdate(ArticleVO avo);
+
+
+
 }

@@ -88,6 +88,22 @@ public class ArticleDaoImpl implements ArticleDao{
 		return session.insert(NAMESPACE + ".setArticleReply", avo);
 	}
 
+	@Override
+	public void hitUp(String boardCode, int aid) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("aid", aid);
+		session.delete(NAMESPACE+".hitUp", map);
+		
+	}
+
+	@Override
+	public int setArticleUpdate(ArticleVO avo) {
+		
+		return session.update(NAMESPACE+".setArticleUpdate", avo);
+	}
+
 
 	
 	

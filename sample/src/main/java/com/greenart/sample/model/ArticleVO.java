@@ -16,8 +16,15 @@ public class ArticleVO {
 	private int re_step;
 	private int re_level;
 	private String boardCode;
+	private String cnt;
 
 	
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
 	public String getBoardCode() {
 		return boardCode;
 	}

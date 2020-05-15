@@ -36,13 +36,19 @@
 	<!-- 작성한 게시판 목록 확인 -->
 	<select id="getArticleList" resultType="articlevo">
 		
-		SELECT 
-			aid, subject, writer, hit, date_format(regdate, '%Y-%m-%d') as regdate
-		FROM 
-			gat_article_${boardCode}
-		ORDER BY ref DESC,
-				 re_step ASC
-	
+<!-- 		SELECT  -->
+<!-- 				aid, subject, writer, hit, re_level, date_format(regdate, '%Y-%m-%d') as regdate -->
+<!-- 		FROM  -->
+<!-- 				gat_article_${boardCode} -->
+<!-- 		ORDER BY  -->
+<!-- 				ref DESC, -->
+<!-- 				re_step ASC -->
+
+		<!-- 게시판 -->
+		SELECT a.*,
+				(SELECT COUNT(c.cid) FROM gat_comment_${boardCode} as c WHERE a.aid = c.aid) as cnt
+		FROM gat_article_${boardCode} as a ORDER BY ref DESC, re_step ASC
+		
 	</select>
 	
 	<!--작성한 전체 게시물 순서정렬 -->
@@ -50,12 +56,21 @@
 		SELECT COUNT(aid) FROM gat_article_${boardCode}
 	</select>
 
+	<!-- 5월 15일 게시판에 들어 가고 나서 조회수 하는 부분  -->
+	<update id="hitUp">
+		UPDATE gat_article_${boardCode} SET hit = hit + 1 WHERE aid = #{aid}
+	</update>
+
+
 	<!-- 작성한 게시판 목록 확인 -->
 	<select id="getArticleView" parameterType="hashMap" resultType="articlevo">
 		
-		SELECT aid, subject, writer, content, hit, date_format(regdate, '%Y-%m-%d') as regdate
-		FROM gat_article_${boardCode}
-		WHERE aid = #{aid}
+		SELECT 
+				aid, subject, writer, content, hit, date_format(regdate, '%Y-%m-%d') as regdate
+		FROM 
+				gat_article_${boardCode}
+		WHERE 	
+				aid = #{aid}
 	
 	</select>
 	
@@ -74,17 +89,18 @@
 	<select id="getArticleReplyInfo" resultType="articlevo">
 			SELECT 
 					aid, ref, re_step, re_level
-			FROM gat_article_${boardCode} WHERE aid =#{aid};
+			FROM 
+					gat_article_${boardCode} WHERE aid =#{aid};
 	</select><!-- 기존 게시물 정보를 가져 와서 -->
 	
 	<update id="setArticleRef">
 			UPDATE 
-				gat_article_${boardCode} 
+					gat_article_${boardCode} 
 			SET
-				re_step= re_step + 1,
-				regdate = now()
+					re_step= re_step + 1,
+					regdate = now()
 			WHERE
-				ref = #{ref} AND re_step > #{re_step}
+					ref = #{ref} AND re_step > #{re_step}
 	</update><!-- 답글의 위치를 바꿔 주고  -->
 	
 	<insert id="setArticleReply">
@@ -102,21 +118,14 @@
 	</insert><!-- 답글을 저장	 -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<update id="setArticleUpdate">
+			UPDATE gat_article_${boardCode}
+		
+			SET	 subject = #{subject},
+				 content = #{content}
+		
+			WHERE aid = #{aid}
+	</update>
 
 
 </mapper>

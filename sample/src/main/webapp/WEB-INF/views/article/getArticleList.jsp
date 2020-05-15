@@ -59,18 +59,24 @@
 					<td><input type="checkbox" name="chk" class="chk"
 						data-code="${boardCode}" data-aid="${articleList.aid}"></td>
 					<td>${cnt - status.index}</td>
-					<td class="lalign bold kor"><a
-						href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
+					<td class="lalign bold kor">
+					
+					<c:forEach begin="0" end="${articleList.re_level}">
+						&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					
+						<a href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
 							<!--작성된 게시판 제목 길이 잘라 주는 부분 -->
-							${cutString.strCutBytes(articleList.subject, 30, 2)} <span
-							class="tomato">(10)</span>
-					</a></td>
+							${cutString.strCutBytes(articleList.subject, 30, 2)} 
+							<span class="tomato">( ${articleList.cnt} )</span>
+						</a>
+					</td>
 					<td>${articleList.writer}</td>
 					<td>${articleList.hit}</td>
 					<td>${articleList.regdate}</td>
 					<td>
-						<button type="botton" onclick="" class="btn-80 bo-blue font-13">게시물수정</button>
-						<button type="botton"
+						<button type="button" onclick="location.href='/article/setArticleModify?boardCode=${boardCode}&aid=${articleList.aid}'" class="btn-80 bo-blue font-13">게시물수정</button>
+						<button type="button"
 							onclick="location.href='/article/setArticleDelete?boardCode=${boardCode}&aid=${articleList.aid}'"
 							class="btn-80 bo-blue font-13">게시물삭제</button>
 
@@ -82,7 +88,7 @@
 			</tr>
 
 		</table>
-		<div class="page-grp margin-t20">패이지 번호</div>
+		<div class="page-grp margin-t20">페이지 번호</div>
 	</div>
 </body>
 

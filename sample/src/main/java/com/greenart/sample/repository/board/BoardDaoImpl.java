@@ -53,7 +53,7 @@ public class BoardDaoImpl implements BoardDao{
 		String sql ="";
 		sql +="CREATE table gat_comment_"+boardCode+"(";
 		sql +="cid int not null auto_increment primary key,";
-		sql +="aid int not null,";
+		sql +="aid int not null,";//댓글이 무슨 게시물에 달리는지 선택하는 부분
 		sql +="comment text,";
 		sql +="who varchar(20),";
 		sql +="regdate datetime";

@@ -84,6 +84,17 @@ public class ArticleServiceImpl implements ArticleService {
 			
 		return result;	
 	}
+
+	@Override
+	public void hitUp(String boardCode, int aid) {
+		articleDao.hitUp(boardCode, aid);
+	}
+
+	@Override
+	public int setArticleUpdate(ArticleVO avo) {
+		
+		return articleDao.setArticleUpdate(avo);
+	}
 	
 
 }

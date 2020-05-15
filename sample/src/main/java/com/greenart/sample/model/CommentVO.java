@@ -7,7 +7,15 @@ public class CommentVO {
 	private String comment;
 	private String who;
 	private String regdate;
+	private String boardCode;// DB에 없고 따로 입력 해주었음, 저장하는것 보다 그냥 불러 오는 부분
+	private String cnt;
 	
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
 	public int getCid() {
 		return cid;
 	}
@@ -38,7 +46,12 @@ public class CommentVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
+	public String getBoardCode() {
+		return boardCode;
+	}
+	public void setBoardCode(String boardCode) {
+		this.boardCode = boardCode;
+	}
 	
 	
 }
