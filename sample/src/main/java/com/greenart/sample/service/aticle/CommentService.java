@@ -13,4 +13,7 @@ public interface CommentService {
 	public List<CommentVO> getCommentList(CommentVO cvo);
 	
 	public int setCommentDelete(CommentVO cvo);
+	
+	public int setCommentUpdate(CommentVO cvo);
+
 }

@@ -12,9 +12,9 @@ public interface ArticleService {
 	
 	public void setArticle(ArticleVO avo);
 	
-	public List<ArticleVO> getArticleList(String boardCode);
+	public List<ArticleVO> getArticleList(int start, int end , String searchOpt,String words, String boardCode);
 	
-	public int getArticleCount(String boardCode);
+	public int getArticleCount(String searchOpt, String words, String boardCode);
 	
 	public ArticleVO getArticleView(String boardCode, int aid);
 	

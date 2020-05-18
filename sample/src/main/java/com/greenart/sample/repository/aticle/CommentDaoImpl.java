@@ -39,5 +39,12 @@ public class CommentDaoImpl implements CommentDao {
 		
 		return sql.delete(namespace + ".setCommentDelete", cvo);
 	}
+
+
+	@Override
+	public int setCommentUpdate(CommentVO cvo) {
+		
+		return sql.update(namespace + ".setCommentUpdate", cvo);
+	}
 	
 }

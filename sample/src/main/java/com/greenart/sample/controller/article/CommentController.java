@@ -38,8 +38,13 @@ public class CommentController {
 	public int setCommentDelete(@ModelAttribute CommentVO cvo) {	
 			commentService.setCommentDelete(cvo);	
 		return 1;
+	}
+	
+	@RequestMapping("/setCommentUpdate")
+	@ResponseBody
+	public int setCommentUpdate(@ModelAttribute CommentVO cvo) {
 		
-		
+		return commentService.setCommentUpdate(cvo);
 	}
 
 }

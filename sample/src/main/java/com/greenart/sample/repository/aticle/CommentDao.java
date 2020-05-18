@@ -13,4 +13,6 @@ public interface CommentDao {
 	
 	public int setCommentDelete(CommentVO cvo);
 	
+	public int setCommentUpdate(CommentVO cvo);
+	
 }

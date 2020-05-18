@@ -31,15 +31,28 @@ public class ArticleDaoImpl implements ArticleDao{
 	}
 
 	@Override
-	public List<ArticleVO> getArticleList(String boardCode) {
+	public List<ArticleVO> getArticleList(int start, int end ,String searchOpt,String words, String boardCode) {
 		
-		return session.selectList(NAMESPACE + ".getArticleList", boardCode);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchOpt", searchOpt);
+		map.put("words", words);
+		map.put("boardCode", boardCode);
+	
+		return session.selectList(NAMESPACE + ".getArticleList", map);
 	}
 
 	@Override
-	public int getArticleCount(String boardCode) {
+	public int getArticleCount(String searchOpt ,String words, String boardCode) {
 		
-		return session.selectOne(NAMESPACE + ".getArticleCount", boardCode);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode);
+		map.put("searchOpt", searchOpt);
+		map.put("words", words);
+		
+		
+		return session.selectOne(NAMESPACE + ".getArticleCount", map);
 	}
 
 	@Override

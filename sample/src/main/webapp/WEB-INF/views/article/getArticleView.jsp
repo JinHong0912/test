@@ -11,7 +11,8 @@
 	<div id="tbl-spacing">
 		<div id="article-top" class="margin-b20">
 			<span class="float-l bold font-18 noto">게시물 상세보기 페이지 입니다.</span> <span
-				class="float-r noto font-18"><strong>[	${boardConfig.boardName} ]</strong> 게시판 입니다.</span>
+				class="float-r noto font-18"><strong>[
+					${boardConfig.boardName} ]</strong> 게시판 입니다.</span>
 			<div class="clearfix"></div>
 		</div>
 
@@ -47,9 +48,8 @@
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold"
 					style="background-color:${boardConfig.boardColor}">게시물 내용</td>
-				<td class="w-85 padding-lr-10">
-						<textarea name="content" id="editor">${articleView.content}</textarea>
-				</td>
+				<td class="w-85 padding-lr-10"><textarea name="content"
+						id="editor">${articleView.content}</textarea></td>
 
 				<!--------글쓰기에 필요한 부분 ---------->
 				<script>
@@ -109,17 +109,20 @@
 				<div class="comment-wrap">
 					<div class="comment-left float-l">
 
-						<input type="hidden" name="who" id="who" value="${sessionScope.userName}" /> 
-						<input type="hidden" name="boardCode" value="${boardCode}" />
+						<input type="hidden" name="who" id="who"
+							value="${sessionScope.userName}" /> <input type="hidden"
+							name="boardCode" value="${boardCode}" />
 						<!-- 어떤 게시판안에 댓글을 달것인지-->
 						<input type="hidden" name="aid" value="${articleView.aid}" />
 
 						<!-- 어떤 게시판에 댓글이 달렸는지 -->
-						<textarea class="bo-blue padding-a-10 font-16 bold eng"	id="comment" name="comment"></textarea>
+						<textarea class="bo-blue padding-a-10 font-16 bold eng"
+							id="comment" name="comment"></textarea>
 
 					</div>
 					<div class="comment-right float-r">
-						<button type="button" id="commentSetBtn" class="comment-box font-18 bold orange">댓글달기</button>
+						<button type="button" id="commentSetBtn"
+							class="comment-box font-18 bold orange">댓글달기</button>
 					</div>
 				</div>
 			</form>
@@ -152,106 +155,141 @@
     });
 
     /* textarea 유호성 검사  */
-    $(function () {
-                var aid = '${articleView.aid}';
-                var boardCode = '${boardCode}';
+   
+      var aid = '${articleView.aid}';
+      var boardCode = '${boardCode}';
 
-               // alert(aid)
-               // alert(boardCode)
+      $(function(){
+			$("#commentSetBtn").click(function(){
+
+				  if($.trim($("#comment").val()) == ''){
+					  alert("댓글 내용을 입력하세요.");
+                      $("#comment").focus();
+                        return false;    
+                 	 } else {
+                           var setData = $("#commentSet").serialize(); //key,value 형식 방식으로 저장 
+                      // aid, who, comment, -> List 배열 형태로 만들어 주는 부분
+                           $.ajax({
+                               type: "post",
+                               url: "/comment/commentSet",
+                               data: setData,
+                               
+                               success: function (data) {
+                                   if (data == 1) {
+                                       alert("댓글이 저장 되었습니다.");
+                                       $("#comment").val('');
+                                       commentList();
+                                   } else {
+                                       alert("시스템 오류입니다.")
+
+                                   }
+                               }
+                           });
+					  }
+				});
+          });//1번 마지막 
+
+          
+          function commentList() {
+				alert("이까지 됨");
+              $.ajax({
+                  type: 'post',
+                  url: '/comment/getCommentList',
+                  data: {
+                      'aid': aid,
+                      'boardCode': boardCode
+                  },
+                  success: function (data){
+                      
+                      var str ='';
+
+                      $.each(data,function(key, value){
+//                           alert("each 들어옴 ");
+                          str +='<div class="commentArea margin-t10 noto">';
+                          	str +='<div class="commentInfo">';
+                          		str +='댓글번호 : ' + value.cid + '/ 작성자 :' + value.who;
+                          		str +='<a href="#" onClick="commentUpdate(' + value.cid + ',\'' + value.comment + '\')" class="orange bold">[수정]</a>';
+                          		str +='<a href="#" onClick="commentDelete(' + value.cid +')" class="orange bold">[삭제]</a>';
+                          		str +='<div class="bold commentContent' + value.cid + '">';
+                          			str +='<p class="margin" >내용:' + value.comment + '</p>';
+                          		str +='</div>';
+                          str +='</div>';
+                          str +='<hr class="margin-tb-20"/>';
+                      	  str +='</div>';
+
+                      });
+
+                      $(".commentList").html(str);
+                  }
+              });
+          }
 
 
-                $("#commentSetBtn").click(function () {
-             
-                    if($.trim($("#comment").val()) == '') {
-                        alert("댓글 내용을 입력하세요.");
-                        $("#comment").focus();
-                          return false;
-                    } else {
-                             var setData = $("#commentSet").serialize(); //key,value 형식 방식으로 저장 
-                        // aid, who, comment, -> List 배열 형태로 만들어 주는 부분
-                        $.ajax({
-                            type: "post",
-                            url: "/comment/commentSet",
-                            data: setData,
-                            success: function (data) {
-                                if (data == 1) {
-                                    alert("댓글이 저장 되었습니다.");
-                                    $("#comment").val('');
-                                    commentList();
-                                } else {
-                                    alert("시스템 오류입니다.")
+       function commentUpdate(cid,comment) {
+           /* alert(value1);
+           alert(value2); */
+           var str = '';
 
-                                }
-                            }
-                        });
-                    }
+           str += '<div class="input-group">';
+           str += '<input type="text" class="input-full padding-lr-10" name="comment_' + cid+'" value="'+comment+'">';
+           str += '<button class="btn-50 bo-pink bold margin-t10" type="button" onClick="getCommentUpdate('+cid+')">수정</button>';
+           str += '</div>';
 
-                });
+           $(".commentContent" + cid).html(str); //내 댓긓에 해당되는 내용 위치에 가서 수정으로 변경
 
-                function commentList() {
+       }
 
-                    $.ajax({
-                        type: 'post',
-                        url: '/comment/getCommentList',
-                        data: {
-                            'aid': aid,
-                            'boardCode':boardCode
-                        },
-                        success: function(data) {
-                        	 //alert("success");
-                            var str = '';
-                            
-                            $.each(data,function(key, value){
-                                alert("each 들어옴 ");
-                                str += '<div class="commentArea margin-t10 noto">';
-            						str += '<div class="commentInfo">';
-            							str += '댓글번호 : '+ value.cid +'/ 작성자 :'+ value.who;
-//             							str += '<a href="#" onClick="commentUpdate('+ value.cid +')" class="orange bold">[수정]</a>';
-            							str += '<a href="#" onClick="commentDelete('+ value.cid +')" class="orange bold">[삭제]</a>';
-            							str += '<div class="bold">내용 : '+ value.comment+'</div>';
-              							str += '<hr class="margin-tb-20" />';
-            						str += '</div>';
-            					str += '</div>';
-            				
-                            });
-                        
-                            $(".commentList").html(str);
-                        }
+       function getCommentUpdate(cid) {
+           alert(cid);
+           var comment =$('[name=comment_' + cid + ']').val();
 
+           alert(comment);
+   			
+   		$.ajax({
+   			type : "post",
+   			url : "/comment/setCommentUpdate",
+   			data: { 
+   				'cid'   : cid,
+   				'comment' : comment,
+   				'boardCode': boardCode	
+   				},
+   			success : function(data) {
+    			if( data == 1){
+   				commentList();// 댓글 목록 다시 출력	
+   				}
 
-                    });
-                }
+       		}
+   		});
 
+       }
 
-                function commentUpdate() {
+		/* 댓글 삭제 부분 */
+       function commentDelete(cid) {
+           alert("삭제")
+           $.ajax({
 
-                }
+               type: 'post',
+               url: '/comment/setCommentDelete',
+               data: {
+                   'cid': cid, //매개변수
+                   'boardCode': boardCode //전역변수 제일 위에 선언
 
-                function commentDelete(cid) {
-					alert("삭세")
-                    $.ajax({
-						
-                        type:'post',
-                        url: '/comment/setCommentDelete',
-                        data: {
-                            'cid': cid,//매개변수
-                            'boardCode': boardCode
+               },
+               success: function (data) {
+                   if (data == 1) {
+                       alert("댓글이 삭제 되었습니다.")
+                       commentList();
+                   }
+               }
+           });
 
-                        },
-                        success: function (data) {
-                            if (data == 1) {
-								alert("댓글이 삭제 되었습니다.")						
-                                commentList();
-                            }
-                        }
-                    });
-
-                }
-
-                $(document).ready(function () { //화면이 처음 로드 될떄
-                        commentList();
-                });
-    });
+       }
+       /* commen 출력 */
+       $(document).ready(function () { //화면이 처음 로드 될떄
+               commentList();
+       });   
+   
+   
 </script>
 
 <%@ include file="part/foot.jspf"%>

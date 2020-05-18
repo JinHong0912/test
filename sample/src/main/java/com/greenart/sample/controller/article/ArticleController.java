@@ -25,16 +25,52 @@ public class ArticleController {
 	ArticleService articleService;
 
 	@RequestMapping("")
-	public ModelAndView getArticleList(@RequestParam String boardCode) {
+	public ModelAndView getArticleList(
+			@RequestParam String boardCode,
+			@RequestParam(defaultValue ="1") int num,
+			@RequestParam(defaultValue = "subject") String searchOpt,
+			@RequestParam(defaultValue = "") String words){
+		
+		int cnt = articleService.getArticleCount(searchOpt, words, boardCode);// 작성된 게시판 정렬
+		
+		int end = 10; // 한 페이지에 보여질 게시물 갯수
+		int pageNum = (int)	Math.ceil((double) cnt / end); //페이지 번호 : (ceil)101 /10 - 페이지 11
+		//10.1 -> 11.0 -> 11(페이지)
+		
+		int start = (num - 1) * end ; //0에서 부터 10개 자르기
+		
+		int pageNum_cnt = 10; //페이지 번호 개수를 10개씩 만 보여지게 한다.
+		
+		int endPageNum = (int)(Math.ceil((double) num / (double)pageNum_cnt)  * pageNum_cnt);
+		
+		int startPageNum = endPageNum - (pageNum_cnt - 1 );
+		
+		int lastPageNum = (int)(Math.ceil((double) cnt / (double)pageNum_cnt));
+	
+		if(endPageNum > lastPageNum) {
+		   endPageNum = lastPageNum;
+			
+		}
+		boolean prev = startPageNum == 1? false : true;
+		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
+		
 		BoardVO bvo = articleService.getBoardConfig(boardCode);
-		List<ArticleVO> avo = articleService.getArticleList(boardCode);// 작성되 게시판이 몇 줄이 있는지 확인하는 줄
-		int cnt = articleService.getArticleCount(boardCode);// 작성된 게시판 정렬
+		List<ArticleVO> avo = articleService.getArticleList(start, end, searchOpt, words, boardCode);// 작성되 게시판이 몇 줄이 있는지 확인하는 줄
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardConfig", bvo);// 게시판 색이 변경 되는지
 		mav.addObject("boardCode", boardCode);
 		mav.addObject("articleList", avo);
 		mav.addObject("cnt", cnt);// 작성된 게시판 정렬
+		mav.addObject("searchOpt", searchOpt);
+		mav.addObject("words", words);
+		mav.addObject("prev", prev);
+		mav.addObject("next", next);
+		mav.addObject("pageNum", pageNum);
+		mav.addObject("startPageNum",startPageNum);
+		mav.addObject("endPageNum", endPageNum);
+		mav.addObject("select", num);
+		
 		mav.setViewName("/article/getArticleList");
 
 		return mav;

@@ -237,4 +237,32 @@ public class UserController {
 
 	
 	
+	
+
+	@RequestMapping(value = "csv")
+	public ModelAndView getUserscsv(
+			
+			@RequestParam(defaultValue = "1") int num,
+			@RequestParam(defaultValue = "userID") String searchOpt,
+			@RequestParam(defaultValue = "") String words) {
+		
+		int usersCount = userService.getUsersCount(searchOpt, words);
+		
+			int end = 10;
+			int start = (num - 1) * end;
+			int pageNum = (int) Math.ceil( (double)usersCount / end);
+		
+		List<UserVO> uvo = userService.getUsersList(start, end, searchOpt, words);
+
+		ModelAndView mav = new ModelAndView();
+		if (uvo != null) {
+			mav.addObject("usersList", uvo);
+			mav.addObject("usersCount", usersCount);
+			mav.setViewName("/users/getUserListCsv");
+		}
+		return mav;
+
+	}
+	
+	
 }

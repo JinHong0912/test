@@ -22,5 +22,11 @@
 		DELETE FROM gat_comment_${boardCode} WHERE cid = #{cid}
 	</delete>
 
+	<update id="setCommentUpdate">
+	UPDATE gat_comment_${boardCode} 
+	SET comment =#{comment} WHERE cid = #{cid}
+	</update>
+	
+
 
 </mapper>

@@ -29,15 +29,15 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleVO> getArticleList(String boardCode) {
+	public List<ArticleVO> getArticleList(int start, int end , String searchOpt,String words, String boardCode) {
 		
-		return articleDao.getArticleList(boardCode);
+		return articleDao.getArticleList(start, end, searchOpt, words, boardCode);
 	}
 
 	@Override
-	public int getArticleCount(String boardCode) {
+	public int getArticleCount(String words,String searchOpt ,String boardCode) {
 	
-		return articleDao.getArticleCount(boardCode);
+		return articleDao.getArticleCount(words, searchOpt,boardCode);
 	}
 
 	@Override

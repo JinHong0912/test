@@ -3,7 +3,7 @@
 <mapper namespace="mappers.BoardMapper">
 
 <!-- 컬럼(column)변수($), 데이터 변수(#) -->
-<sql id="search">
+	<sql id="search">
 		<choose>
 			<when test = "searchOpt == 'all' ">
 				WHERE boardName LIKE CONCAT('%',#{words},'%')

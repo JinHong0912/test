@@ -32,4 +32,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentDao.setCommentDelete(cvo);
 	}
 
+	@Override
+	public int setCommentUpdate(CommentVO cvo) {
+		
+		return commentDao.setCommentUpdate(cvo);
+	}
+
 }
