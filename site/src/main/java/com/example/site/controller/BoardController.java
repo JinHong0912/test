@@ -31,24 +31,22 @@ import com.example.site.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
 
-	
 	@Autowired
 	BoardService boardService;
-	
+
 	@RequestMapping("/list")
-	public ModelAndView viewList(
-			@RequestParam(defaultValue = "subject") String searchOpt,
+	public ModelAndView viewList(@RequestParam(defaultValue = "subject") String searchOpt,
 			@RequestParam(defaultValue = "") String words) {
-	List<BoardVO> vList = boardService.getArtcleList(searchOpt , words);
-	ModelAndView mav = new ModelAndView();
-	mav.addObject("vList", vList);
-	mav.addObject("searchOpt", searchOpt);
-	mav.addObject("words", words);
-	mav.setViewName("/board/list");
-	
-	return mav;
+		List<BoardVO> vList = boardService.getArtcleList(searchOpt, words);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vList", vList);
+		mav.addObject("searchOpt", searchOpt);
+		mav.addObject("words", words);
+		mav.setViewName("/board/list");
+
+		return mav;
 	}
-	
+
 	@RequestMapping("/add")
 	public String viewAdd() {
 		return "/board/add";
@@ -56,141 +54,129 @@ public class BoardController {
 
 	@RequestMapping("/doAdd")
 	@ResponseBody
-	public String doAdd(@ModelAttribute BoardVO bvo, @RequestPart MultipartFile files) throws IllegalStateException, IOException {
-		//첨부파일 처리
+	public String doAdd(@ModelAttribute BoardVO bvo, @RequestPart MultipartFile files)
+			throws IllegalStateException, IOException {
+		// 첨부파일 처리
 		int result;
-		
-		if( files.isEmpty() ) {
-			result = boardService.setArticle(bvo);	
-		}else {
-			//첨부파일 저장 되는 위치
-			String fileUrl= "C:/upload/";
-		
-			//파일 이름 변경
+
+		if (files.isEmpty()) {
+			result = boardService.setArticle(bvo);
+		} else {
+			// 첨부파일 저장 되는 위치
+			String fileUrl = "C:/upload/";
+
+			// 파일 이름 변경
 			String fileName = files.getOriginalFilename();
 			String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-			
+
 			File destinationFile = null;
 			String destinationFileName;
-			
-			do{
-				destinationFileName = RandomStringUtils.randomAlphanumeric(32)+ "."+ fileNameExtension;
+
+			do {
+				destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
 				destinationFile = new File(fileUrl + destinationFileName);
-			
-			
-			}while(destinationFile.exists());
-				
+
+			} while (destinationFile.exists());
+
 			destinationFile.getParentFile().mkdirs();
 			files.transferTo(destinationFile);
-			
+
 			bvo.setFilename(destinationFileName);
 			bvo.setFileOriName(fileName);
 			bvo.setFileurl(fileUrl);
-				
-				
-				
-			result = boardService.setArticle(bvo);	
+
+			result = boardService.setArticle(bvo);
 		}
-		
-		
-		
+
 		StringBuilder sb = null;
 		String msg = "게시물이 등록 되었습니다.";
-		
-		
-		if( result > 0) {
+
+		if (result > 0) {
 			sb = new StringBuilder();
 			sb.append("<script>");
-			sb.append("alert('"+ msg + "');");
+			sb.append("alert('" + msg + "');");
 			sb.append("location.replace('/board/list');");
 			sb.append("</script>");
-			
-			
+
 		}
 		return sb.toString();
 
 	}
 
-	@RequestMapping("/detail")//url 주소
+	@RequestMapping("/detail") // url 주소
 	public ModelAndView viewDetail(@RequestParam int id) {
 		boardService.setHitUp(id);
 		BoardVO vo = boardService.getArticlOne(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("view", vo);
 		mav.setViewName("/board/detail");
-		return mav;//jsp주소-> 지금 보는 화면	
+		return mav;// jsp주소-> 지금 보는 화면
 	}
-	
+
 	@RequestMapping("/modify")
-	public ModelAndView Modify(@RequestParam int id){
-		
+	public ModelAndView Modify(@RequestParam int id) {
+
 		BoardVO vo = boardService.getArticlOne(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("bvo", vo);
 		mav.setViewName("/board/modify");
 		return mav;
 	}
-	
-	
-	
-	
-	
+
 	@RequestMapping("/delete")
 	@ResponseBody
 	public String deleteBoard(@RequestParam int id) {
-		
-		int result = boardService.deleteboard(id);	
-		
+
+		int result = boardService.deleteboard(id);
+
 		StringBuilder sb = null;
 		String msg = "게시물이 삭제 되었습니다.";
-		
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			sb = new StringBuilder();
 			sb.append("<script>");
-			sb.append("alert('"+ msg + "');");
+			sb.append("alert('" + msg + "');");
 			sb.append("location.replace('/board/list');");
 			sb.append("</script>");
 		}
-		
+
 		return sb.toString();
-	}	
-	
+	}
+
 	@RequestMapping("/update")
 	@ResponseBody
 	public String bupdate(BoardVO vo) {
 		int result = boardService.bupdate(vo);
-		StringBuilder sb = new StringBuilder(); 
+		StringBuilder sb = new StringBuilder();
 		sb.append("<script>");
-		
-		if( result > 0) {
+
+		if (result > 0) {
 			sb.append("alert('회원정보가 수정 되었습니다.');");
-			sb.append("location.replace('/board/detail?id="+vo.getId()+"');");
-		
-		}else {
+			sb.append("location.replace('/board/detail?id=" + vo.getId() + "');");
+
+		} else {
 			sb.append("alert('회원정보가 수정 되지 않았습니다.');");
 			sb.append("location.replace('/board/list');");
 		}
-		
+
 		sb.append("</script>");
-		
+
 		return sb.toString();
 	}
-	
-	
-	
+
 	@RequestMapping("/fileDown")
-	public void fileDown(int id,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("utf-8"); 
+	public void fileDown(int id, HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
 		BoardVO bvo = boardService.getArticlOne(id);
-		
+
 		try {
-			
+
 			String fileUrl = bvo.getFileurl();
 			String fileName = bvo.getFilename();
 			String oriFileName = bvo.getFilename();
 			String savePath = fileUrl;
-		
+
 			InputStream in = null;
 			OutputStream os = null;
 			File file = null;
@@ -240,16 +226,13 @@ public class BoardController {
 			}
 			in.close();
 			os.close();
-		
-			//db 다운로드 파일 주소
-			
+
+			// db 다운로드 파일 주소
+
 		} catch (Exception e) {
 			System.out.println("ERROR : " + e.getMessage());
 		}
-		
-		
-		
-		
-		}
-		
+
 	}
+
+}

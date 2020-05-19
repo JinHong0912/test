@@ -85,12 +85,19 @@
 		resultType="articlevo">
 
 		SELECT
-		aid, subject, writer, content, hit, date_format(regdate, '%Y-%m-%d') as
-		regdate
+				aid, 
+				subject, 
+				writer, 
+				content, 
+				hit, 
+				fileName, 
+				fileOriName, 
+				fileUrl,
+				date_format(regdate, '%Y-%m-%d') as	regdate
 		FROM
-		gat_article_${boardCode}
+				gat_article_${boardCode}
 		WHERE
-		aid = #{aid}
+				aid = #{aid}
 
 	</select>
 

@@ -68,7 +68,18 @@
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold"
 					style="background-color:${boardConfig.boardColor}">게시물 첨부파일</td>
-				<td class="w-85 padding-lr-10"><input type="file" name="files"></td>
+				<td class="w-85 padding-lr-10">
+					<c:if test = "${articleView.fileOriName == null}">
+						<span class="bold">첨부파일이 없습니다.</span>
+					</c:if>
+					<c:if test = "${articleView.fileOriName ne ''}">
+						<span class="bold">
+<%-- 							<a href="/article/fileDown?aid=${articleView.aid}&boardCode=${boardCode}">${articleView.fileOriName}</a> --%>
+							<a href="/article/fileDown?boardCode=${boardCode}&aid=${articleView.aid}">${articleView.fileOriName}</a>
+						</span>
+					</c:if>
+					
+				</td>
 			</tr>
 
 			<tr>
@@ -79,7 +90,7 @@
 			<tr class="tr-50">
 				<td class="w-15 align f6 bold"
 					style="background-color:${boardConfig.boardColor}">게시물 조회수</td>
-				<td class="w-85 padding-lr-10">${articleView.hit}</td>
+				<td class="w-85 padding-lr-10">${articleView.hit} 회</td>
 			</tr>
 
 		</table>

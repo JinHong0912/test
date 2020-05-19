@@ -47,10 +47,10 @@ public class HomeController {
 	}
 
 
-	@RequestMapping("/product")
-	public String getProduct() {
-		return "/shophome/product";
-	}
+	/*
+	 * @RequestMapping("/product") public String getProduct() { return
+	 * "/shophome/product"; }
+	 */
 
 	@RequestMapping("/categories")
 	public String getCategories() {

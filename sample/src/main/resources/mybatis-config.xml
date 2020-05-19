@@ -8,5 +8,6 @@
 		<typeAlias type="com.greenart.sample.model.BoardVO" alias = "boardvo"/>
 		<typeAlias type="com.greenart.sample.model.ArticleVO" alias = "articlevo"/>
 		<typeAlias type="com.greenart.sample.model.CommentVO" alias = "commentvo"/>
+		<typeAlias type="com.greenart.sample.model.MajorCateVO" alias = "majorvo"/>
 	</typeAliases>
 </configuration>
