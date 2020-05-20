@@ -33,18 +33,17 @@
 					
 					<input type="text" name="majorCode" id="majorCode" 
 					autocomplete="false" class="input-200 padding-lr-5" placeholder="예) 대분류코드 : 숫자/ 영어로만 입력" /> 
-					<input type="text" name="majorName" id="majorName" class="input-200 padding-lr-5" placeholder="예) 대분류 이름" />
+					<input type="text" name="majorName" id="majorName" class="input-200 padding-lr-5" autocomplete="off" placeholder="예) 대분류 이름" />
 
 					<button type="button" id="major-btn" class="btn-50 bo-gray bold">저장</button>
 				
 				</td>
 			</tr>
 			<tr class="tr-45">
-				<td class="w-85 padding-lr-5">
+				<td class="w-85 padding-lr-5 font-14">
 					<!-- 디비에 입력된 대분류가 여기에 생성 -->
-					<div class="majorCateArea">
-					
-					</div> <!-- 디비에 입력된 대분류가 여기에 생성 -->
+						<div class="majorCateArea"></div>
+					<!-- 디비에 입력된 대분류가 여기에 생성 -->
 
 				</td>
 			</tr>
@@ -59,25 +58,21 @@
 				<td rowspan="2" class="w-15 bg-color-3 f6 align bold">상품 소분류  등록</td>
 
 				<td class="w-85 padding-lr-5">
-				<select name="" id="" class="input-200">
+				<select name="majorCate" id="majorCateSeleceted" class="majorCateSelected input-200">
 					<option value="">선택하세요</option>
 				</select>
 								
 				<input type="text" name="minorCode" id="minorCode" class="input-200 padding-lr-5" placeholder="예) 소분류코드 : 숫자/ 양어로만 입력" /> 
-				<input type="text" name="" id="" class="input-200 padding-lr-5" placeholder="예) 소분류 이름" />
-				<button type="button" id="" class="btn-50 bo-gray bold">저장</button>
+				<input type="text" name="minorName" id="minorName" class="input-200 padding-lr-5" placeholder="예) 소분류 이름" />
+				<button type="button" id="minor-btn" class="btn-50 bo-gray bold">저장</button>
 	
 				</td>
 			</tr>
 			<tr class="tr-45">
 				<td class="w-85 padding-lr-5">
 					<!-- 디비에 입력된 소분류가 여기에 생성 -->
-					<div class="minorCateArea">
-						<span class="cateTag"> BAG(WOMEN) <a href="#" onClick=""
-							class="close"> <i class="far fa-times-circle"></i>
-						</a>
-						</span>
-					</div> <!-- 디비에 입력된 소분류가 여기에 생성 -->
+						<div class="minorCateArea"></div> 
+					<!-- 디비에 입력된 소분류가 여기에 생성 -->
 
 				</td>
 			</tr>
@@ -134,6 +129,7 @@ $(function(){
 
 $(function(){
 		$("#major-btn").click(function(){
+			
 			var code = $.trim( $("#majorCode").val() );
 			var name = $.trim( $("#majorName").val() );	
 
@@ -159,34 +155,90 @@ $(function(){
 						
 				}, 
 				success : function(data){
-					if( data == "1" ){
-						alert("대분류가 저장되었습니다.");
-						window.location.reload();
+// 					alert("dd")
+					if( data == "overflow" ){
+						
+						alert("대분류는 8개만 만들 수 있습니다.");
+						$("#majorCode").val('');
+						$("#majorName").val('');
+
+					}else if( data == "checked"){
+
+						alert("중복되는 대분류 코드입니다. 다시 입력해 주세요.");
+						$("#majorCode").val('');
+						$("#majorCode").focus();
+
 					}else{
-							alert("대분류를 저장 할 수 없습니다.");
-						}
+						alert("대분류가 생성되었습니다.");
+						window.location.reload();
+												
+					}
 
 				}
 
 			});//ajax
-		});//대분류 안에
+ 		});//대분류 안에
 });//대분류/소분류 부분
+
+
+/* 소분류 작업 부분 */
+
+$(function(){
+// 		alert("dsadsa")
+		$("#minor-btn").click(function(){
+// 			alert("dsada")
+			var majorName = $.trim( $("#majorCateSeleceted").val() );
+			var minorCode = $.trim( $("#minorCode").val() );
+			var minorName = $.trim( $("#minorName").val() );	
+
+			if( minorCode == '' ){
+				alert("소분류 코드를 입력하세요.");
+				$("#minorCode").focus();
+				return false;
+			}
+
+			if( minorName == '' ){
+				alert("소분류 이름을 입력하세요.");
+				$("#minorName").focus();
+				return false;
+			}
+
+			$.ajax({
+
+				type : "post",
+				url  : "/cate/setMinorCate",
+				data :{
+					minorCode : minorCode,
+					minorName : minorName,
+					majorName : majorName
+						
+				}, 
+				success : function(data){
+					alert("dd");
+					alert("소분류가 저장이 완료 되었습니다.");
+					window.location.reload();
+				}
+
+			});//ajax
+ 		});//소분류 안에
+});//소분류 부분
+
 
 </script>
 <script>
 //대분류 리스트 보여 주는 부분
+
 function majorCateList(){
-		alert("majorCateList 까지 됨"); 
+// 		alert("majorCateList 까지 됨"); 
 		$.ajax({
 			type : "post",
 			url  : "/cate/getMajorCateList",
 			data :{},
-			success : function(data) {
-
+			success : function(data){
 					var str ='';
 				$.each(data, function(key,value) {
 				
-					str +='<span class="cateTag">'+value.majorName;
+					str +='<span class="cateTag">'+value.majorName+'('+value.majorCode+')';
 					str +='<a href="#" onClick="setMajorDelete('+value.majorCode+')" class="close">';
 					str +='<i class="far fa-times-circle"></i>';
 					str +='</a>';
@@ -198,20 +250,127 @@ function majorCateList(){
 		});	
 }
 
+/* =================소분류 부분 =======================================================*/
+
 
 </script>
 <script>
-//대분류 삭제 하는 부분
-	function setMajorDelete(majorCode){
-		alert(majorCode);
+function minorCateList(){
+	alert("majorCateList 까지 됨"); 
+     $.ajax({
+	type : "post",
+	url  : "/cate/getMinorCateList",
+	data :{},
+	success : function(data) {
+
+			var str ='';
+		$.each(data, function(key,value) {
+		
+			str +='<span class="cateTag">'+value.minorName+'-'+value.minorCode+'('+value.majorName+')';
+				str +='<a href="#" onClick="setMinorDelete('+value.minorCode+',\''+value.majorName+'\')" class="close">';
+				str +='<i class="far fa-times-circle"></i>';
+				str +='</a>';
+				str +='</span>';
+		});
+		
+		$(".minorCateArea").html(str);
 	}
+});	
+}
+
+
+
+</script>
+<!-- 대분류 삭제하는 부분 -->
+<script>
+	function setMajorDelete(majorCode){
+// 		alert(majorCode);
+		if ( confirm("선택하신 대분류를 삭제하시겠습니까?") == false ){
+			return;
+
+		}else{
+
+				$.ajax({
+					type : "post",
+					url  : "/cate/setMajorDelete",
+					data :{
+						majorCode : majorCode	
+					}, 	
+					success : function(data){
+						if( data == "success" ){
+							window.location.reload();
+						}
+
+					} 
+					
+
+			});//ajax
+			
+			
+		}//if
+	}//대분류 삭제 부분
+
 </script>
 
+<script>
+	function setMinorDelete(minorCode, majorName){
+		alert("됨");
+		if ( confirm("선택하신 소분류를 삭제하시겠습니까?") == false ){
+			return;
+
+		}else{
+			$.ajax({
+				type : "post",
+				url  : "/cate/setMinorDelete",
+				data :{
+					minorCode : minorCode,
+					majorName : majorName
+				},
+				success : function(data){
+					if( data == "success" ){
+						alert("소분류 삭제가 완료 되었습니다.");
+						window.location.reload();
+					}
+
+				},
+				error : function(){
+					alert("에러");
+				}
+				
+
+			});		
+				
+		}
+	}
+</script>
+<script>
+	function majorCateSeleceted(){
+// 		alert("셀렉트 박수")
+		$.ajax({
+			type : "post",
+			url  : "/cate/getMajorCateList",
+			data :{},
+			success : function(data) {
+				$.each(data, function(key,value) {
+					$(".majorCateSelected").append("<option value="+value.majorName+">"+value.majorName+"</option>")
+				});
+			}
+		});	
+	}
+
+
+
+
+</script>
 
 <script>
 	$(document).ready(function(){
 		majorCateList();
-		});
+		minorCateList();
+		
+		majorCateSeleceted();
+		
+	});
 </script>
 
 <script src="../js/product/product.js"></script>

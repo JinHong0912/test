@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greenart.sample.model.MajorCateVO;
+import com.greenart.sample.model.MinorCateVO;
 import com.greenart.sample.service.catagory.MajorCateService;
+import com.greenart.sample.service.catagory.MinorCateService;
 
 @Controller
 @RequestMapping("/cate")
@@ -18,6 +20,9 @@ public class CategoryController {
 
 	@Autowired
 	MajorCateService mcService;
+	
+	@Autowired
+	MinorCateService minorService;
 	
 	@RequestMapping("/getCategory")
 	public ModelAndView getCategory() {
@@ -29,16 +34,32 @@ public class CategoryController {
 		mav.setViewName("admin/admin");
 		
 		return  mav;
+		
+	
+	
 	}
 	
+//대분류 생성하는 부분
+//대분류 7개 까지만 생성 및 중복 확인 하는 부분
 	@RequestMapping("/setMajorCate")
 	@ResponseBody
-	public int setMajorCate(@ModelAttribute MajorCateVO mcvo) {
-			
-	return  mcService.setMajorCate(mcvo);
-	
+	public String setMajorCate(@ModelAttribute MajorCateVO mcvo) {
+		int totalCnt = mcService.getMajorCateTotal();
+		int isChecked = mcService.getMajorCateCountOne(mcvo.getMajorCode());
+		
+		String msg = null;
+		if( totalCnt > 7 ) {
+			msg = "overflow";
+		}else if( isChecked == 1){
+			msg = "checked";	
+		}else {
+			mcService.setMajorCate(mcvo);
+			msg = "OK";
+		}
+		return msg;	
 	}
 	
+//	대분류 보여 주는 부분
 	@RequestMapping("/getMajorCateList")
 	@ResponseBody
 	public List<MajorCateVO> getMajorCateList() {
@@ -46,5 +67,42 @@ public class CategoryController {
 	return  mcService.getMajorCateList();
 	
 	}
+	
+//	대분류 삭제 하는 부분
+	@RequestMapping("/setMajorDelete")
+	@ResponseBody
+	public String setMajorDelete(String majorCode) {
+		mcService.setMajorDelete(majorCode);
+		
+		return "success";
+		
+	}
+	
+//	소분류 생성 부분============================================================================
+	@RequestMapping("/setMinorCate")
+	@ResponseBody
+	public void setMinorCate(@ModelAttribute MinorCateVO mcvo) {
+		
+		minorService.setMinorCate(mcvo);
+	}
+//	보여 주는 부분
+	@RequestMapping("/getMinorCateList")
+	@ResponseBody
+	public List<MinorCateVO> getMinorCateList() {
+		
+		return minorService.getMinorCateList();
+	}
+
+//	소분류 삭제 하는 부분
+	@RequestMapping("/setMinorDelete")
+	@ResponseBody
+	public String setMinorDelete(MinorCateVO mcvo) {
+		minorService.setMinorDelete(mcvo);
+		
+		return "success";
+		
+	}
+	
+	
 	
 }

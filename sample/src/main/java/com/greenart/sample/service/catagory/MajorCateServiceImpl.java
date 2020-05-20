@@ -27,4 +27,22 @@ public class MajorCateServiceImpl implements MajorCateService {
 		return mcDao.getMajorCateList();
 	}
 
+	@Override
+	public void setMajorDelete(String majorCode) {
+		
+		 mcDao.setMajorDelete(majorCode);
+	}
+
+	@Override
+	public int getMajorCateTotal() {
+		
+		return mcDao.getMajorCateTotal();
+	}
+
+	@Override
+	public int getMajorCateCountOne(String majorCode) {
+		
+		return mcDao.getMajorCateCountOne(majorCode);
+	}
+
 }
