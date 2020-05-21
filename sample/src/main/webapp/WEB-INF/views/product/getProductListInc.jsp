@@ -21,8 +21,8 @@
 	<div class="search-wrap margin-tb-20">
 		<span class="font-16 bold">
 			<button type="button" id="selectDelete-btn"	class="btn-70 bold bo-pink">선택삭제</button>
-			<button type="button" onClick="location.href='/cate/getCategory'" class="btn-80 bold bo-blue">상품등록 분류</button>
-			<button type="button" onClick="" class="btn-80 bold bo-blue">상품분류</button>
+			<button type="button" onClick="location.href='/cate/getCategory'" class="btn-80 bold bo-blue">카테고리 등록</button>
+			<button type="button" onClick="location.href='/product/setProduct'" class="btn-80 bold bo-blue">상품등록</button>
 		
 		</span> <span class="">
 			<form method="post" action="/board">

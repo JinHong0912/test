@@ -32,6 +32,16 @@ public class MinorCateDaoImpl implements MinorCateDao {
 		sql.delete(NAMESPACE + ".setMinorDelete", mcvo);
 		
 	}
-	
-	
+
+	@Override
+	public int getMinorCateCountOne(MinorCateVO mcvo) {
+		
+		return sql.selectOne(NAMESPACE + ".getMinorCateCountOne", mcvo);
+	}
+
+
+	@Override
+	public List<MinorCateVO> selectedMinorCateList(String majorName) {
+		return sql.selectList(NAMESPACE + ".selectedMinorCateList", majorName);
+	}	
 }

@@ -11,4 +11,10 @@ public interface MinorCateDao {
 	public List<MinorCateVO> getMinorCateList();
 	
 	public void setMinorDelete(MinorCateVO mcvo);
+
+	public int getMinorCateCountOne(MinorCateVO mcvo);
+	
+	public List<MinorCateVO> selectedMinorCateList(String majorName);
+
 }
+

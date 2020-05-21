@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -79,11 +80,20 @@ public class CategoryController {
 	}
 	
 //	소분류 생성 부분============================================================================
+//	중복확인 
 	@RequestMapping("/setMinorCate")
 	@ResponseBody
-	public void setMinorCate(@ModelAttribute MinorCateVO mcvo) {
+	public String setMinorCate(@ModelAttribute MinorCateVO mcvo) {
 		
-		minorService.setMinorCate(mcvo);
+		String msg = null;
+		if( minorService.getMinorCateCountOne(mcvo) > 0) {
+			msg = "ckecked";
+			
+		}else {
+			msg = "OK";
+			minorService.setMinorCate(mcvo);			
+		}
+		return msg;
 	}
 //	보여 주는 부분
 	@RequestMapping("/getMinorCateList")
@@ -103,6 +113,9 @@ public class CategoryController {
 		
 	}
 	
-	
-	
+	@RequestMapping("/selectedMinorCateList")
+	@ResponseBody
+	public List<MinorCateVO> selectedMinorCateList(@RequestParam String majorName){
+		return minorService.selectedMinorCateList(majorName);
+	}
 }

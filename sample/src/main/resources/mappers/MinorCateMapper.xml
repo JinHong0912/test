@@ -24,6 +24,14 @@
 					majorName = #{majorName}
 	</delete>
 	
+	<!-- 	중복코드 확인용 -->
+	<select id="getMinorCateCountOne" resultType="int">
+		SELECT COUNT(*) FROM minorCate
+		WHERE minorCode = #{minorCode} AND majorName = #{majorName}
+		
+	</select>
 
-	
+	<select id="selectedMinorCateList" resultType="minorvo">
+		SELECT * FROM minorCate WHERE majorName = #{majorName}
+	</select>
 </mapper>

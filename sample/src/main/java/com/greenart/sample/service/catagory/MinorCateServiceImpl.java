@@ -31,6 +31,18 @@ public class MinorCateServiceImpl implements MinorCateService {
 		mcDao.setMinorDelete(mcvo);
 		
 	}
+
+	@Override
+	public int getMinorCateCountOne(MinorCateVO mcvo) {
+	
+		return mcDao.getMinorCateCountOne(mcvo);
+	}
+
+	@Override
+	public List<MinorCateVO> selectedMinorCateList(String majorName) {
+		
+		return mcDao.selectedMinorCateList(majorName);
+	}
 	
 	
 }

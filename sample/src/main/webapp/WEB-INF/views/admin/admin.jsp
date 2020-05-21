@@ -306,8 +306,12 @@
 						<c:if test="${template eq 'product' && mypage eq 'category'}">
 							<%@ include file="../product/getCategoryListInc.jsp"%>
 						</c:if>
-
-
+						
+						<!-- insert -->
+						<c:if test="${template eq 'product' && mypage eq 'insert'}">
+							<%@ include file="../product/getProductInsertInc.jsp"%>
+						</c:if>
+						
 
 						<!-- //if -->
 					</div>

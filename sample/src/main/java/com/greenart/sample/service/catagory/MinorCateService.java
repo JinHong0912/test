@@ -13,5 +13,7 @@ public interface MinorCateService {
 	
 	public void setMinorDelete(MinorCateVO mcvo);
 
+	public int getMinorCateCountOne(MinorCateVO mcvo);
 
+	public List<MinorCateVO> selectedMinorCateList(String majorName);
 }
