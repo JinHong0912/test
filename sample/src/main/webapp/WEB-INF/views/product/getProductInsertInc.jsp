@@ -80,7 +80,7 @@ width: 200px;
             	</td>
             	<td class="w-35 padding-lr-5">
             		  <input type="text" name="productPrice" id="productPrice" class="ralign input-100 padding-lr-5" 
-            			autocomplete="off" value="0"/> 원
+            			autocomplete="off" value="0"/>원
             	</td>
             	<td rowspan="2" class="w-15 bg-color-3 f6 align bold">
             		상품상태 / 할인율
