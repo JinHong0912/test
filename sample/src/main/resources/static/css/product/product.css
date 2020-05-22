@@ -27,3 +27,15 @@ a.close{
 	color: #fff;
 	
 }
+
+/* status */
+
+.status{
+	display: inline-block;
+	width: 36px;
+	height: 22px;
+	text-align: center;
+	line-height: 22px;
+	font-size: 12px;
+	border-radius: 3px;
+}

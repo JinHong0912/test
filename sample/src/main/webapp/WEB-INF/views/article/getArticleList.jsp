@@ -57,11 +57,9 @@
 					<td><input type="checkbox" name="chk" class="chk"
 						data-code="${boardCode}" data-aid="${articleList.aid}"></td>
 					<td>${ (cnt - status.index) - ( (num1 - 1) * end ) }</td>
-					<td class="lalign bold kor"><c:forEach begin="0"
-							end="${articleList.re_level}">
-                                                &nbsp;&nbsp;&nbsp;
-                                            </c:forEach> <a
-						href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
+					<td class="lalign bold kor">
+					<c:forEach begin="0" end="${articleList.re_level}"> &nbsp;&nbsp;&nbsp;</c:forEach>
+					 <a href="/article/getArticleView?boardCode=${boardCode}&aid=${articleList.aid}">
 							<!--작성된 게시판 제목 길이 잘라 주는 부분 -->
 							${cutString.strCutBytes(articleList.subject, 30, 2)} <span
 							class="tomato">( ${articleList.cnt} )</span>

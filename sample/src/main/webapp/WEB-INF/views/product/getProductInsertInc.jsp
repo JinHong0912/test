@@ -40,6 +40,7 @@ width: 200px;
         <table>
         <form method="post" action="/product/setProduct" enctype="multipart/form-data">
         	<tr><td colspan="2" class="tbl-line"></td></tr>
+            
             <tr class="tr-45">
             	<td rowspan="2" class="w-15 bg-color-3 f6 align bold">
             		상품 카테고리
@@ -80,19 +81,19 @@ width: 200px;
             	</td>
             	<td class="w-35 padding-lr-5">
             		  <input type="text" name="productPrice" id="productPrice" class="ralign input-100 padding-lr-5" 
-            			autocomplete="off" value="0"/>원
+            			autocomplete="off" value="0"/> 원
             	</td>
             	<td rowspan="2" class="w-15 bg-color-3 f6 align bold">
             		상품상태 / 할인율
             	</td>
             	<td class="w-35 padding-lr-5">
-            		<select name="" id="" class="sel-150 noto">
+            		<select name="productStatus" id="productStatus" class="sel-150 noto">
             		  	<option value="new" selected>신상품</option>  
             		  	<option value="sale">할인품</option>
 					</select>
             		  
-            		<input type="text" name="" id="" 
-            		class="input-50 padding-lr-5 ralign"
+            		<input type="text" name="productDC" id="productDC" 
+            		class="ralign input-100 padding-lr-5"
             		value="0" /> %
             	</td>
             </tr>
@@ -102,7 +103,7 @@ width: 200px;
             		상품 총 수량
             	</td>
             	<td class="w-35 padding-lr-5">
-            		  <input type="text" name="" id="" class="ralign input-100 padding-lr-5" 
+            		  <input type="text" name="productAmount" id="productAmount" class="ralign input-100 padding-lr-5" 
             			autocomplete="off" value="0"/> 개
             	</td>
             	<td rowspan="2" class="w-15 bg-color-3 f6 align bold">
@@ -122,8 +123,8 @@ width: 200px;
             		(기본) 상품 평점
             	</td>
             	<td class="w-35 padding-lr-5">
-            		  <input type="text" name="" id="" class="ralign input-100 padding-lr-5" 
-            			autocomplete="off" value="3"/> 점
+            		  <input type="text" name="productStar" id="productStar" class="ralign input-100 padding-lr-5" 
+            			autocomplete="off" value="0"/> 점
             	</td>
             	<td rowspan="2" class="w-15 bg-color-3 f6 align bold">
             		상품 배송비 여부
@@ -142,7 +143,7 @@ width: 200px;
             		상품 색상
             	</td>
             	<td class="w-35 padding-lr-5">
-            		  <input type="text" name="" id="" 
+            		  <input type="text" name="productColor" id="productColor" 
             		  	class="input-100 padding-lr-5" />
             		  <span class="tomato font-12 bold">세미콜론(;)으로 구분해서 입력해 주세요.</span> 
             	</td>
@@ -150,7 +151,7 @@ width: 200px;
             		상품 크기
             	</td>
             	<td class="w-35 padding-lr-5">
-            		<input type="text" name="" id="" 
+            		<input type="text" name="productSize" id="productSize" 
             		  	class="input-100 padding-lr-5" />
             		<span class="tomato font-12 bold">세미콜론(;)으로 구분해서 입력해 주세요.</span>
             	</td>
@@ -205,118 +206,11 @@ width: 200px;
         </form>
     </div>
 </div>
+
+<!-- CKeditor -->
 <script>
-	
-function imgFileViewer(e) {
-	sel_files = [];
-	$(".imgs-wrap").empty();
-
-	var files = e.target.files;
-	var filesArr = Array.prototype.slice.call(files);
-
-	var index = 0;
-	filesArr.forEach(function (f) {
-		if( !f.type.match("image.*")) {
-			alert("이미지 파일만 업로드가 가능합니다.");
-			return;
-		}
-		sel_files.push(f);
-
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			var str = '';
-			str += "<img src=\""+e.target.result+"\" class='img-size'>";
-			$(".imgs-wrap").append(str);
-		}
-
-		reader.readAsDataURL(f);
-		
-	});
-	
-}
-
+initSample();
 </script>
 
 
-
-
-<script>
-
-	$(function () {
-		$("#btn").click(function () {
-			if( $("#majorName").val() == '' ) {
-				alert("상품 대분류를 선택하세요.");
-				$("#majorName").focus();
-				return false;
-			}
-
-			if( $("#minorName").val() == '' ) {
-				alert("상품 소분류를 선택하세요.");
-				$("#minorName").focus();
-				return false;
-			}
-		});
-	});
-
-</script>
-
-<script>
-	initSample();
-</script>
-
-<script>
-	$(function () {
-		$("#majorName").change(function () {
-			var majorName =  this.value;
-
-			$.ajax({
-				type : "post",
-				url : "/cate/selectedMinorCateList",
-				data : {
-					majorName : majorName
-				},
-				success : function(data) {
-					var str = '';
-					
-					$.each(data, function(key, value) {
-						str += "<option value="+value.minorName+">"+value.minorName+"</option>";
-					});
-
-					$(".minorCateSelected").html(str);
-					
-				}
-			});
-			
-		});
-	});
-</script>
-
-<script>
-	function majorCateList() {
-		$.ajax({
-			type : "post",
-			url : "/cate/getMajorCateList",
-			data : {},
-			success : function(data) {
-				$.each(data, function(key, value) {
-					$(".majorCateSelected").append("<option value="+value.majorName+">"+value.majorName+"</option>");
-				});
-
-			}
-		});
-	}
-</script>
-
-<script>
-	$(document).ready(function () {
-		majorCateList();
-		
-		var sel_files = [];
-		$("#product-img").on("change", imgFileViewer);
-
-
-
-
-	});
-</script>
 <script src="/js/product/product.js"></script>

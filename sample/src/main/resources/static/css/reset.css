@@ -21,7 +21,7 @@ table {
     width:100%;
 }
 
-input, button, textarea ,i{
+input, button, textarea{
     border:0;
     outline:none;
     background-color: #fff;
