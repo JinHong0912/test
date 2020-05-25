@@ -22,9 +22,28 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public List<ProductVO> getProductList() {
+	public List<ProductVO> getProductList(int start, int end, String searchOpt, String words) {
 		
-		return productDao.getProductList();
+		return productDao.getProductList(start, end, searchOpt, words);
+	}
+
+	@Override
+	public int getProductCount(String searchOpt, String words) {
+		
+		return productDao.getProductCount(searchOpt,words);
+	}
+	
+	@Override
+	public void setProductDelete(int pid) {
+		productDao.setProductDelete(pid);
+		
+	}
+
+
+	@Override
+	public ProductVO getProductView(int pid) {
+		
+		return productDao.getProductView(pid);
 	}
 
 }

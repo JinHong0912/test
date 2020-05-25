@@ -1,5 +1,4 @@
 package com.greenart.sample.model;
-
 public class ProductVO {
 
 	private int pid;

@@ -64,7 +64,8 @@
 			<tr class="tr-45">
 				<td class="w-85 padding-lr-5 font-14">
 					<!-- 디비에 입력된 대분류가 여기에 생성 -->
-					<div class="majorCateArea"></div> <!-- 디비에 입력된 대분류가 여기에 생성 -->
+					<div class="majorCateArea"></div> 
+					<!-- 디비에 입력된 대분류가 여기에 생성 -->
 
 				</td>
 			</tr>
@@ -92,7 +93,8 @@
 			<tr class="tr-45">
 				<td class="w-85 padding-lr-5">
 					<!-- 디비에 입력된 소분류가 여기에 생성 -->
-					<div class="minorCateArea"></div> <!-- 디비에 입력된 소분류가 여기에 생성 -->
+					<div class="minorCateArea"></div> 
+					<!-- 디비에 입력된 소분류가 여기에 생성 -->
 
 				</td>
 			</tr>
@@ -175,7 +177,7 @@
 
 				},
 				success : function(data) {
-					// 					alert("dd")
+// 					alert("dd")
 					if (data == "overflow") {
 
 						alert("대분류는 8개만 만들 수 있습니다.");
@@ -234,7 +236,7 @@
 				},
 				success : function(data) {
 					alert("dd");
-					// 					alert("소분류가 저장이 완료 되었습니다.");
+				//  alert("소분류가 저장이 완료 되었습니다.");
 					if (data == "checked") {
 						alert("중복되는 소분류 코드 입니다 . 사용 할 수 없습니다.");
 						$("#minorCode").val("");
@@ -254,7 +256,7 @@
 	//대분류 리스트 보여 주는 부분
 
 	function majorCateList() {
-		// 		alert("majorCateList 까지 됨"); 
+				alert("majorCateList 보여주는 부분 됨 "); 
 		$.ajax({
 			type : "post",
 			url : "/cate/getMajorCateList",
@@ -263,10 +265,8 @@
 				var str = '';
 				$.each(data, function(key, value) {
 
-					str += '<span class="cateTag">' + value.majorName + '('
-							+ value.majorCode + ')';
-					str += '<a href="#" onClick="setMajorDelete('
-							+ value.majorCode + ')" class="close">';
+					str += '<span class="cateTag">' + value.majorName + '(' + value.majorCode + ')';
+					str += '<a href="#" onClick="setMajorDelete('+ value.majorCode + ')" class="close">';
 					str += '<i class="far fa-times-circle"></i>';
 					str += '</a>';
 					str += '</span>';
@@ -281,7 +281,7 @@
 </script>
 <script>
 	function minorCateList() {
-		alert("majorCateList 까지 됨");
+		alert("minorCateList 까지 됨");
 		$.ajax({
 			type : "post",
 			url : "/cate/getMinorCateList",
@@ -390,5 +390,3 @@
 
 	});
 </script>
-
-<script src="../js/product/product.js"></script>

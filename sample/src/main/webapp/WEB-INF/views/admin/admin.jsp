@@ -311,6 +311,12 @@
 							<%@ include file="../product/getProductInsertInc.jsp"%>
 						</c:if>
 						
+						
+						<!-- view -->
+						<c:if test="${template eq 'product' && mypage eq 'view'}">
+							<%@ include file="../product/getProductViewInc.jsp"%>
+						</c:if>
+						
 
 						<!-- //if -->
 					</div>

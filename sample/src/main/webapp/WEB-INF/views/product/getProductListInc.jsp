@@ -64,7 +64,7 @@
             
 		<c:forEach var="pList" items="${pList}">            
             <tr class="tr-50 align font-16">
-                <td><input type="checkbox" class="chk" data-uid="${boardList.bid}" /></td>
+                <td><input type="checkbox" class="chk" data-pid="${pList.pid}" /></td>
                 <td>${pList.pid}</td>
                 <td class="bold eng font-14">
                 	${pList.minorName}<br>
@@ -103,17 +103,61 @@
             </tr>
             </c:forEach>
         </table>
+        <!--  -->
         <div class="page-grp margin-t10">
-        
-        </div>
+			<!-- 이전 -->
+
+			<c:if test="${prev}">
+
+				<span class="padding-a-10"
+					style="background-color:${boardConfig.boardColor}"> <a
+					href="/product?num=${startPageNum-1}&searchOpt=${searchOpt}&words=${word}&template=${template}&mypage=${mypage}"
+					class="f6">이전</a>
+				</span>
+			</c:if>
+
+
+			<!-- //이전 -->
+
+			<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+				<c:if test="${select == num}">
+					<!-- 현재 페이지이면 -->
+
+					<span class="padding-a-10"> 
+						<a href="/product?num=${num}&searchOpt=${searchOpt}&words=${words}&template=${template}&mypage=${mypage}"
+						class="page-number member-page-number">${num}</a>
+					</span>
+
+				</c:if>
+
+				<c:if test="${select != num}">
+
+					<span class="f6 padding-a-10" style="background-color:${boardConfig.boardColor}"> <a
+						href="/product?num=${num}&searchOpt=${searchOpt}&words=${words}&template=${template}&mypage=${mypage}"
+						class="page-number member-page-number f6">${num}</a>
+					</span>
+				</c:if>
+			</c:forEach>
+
+			<!-- 다음 -->
+			<c:if test="${next}">
+				<span class="padding-a-10" style="background-color:${boardConfig.boardColor}"> <a
+					href="/product?num=${endPageNum + 1}&searchOpt=${searchOpt}&words=${word}&template=${template}&mypage=${mypage}"
+					class="f6 ">다음</a>
+				</span>
+			</c:if>
+			<!-- 다음 -->
+		</div>
     </div>
 </div>
 
 <script>
-	function checkDelete(pid) {
-		var str = "상품과 관련된 모든 내용이 삭제됩니다.\n선택하신 상품을 삭제하시겠습니까?";
-		if( confirm( str ) ) {
-			location.href = '/product/setProductDelete?pid='+pid;
-		}
-	}
+// 	function checkDelete(pid) {
+// 		var str = "상품과 관련된 모든 내용이 삭제됩니다.\n선택하신 상품을 삭제하시겠습니까?";
+// 		if( confirm( str ) ) {
+// 			location.href = '/product/setProductDelete?pid='+pid;
+// 		}
+// 	}
 </script>
+
+<script src="/js/product/productList.js"></script>

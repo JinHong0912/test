@@ -1,46 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.ProductMapper">
-	
+
 	<insert id="setProduct" parameterType="productvo">
 		INSERT INTO product SET
-		majorName	 	= #{majorName},
-		minorName 		= #{minorName},
-		productSeller 	= #{productSeller},
-		productName 	= #{productName},
-		productPrice 	= #{productPrice},
-		productStatus 	= #{productStatus},
-		productDC 		= #{productDC},
-		productAmount 	= #{productAmount},
-		productStock 	= #{productStock},
-		productDisplay 	= #{productDisplay},
-		productStar 	= #{productStar},
+		majorName = #{majorName},
+		minorName = #{minorName},
+		productSeller =	#{productSeller},
+		productName = #{productName},
+		productPrice =	#{productPrice},
+		productStatus = #{productStatus},
+		productDC =	#{productDC},
+		productAmount = #{productAmount},
+		productStock =	#{productStock},
+		productDisplay = #{productDisplay},
+		productStar =	#{productStar},
 		productDelivery = #{productDelivery},
-		productColor	= #{productColor},
-		productSize 	= #{productSize},
-		originFileName 	= #{originFileName},
-		fileSize		= #{fileSize},
-		safeFile 		= #{safeFile},
-		productDetail 	= #{productDetail},
-		productRegdate 	= now()
-	
+		productColor =	#{productColor},
+		productSize = #{productSize},
+		originFileName = #{originFileName},
+		fileSize = #{fileSize},
+		safeFile = #{safeFile},
+		productDetail = #{productDetail},
+		productRegdate = now()
+
 	</insert>
 	<select id="getProductList" resultType="productvo">
-		SELECT  
-				pid,
-				productName,
-				minorName,
-				productStatus,
-				productSeller,
-				productPrice,
-				productDC,
-				productDisplay,
-				productAmount,
-				productStock
-		FROM	
-				product
-		ORDER BY 
-				pid
-		DESC
+		SELECT
+			pid,
+			productName,
+			minorName,
+			productStatus,
+			productSeller,
+			productPrice,
+			productDC,
+			productDisplay,
+			productAmount,
+			productStock
+		FROM
+			product
+		<include refid="search"></include>
+		ORDER BY
+			pid
+		DESC limit #{start}, #{end}
+	
 	</select>
+	<!-- 상품 삭제 -->
+	<delete id="setProductDelete">
+		DELETE FROM product WHERE pid = #{pid}
+	</delete>
+
+	<!-- 상품 상세 보기 -->
+	<select id="getProductView" resultType="productvo">
+		SELECT * FROM product
+		WHERE pid = #{pid}
+	</select>
+
+	<select id="getProductCount" resultType="int">
+		SELECT COUNT(pid) FROM product <include refid="search"></include>
+	</select>
+
+	<sql id="search">
+		<choose>
+			<when test="searchOpt == 'all'">
+				WHERE productName LIKE CONCAT('%', #{words},'%')
+				OR
+				minorName LIKE CONCAT( '%', #{words}, '%')
+			</when>
+			<otherwise>WHERE ${searchOpt} LIKE CONCAT('%', #{words}, '%')
+			</otherwise>
+		</choose>
+	</sql>
+
+
 </mapper>

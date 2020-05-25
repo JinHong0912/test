@@ -130,7 +130,7 @@ function imgFileViewer(e) {
 	
 
 
-//대분류 이른 가지고 오는 부분
+//대분류 이름 가지고 오는 부분
 	$(function () {
 		$("#majorName").change(function () {
 			var majorName =  this.value;

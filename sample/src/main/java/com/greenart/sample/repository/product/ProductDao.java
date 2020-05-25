@@ -8,5 +8,11 @@ public interface ProductDao {
 
 	public void setProduct(ProductVO pvo);
 	
-	public List<ProductVO> getProductList();
+	public List<ProductVO> getProductList(int start, int end, String searchOpt, String words);
+	
+	public int getProductCount(String searchOpt, String words);
+	
+	public void setProductDelete(int pid);
+	
+	public ProductVO getProductView(int pid);
 }
