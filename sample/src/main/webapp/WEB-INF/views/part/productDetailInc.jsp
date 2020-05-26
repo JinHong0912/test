@@ -60,7 +60,7 @@
                         <span class="noto bold-700 font-18">수량</span>
                         <p class="margin-t10">
                         	<i class="fal fa-minus gray float-l"></i>
-                            <input type="number" value="1" class="input-50 float-l align" min="0" />
+                            <input type="number" value="1" name="num" class="num input-50 float-l align" min="0" />
                             <i class="fal fa-plus gray float-l"></i>
  						 	<div class="clearfix"></div>
                         </p>
@@ -80,3 +80,10 @@
             </div>
         </div>
     </main>
+
+<script src="/js/product/productDetail.js"></script>
+
+    
+    
+    
+    

@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="/css/home/reset.css">
     <link rel="stylesheet" href="/css/home/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css">
+    
+    <!-- js -->
+   
+    <script src="https://code.jquery.com./jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="/js/common.js"></script>
+    
+    
     <style>
         .container {
             width: 1200px;

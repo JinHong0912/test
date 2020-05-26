@@ -27,6 +27,7 @@ public class HomeController {
 	@Autowired SiteInfoService siService;
 	
 	@Autowired MajorCateService majorCateService;
+	
 	@Autowired MinorCateService minorCateService;
 	
 	// website main
@@ -49,6 +50,7 @@ public class HomeController {
 	@RequestMapping("/getCategories")//localhost:8888/home
 	public ModelAndView getCategories(@RequestParam String majorName, @RequestParam String minorName) {
 		SiteInfoVO sivo = siService.getSiteInfo();
+		
 		List<MajorCateVO> mcvo = majorCateService.getMajorCateList();
 		
 		List<MinorCateVO> mncs = minorCateService.selectedMinorCateList(majorName);
