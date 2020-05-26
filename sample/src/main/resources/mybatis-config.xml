@@ -11,5 +11,6 @@
 		<typeAlias type="com.greenart.sample.model.MajorCateVO" alias = "majorvo"/>
 		<typeAlias type="com.greenart.sample.model.MinorCateVO" alias = "minorvo"/>
 		<typeAlias type="com.greenart.sample.model.ProductVO" alias = "productvo"/>
+		<typeAlias type="com.greenart.sample.model.SiteInfoVO" alias = "siteinfovo"/>
 	</typeAliases>
 </configuration>

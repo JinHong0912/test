@@ -180,7 +180,7 @@ width: 200px;
             
             <tr class="tr-45">
             	<td colspan="4">
-            		<textarea name="" id="editor"></textarea>
+            		<textarea name="" id="editor" class="input-full-text margin-t20 kor bold" placeholder=""></textarea>
             		<!-- <script>
 						CKEDITOR.replace( 'editor' );
 						CKEDITOR.config.height = 200;

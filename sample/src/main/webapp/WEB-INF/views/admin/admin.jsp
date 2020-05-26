@@ -133,7 +133,7 @@
 							<i class="fas fa-syringe gray-80"></i>
 						</div>
 						<div class="icon-title">
-							<a href="/settings" class="eng gray-80">Site Management Page</a>
+							<a href="/siteInfo" class="eng gray-80">Site Management Page</a>
 						</div>
 						<div class="icon-arrow ralign">
 							<i class="fas fa-angle-right gray-80"></i>
@@ -311,10 +311,14 @@
 							<%@ include file="../product/getProductInsertInc.jsp"%>
 						</c:if>
 						
-						
 						<!-- view -->
 						<c:if test="${template eq 'product' && mypage eq 'view'}">
 							<%@ include file="../product/getProductViewInc.jsp"%>
+						</c:if>
+						
+						<!-- view site 정보 상세 보기 -->
+						<c:if test="${template eq 'siteInfo' && mypage eq 'view'}">
+							<%@ include file="../siteInfo/getsiteInfoInc.jsp"%>
 						</c:if>
 						
 

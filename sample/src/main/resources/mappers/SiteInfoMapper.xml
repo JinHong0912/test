@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.SiteInfoMapper">
+
+	<!-- 검색하는 부분 -->
+	<select id="getSiteInfo" resultType="siteinfovo">
+		SELECT * FROM siteInfo limit 1
+	</select>
+	
+	<!-- 업데이트 하는 부분 -->
+	<update id="setSiteInfo">
+		UPDATE siteInfo SET
+			   siteName 		= #{siteName},
+			   sitePhone 		= #{sitePhone},
+			   siteEmail 		= #{siteEmail},
+			   siteCopy 		= #{siteCopy},
+			   siteUrl 			= #{siteUrl},
+			   siteMainBanner 	= #{siteMainBanner}
+			   
+		WHERE siteManager = #{siteManager}  
+	</update>
+	
+	
+	
+</mapper>

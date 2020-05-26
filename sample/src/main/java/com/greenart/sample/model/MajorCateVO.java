@@ -5,7 +5,6 @@ public class MajorCateVO {
 	private String majorCode;
 	private String majorName;
 	
-	
 	public String getMajorCode() {
 		return majorCode;
 	}

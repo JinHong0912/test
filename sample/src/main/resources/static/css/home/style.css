@@ -189,6 +189,10 @@ body {
 
 /* font color */
 
+.gray {
+	color:#555;
+}
+
 .white {
     color:#ffffff;
 }
@@ -310,6 +314,13 @@ body {
 
 /* input */
 
+.input-50 {
+    width: 50px;
+    height: 35px;
+    border: 1px solid #ccc;
+    color:#888;
+}
+
 .input-150 {
     width: 150px;
     height: 45px;
@@ -338,4 +349,56 @@ body {
 
 .bo-gray {
     border:1px solid #ccc;
+}
+
+
+/* bgcolor */
+.bg-color-1 {
+	background-color:#eee;
+}
+
+/* table */
+.tr-45 {
+    height: 45px;
+}
+
+.tr-50 {
+    height: 50px;
+}
+
+/* width */
+.w-10 {
+	width:10%;
+}
+
+.w-15 {
+	width:15%;
+}
+
+.w-450 {
+	width:45%;
+}
+
+/* tbl line */
+
+.tbl-line {
+    width:100%;
+    height:1px;
+    background-color:#e7e7e7;
+}
+
+.fa-minus {
+	border:1px solid #ccc;
+	border-right:transparent;
+	padding:8.5px 11px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+
+.fa-plus {
+	border:1px solid #ccc;
+	border-left:transparent;
+	padding:8.5px 11px;
+	vertical-align:middle;
+	cursor:pointer;
 }
