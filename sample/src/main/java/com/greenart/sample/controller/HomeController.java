@@ -12,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.greenart.sample.model.MajorCateVO;
 import com.greenart.sample.model.MinorCateVO;
+import com.greenart.sample.model.ProductVO;
 import com.greenart.sample.model.SiteInfoVO;
 import com.greenart.sample.service.catagory.MajorCateService;
 import com.greenart.sample.service.catagory.MinorCateService;
+import com.greenart.sample.service.product.ProductService;
 import com.greenart.sample.service.site.SiteInfoService;
 import com.greenart.sample.service.users.UserService;
 
@@ -30,17 +32,32 @@ public class HomeController {
 	
 	@Autowired MinorCateService minorCateService;
 	
+	@Autowired ProductService proService;
+	
 	// website main
 	@RequestMapping("")//localhost:8888/home
 	public ModelAndView getHome() {
 		SiteInfoVO sivo = siService.getSiteInfo();
 		List<MajorCateVO> mcvo = majorCateService.getMajorCateList(); 
 		
+//		메인 가지고 오는 부분
+		List<ProductVO> owl = proService.getProductDisplay("main", 0, 3);
+		
+//		베너 가지고 오는 부분
+		List<ProductVO> banner = proService.getProductDisplay("banner", 0, 2);
+		
+//		신상품 가지고 오는 부분
+		List<ProductVO> news = proService.getProductStatus("new", 0, 10);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("template", "home");
 		mav.addObject("mypage", "view");
 		mav.addObject("siteInfo", sivo);
 		mav.addObject("majorList", mcvo);
+		mav.addObject("owl", owl);
+		mav.addObject("banner", banner);
+		mav.addObject("news", news);
+		
 		mav.setViewName("home");
 		
 		return  mav;//views/home.jsp
@@ -68,6 +85,7 @@ public class HomeController {
 		return  mav;//views/home.jsp
 		
 	}
+//	상세 보기 부분
 	@RequestMapping("/getProductDetail")//localhost:8888/home
 	public ModelAndView getProductDetail(@RequestParam String majorName, @RequestParam String minorName) {
 		SiteInfoVO sivo = siService.getSiteInfo();
@@ -89,6 +107,28 @@ public class HomeController {
 		
 	}
 
+	@RequestMapping("/setProductCart")//localhost:8888/home
+	public ModelAndView setProductCart(@RequestParam String majorName, @RequestParam String minorName) {
+		SiteInfoVO sivo = siService.getSiteInfo();
+		List<MajorCateVO> mcvo = majorCateService.getMajorCateList();
+		
+		List<MinorCateVO> mncs = minorCateService.selectedMinorCateList(majorName);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("template", "cartList");
+		mav.addObject("mypage", "view");
+		mav.addObject("siteInfo", sivo);
+		mav.addObject("majorList", mcvo);
+		mav.addObject("minorList", mncs);
+		mav.addObject("majorName", majorName);
+		mav.addObject("minorName", minorName);
+		mav.setViewName("home");
+		
+		return  mav;//views/home.jsp
+		
+	}
+
+	
 	//login
 	@RequestMapping("/login")//localhost:8888/login
 	public String getLogin() {

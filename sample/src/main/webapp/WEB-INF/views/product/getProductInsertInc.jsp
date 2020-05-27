@@ -130,7 +130,7 @@ width: 200px;
             		상품 배송비 여부
             	</td>
             	<td class="w-35 padding-lr-5">
-            		<select name="" id="" class="sel-150 noto">
+            		<select name="productDelivery" id="productDelivery" class="sel-150 noto">
             		  	<option value="free" selected>배송비무료</option>
             		  	<option value="2000">배송비있음(2000원)</option>  
             		  	<option value="3000">배송비있음(3000원)</option>
@@ -180,7 +180,7 @@ width: 200px;
             
             <tr class="tr-45">
             	<td colspan="4">
-            		<textarea name="" id="editor" class="input-full-text margin-t20 kor bold" placeholder=""></textarea>
+            		<textarea name="productDetail" id="" class="input-full-text margin-t20 kor bold" placeholder=""></textarea>
             		<!-- <script>
 						CKEDITOR.replace( 'editor' );
 						CKEDITOR.config.height = 200;

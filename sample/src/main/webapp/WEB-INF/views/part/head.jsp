@@ -132,11 +132,13 @@
         .new-wrap {
             display: flex;
             justify-content: space-between;
+        	flex-wrap: wrap;
         }
 
         .new-item {
             flex-basis: 19%;
             height: auto;
+			margin-top: 15px;
         }
 
         .new-img img {

@@ -75,6 +75,10 @@
     	<%@ include file = "part/productDetailInc.jsp" %>
     </c:if>
 	
+	 <c:if test = "${template eq 'cartList' && mypage eq 'view'}">
+    	<%@ include file = "part/setProductCartlInc.jsp" %>
+    </c:if>
+	
 
     <footer class="margin-t20">
         <div class="container">

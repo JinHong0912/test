@@ -7,7 +7,8 @@
         <div class="container">
             <div class="categories-area bg-white padding-tb50">
                 <div class="categories-title align">
-                    <p class="font-12 margin-b30">Home | Men</p>
+                   	<p class="font-12">Home | ${majorName}</p>
+                    <h2 class="margin-t10 margin-b30">${minorName}</h2>
                 </div>
                 <div class="product-wrap padding-lr40">
                     <div class="product-left">
@@ -71,7 +72,7 @@
                             <div class="clearfix"></div>
                         </p>
                         <p class="margin-t20">
-                            <button class="btn-half float-l bo-gray font-20 bold-700 noto">장바구니</button>
+                            <button class="btn-half float-l bo-gray font-20 bold-700 noto" onClick="location.href='/setProductCart?majorName=${majorName}&minorName=${minorName}'">장바구니</button>
                             <button class="btn-half font-20 bg-tomato float-r white bold-700 noto bo-trans">구매하기</button>
                             <div class="clearfix"></div>
                         </p>

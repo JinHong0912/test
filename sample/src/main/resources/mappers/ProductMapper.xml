@@ -71,6 +71,26 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
+	<select id="getProductDisplay" resultType="productvo">
+		SELECT * FROM product		
+				
+				WHERE productDisplay = #{productDisplay}
+				
+				ORDER BY pid DESC
+				
+				LIMIT #{start}, #{end}
+	</select>
 
+		<select id="getProductStatus" resultType="productvo">
+		SELECT * FROM product		
+				
+				WHERE productStatus = #{productStatus}
+				
+				ORDER BY pid DESC
+				
+				LIMIT #{start}, #{end}
+	</select>
+	
 
 </mapper>

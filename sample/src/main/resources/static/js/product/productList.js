@@ -19,7 +19,7 @@ $("#selectDelete-btn").click(function(){
 		var chkArr = new Array;
 		$(".chk:checked").each(function() {//each = for 배열
 			chkArr.push($(this).attr("data-pid"));
-		alert("값이 들어옴");
+//		alert("값이 들어옴");
 			$.ajax({
 				type : "post",
 				url  : "product/setProductDeleteAll",
@@ -27,12 +27,9 @@ $("#selectDelete-btn").click(function(){
 					chkArr : chkArr
 				},
 				success : function(data){
-					if( data == "1"){
+
 						alert("선택하신 상품이 삭제 되었습니다.");
 						window.location.reload();
-					}else{
-						alert("선택하신 상품을 삭제 할 수 없습니다.");
-					}
 				},
 				error : function(){
 					alert("삭제가 되지 않았습니다. 관리자에게 문의하세요.");
@@ -41,6 +38,4 @@ $("#selectDelete-btn").click(function(){
 			});
 		});
 	}
-	
-	
 });

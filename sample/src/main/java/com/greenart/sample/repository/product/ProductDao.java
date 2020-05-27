@@ -10,6 +10,10 @@ public interface ProductDao {
 	
 	public List<ProductVO> getProductList(int start, int end, String searchOpt, String words);
 	
+	public List<ProductVO> getProductDisplay(String productDisplay, int start, int end);
+	
+	public List<ProductVO> getProductStatus(String productStatus, int start, int end);
+	
 	public int getProductCount(String searchOpt, String words);
 	
 	public void setProductDelete(int pid);

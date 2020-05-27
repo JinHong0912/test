@@ -46,4 +46,18 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.getProductView(pid);
 	}
 
+
+	@Override
+	public List<ProductVO> getProductDisplay(String productDisplay, int start, int end) {
+		
+		return productDao.getProductDisplay(productDisplay, start, end);
+	}
+
+
+	@Override
+	public List<ProductVO> getProductStatus(String productStatus, int start, int end) {
+		
+		return productDao.getProductStatus(productStatus, start, end);
+	}
+
 }

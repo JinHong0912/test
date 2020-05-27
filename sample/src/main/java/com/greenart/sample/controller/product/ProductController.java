@@ -181,7 +181,7 @@ public class ProductController {
 		
 		@RequestMapping("/setProductDeleteAll")
 		@ResponseBody
-		public int setProductDeleteAll(@RequestParam(value = "chkArr[]") List<String> chkArr) {
+		public void setProductDeleteAll(@RequestParam(value = "chkArr[]") List<String> chkArr) {
 			//pid 여러개 : 배열, 이미지 token, 배열
 			String filePath = "C:\\Users\\user\\git\\test\\sample\\src\\main\\resources\\static\\images\\product\\"; 
 			StringTokenizer st = null;	
@@ -205,10 +205,10 @@ public class ProductController {
 				
 				}
 				ProductService.setProductDelete(pid);
-			
 			}
-			return 1;
+			
 		}
+			
 		
 		
 		@RequestMapping("/getProductView")

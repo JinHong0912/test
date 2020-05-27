@@ -1,3 +1,4 @@
+//갯수를 올리면 1부터 시작해서 올라 가는 부분
 $(function(){
 	$(".fa-plus").click(function(){
 		var n = $(".num").val();//현재 입력된 값

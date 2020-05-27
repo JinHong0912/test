@@ -151,11 +151,19 @@ width: 200px;
             
             <tr class="tr-45">
             	<td colspan="4">
-            		<textarea name="" id="editor"></textarea>
-            		<script>
-						CKEDITOR.replace( 'editor' );
-						CKEDITOR.config.height = 200;
-					</script>
+            		<textarea name="productDetail" id="" class="product-area kor">
+            			${pView.productDetail}
+            		
+            		</textarea>
+
+
+
+
+
+<!--             		<script> -->
+<!--  						CKEDITOR.replace( 'editor' ); -->
+<!--  						CKEDITOR.config.height = 200; -->
+<!-- 					</script> -->
             	</td>
             </tr>
         
@@ -179,9 +187,9 @@ width: 200px;
 </div>
 
 <!-- CKeditor -->
-<script>
-initSample();
-</script>
+<!-- <script> -->
+<!--  initSample(); -->
+<!-- </script> -->
 <!-- 상품 삭제  -->
 
 <script src="/js/product/producList.js"></script>

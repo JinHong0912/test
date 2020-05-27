@@ -56,6 +56,29 @@ public class ProductDaoImpl implements ProductDao {
 		return sql.selectOne(NAMESPCE + ".getProductView", pid);
 	}
 
+	@Override
+	public List<ProductVO> getProductDisplay(String productDisplay, int start, int end) {
+			
+			Map<String, Object> map = new HashMap<>();
+				map.put("productDisplay", productDisplay);
+				map.put("start", start);
+				map.put("end", end);
+			
+		return sql.selectList(NAMESPCE + ".getProductDisplay", map);
+	}
+
+	@Override
+	public List<ProductVO> getProductStatus(String productStatus, int start, int end) {
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("productStatus", productStatus);
+		map.put("start", start);
+		map.put("end", end);
+
+		
+		return sql.selectList(NAMESPCE + ".getProductStatus", map);
+	}
+
 
 
 	
