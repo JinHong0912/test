@@ -14,6 +14,8 @@ public interface ProductDao {
 	
 	public List<ProductVO> getProductStatus(String productStatus, int start, int end);
 	
+	public List<ProductVO> selectedProductList(String majorName, String minorName);
+	
 	public int getProductCount(String searchOpt, String words);
 	
 	public void setProductDelete(int pid);

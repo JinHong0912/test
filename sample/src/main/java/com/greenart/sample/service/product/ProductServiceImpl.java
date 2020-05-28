@@ -60,4 +60,11 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.getProductStatus(productStatus, start, end);
 	}
 
+
+	@Override
+	public List<ProductVO> selectedProductList(String majorName, String minorName) {
+		
+		return productDao.selectedProductList(majorName, minorName);
+	}
+
 }

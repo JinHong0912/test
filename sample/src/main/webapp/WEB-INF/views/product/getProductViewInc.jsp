@@ -151,19 +151,12 @@ width: 200px;
             
             <tr class="tr-45">
             	<td colspan="4">
-            		<textarea name="productDetail" id="" class="product-area kor">
-            			${pView.productDetail}
-            		
-            		</textarea>
-
-
-
-
-
-<!--             		<script> -->
-<!--  						CKEDITOR.replace( 'editor' ); -->
-<!--  						CKEDITOR.config.height = 200; -->
-<!-- 					</script> -->
+            		<textarea name="productDetail" id="" class="product-area kor">${pView.productDetail}</textarea>
+					<!--    캐러셀과 같이 충돌이 일어나서 주석으로함 -->
+					<!--             		<script> -->
+					<!--  						CKEDITOR.replace( 'editor' ); -->
+					<!--  						CKEDITOR.config.height = 200; -->
+					<!-- 					</script> -->
             	</td>
             </tr>
         

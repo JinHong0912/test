@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     <link rel="stylesheet" href="/css/reset.css">
     
     <style>
@@ -107,139 +109,36 @@
                             <p class="font-20 bold-700">FEATURED PRODUCTS</p>
                             <div class="featured-content">
                                 <div class="featured-wrap">
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/1.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href="/getProductDetail?majorName=${majorName}&minorName=${minorName}"><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/2.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href=""><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/3.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href=""><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/4.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href=""><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/5.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href=""><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
-                                    <div class="featured-item bg-white margin-t10">
-                                        <div class="featured-img pos-rel padding-a10">
-                                            <a href="product.html"><img src="images/shopimages/6.jpg" /></a>
-                                            <span class="cart-icon">
-                                                <a href=""><i class="fal fa-shopping-bag font-30 black-70"></i></a>
-                                            </span>
-                                        </div>
-                                        <hr class="hr">
-                                        <div class="featured-text padding-a10 align">
-                                            <h4 class="item-title nanum font-14 margin-b10 line-150">[DEMO] Extreme Pak
-                                                Neon Pink
-                                                Leopard Print Shopping</h3>
-                                                <p class="nanum font-14 bold-600">\20,000(배송비)</p>
-                                                <p class="nanum font-13 margin-t10">
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star tomato"></i>
-                                                    <i class="fas fa-star black-30"></i>
-                                                </p>
-                                        </div>
-                                    </div>
+                                    <c:forEach items="${pList}" var="pList">
+	                                    <div class="featured-item bg-white margin-t10">
+	                                        <div class="featured-img pos-rel padding-a10">
+	                                            <a href="/getProductDetail?majorName=${pList.majorName}&minorName=${pList.minorName}&pid=${pList.pid}">
+	                                            	<img src="/images/product/${fn:split(pList.safeFile, ';')[0]}">
+	                                            </a>
+	                                            <span class="cart-icon">
+	                                            	<a href="/setProductCart?majorName=${pList.majorName}&minorName=${pList.minorName}&pid=${pList.pid}">
+	                                                	<i class="fal fa-shopping-bag font-30 black-70"></i>
+	                                            	</a>
+	                                            </span>
+	                                        </div>
+	                                        <hr class="hr">
+	                                        <div class="featured-text padding-a10 align">
+	                                            <h4 class="item-title nanum font-14 margin-b10 line-150">
+	                                           	 ${pList.productName}
+	                                            </h4>
+	                                                <p class="nanum font-14 bold-600">&#8361;${pList.productPrice}원( ${pList.productDelivery} )</p>
+	                                                <p class="nanum font-13 margin-t10">
+							                            <c:forEach begin="1" end="${pList.productStar}" var="star">
+															<i class="fas fa-star tomato"></i>
+														</c:forEach>
+						
+														<c:forEach begin="1" end="${5 - pList.productStar}">
+															<i class="fas fa-star black-30"></i>
+														</c:forEach>
+		                							</p>
+	                                       	 </div>
+	                                    	</div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../part/head.jsp"%>
 <style>
@@ -94,7 +95,8 @@
 					<div class="hero-right">
 						<h1 class="noto bold-700">${owl.productName}</h1>
 						<p class="jalign margin-t10">${owl.productDetail}</p>
-						<button class="main-btn" onClick="location.href='getProductDetail?majorName=${owl.majorName}&minorName=${owl.minorName}&pid=${owl.pid}'">SHOP
+						<button class="main-btn"
+							onClick="location.href='getProductDetail?majorName=${owl.majorName}&minorName=${owl.minorName}&pid=${owl.pid}'">SHOP
 							NOW</button>
 					</div>
 				</div>
@@ -113,96 +115,32 @@
 			</div>
 			<div class="featured-content">
 				<div class="featured-wrap">
-					<div class="featured-item bg-white">
-						<div class="featured-img padding-a10">
-							<img src="/images/shopimages/1.jpg" />
+					<c:forEach items="${basic}" var="basic">
+						<div class="featured-item bg-white">
+							<div class="featured-img padding-a10">
+								<a	href="/getProductDetail?majorName=${basic.majorName}&minorName=${basic.minorName}&pid=${basic.pid}">
+								<img src="/images/product/${fn:split(basic.safeFile, ';')[1]}">
+							</div>
+							<hr class="hr">
+							<div class="featured-text padding-a20 align">
+								<h3 class="item-title nanum font-14 margin-b10 line-150">
+										${basic.productName}
+									</h3>
+									<p class="nanum font-14 bold-600">
+										&#8361;${basic.productPrice}원( ${basic.productDelivery} )</p>
+									</p>
+									<p class="nanum font-13 margin-t10">
+										<c:forEach begin="1" end="${basic.productStar}" var="star">
+											<i class="fas fa-star tomato"></i>
+										</c:forEach>
+		
+										<c:forEach begin="1" end="${5 - basic.productStar}">
+											<i class="fas fa-star black-30"></i>
+										</c:forEach>										
+									</p>
+							</div>
 						</div>
-						<hr class="hr">
-						<div class="featured-text padding-a20 align">
-							<h4 class="item-title nanum font-14 margin-b10 line-150">
-								[DEMO] Extreme Pak Neon Pink Leopard Print Shopping
-								</h3>
-								<p class="nanum font-14 bold-600">\20,000(배송비)</p>
-								<p class="nanum font-13 margin-t10">
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star tomato"></i> <i class="fas fa-star tomato"></i>
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star black-30"></i>
-								</p>
-						</div>
-					</div>
-					<div class="featured-item bg-white">
-						<div class="featured-img padding-a10">
-							<img src="/images/shopimages/2.jpg" />
-						</div>
-						<hr class="hr">
-						<div class="featured-text padding-a20 align">
-							<h4 class="item-title nanum font-14 margin-b10 line-150">
-								[DEMO] Maxam Solid Genuine Leather Work
-								</h3>
-								<p class="nanum font-14 bold-600">\20,000(배송비)</p>
-								<p class="nanum font-13 margin-t10">
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star tomato"></i> <i class="fas fa-star tomato"></i>
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star black-30"></i>
-								</p>
-						</div>
-					</div>
-					<div class="featured-item bg-white">
-						<div class="featured-img padding-a10">
-							<img src="/images/shopimages/3.jpg" />
-						</div>
-						<hr class="hr">
-						<div class="featured-text padding-a20 align">
-							<h4 class="item-title nanum font-14 margin-b10 line-150">
-								[DEMO] Ladies' Sheer V-Neck Tee
-								</h3>
-								<p class="nanum font-14 bold-600">\20,000(배송비)</p>
-								<p class="nanum font-13 margin-t10">
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star tomato"></i> <i class="fas fa-star tomato"></i>
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star black-30"></i>
-								</p>
-						</div>
-					</div>
-					<div class="featured-item bg-white">
-						<div class="featured-img padding-a10">
-							<img src="/images/shopimages/4.jpg" />
-						</div>
-						<hr class="hr">
-						<div class="featured-text padding-a20 align">
-							<h4 class="item-title nanum font-14 margin-b10 line-150">
-								[DEMO] Jersey Short Sleeve Shirt
-								</h3>
-								<p class="nanum font-14 bold-600">\20,000(배송비)</p>
-								<p class="nanum font-13 margin-t10">
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star tomato"></i> <i class="fas fa-star tomato"></i>
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star black-30"></i>
-								</p>
-						</div>
-					</div>
-					<div class="featured-item bg-white">
-						<div class="featured-img padding-a10">
-							<img src="/images/shopimages/5.jpg" />
-						</div>
-						<hr class="hr">
-						<div class="featured-text padding-a20 align">
-							<h4 class="item-title nanum font-14 margin-b10 line-150">
-								[DEMO] Italian Stone Design Genuine Leather Personal
-								</h3>
-								<p class="nanum font-14 bold-600">\20,000(배송비)</p>
-								<p class="nanum font-13 margin-t10">
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star tomato"></i> <i class="fas fa-star tomato"></i>
-									<i class="fas fa-star tomato"></i> <i
-										class="fas fa-star black-30"></i>
-								</p>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -233,24 +171,26 @@
 				<c:forEach items="${news}" var="news">
 					<div class="new-item bg-white">
 						<div class="new-img padding-a10">
-							<a href="/getProductDetail?majorName=${news.majorName}&minorName=${news.minorName}&pid=${news.pid}"> 
-							<img src="/images/product/${fn:split(news.safeFile, ';')[0]}">
+							<a
+								href="/getProductDetail?majorName=${news.majorName}&minorName=${news.minorName}&pid=${news.pid}">
+								<img src="/images/product/${fn:split(news.safeFile, ';')[0]}">
 							</a>
 						</div>
 						<hr class="hr">
 						<div class="new-text padding-a20 align">
 							<h3 class="item-title nanum font-14 margin-b10 line-150">
 								${news.productName}</h3>
-							<p class="nanum font-14 bold-600">&#8361;${news.productPrice}( ${news.productDelivery} )</p>
+							<p class="nanum font-14 bold-600">&#8361;${news.productPrice}원(
+								${news.productDelivery} )</p>
 							<p class="nanum font-13 margin-t10">
 								<c:forEach begin="1" end="${news.productStar}" var="star">
 									<i class="fas fa-star tomato"></i>
 								</c:forEach>
-								
+
 								<c:forEach begin="1" end="${5 - news.productStar}">
 									<i class="fas fa-star black-30"></i>
-								</c:forEach>	
-													
+								</c:forEach>
+
 							</p>
 						</div>
 					</div>

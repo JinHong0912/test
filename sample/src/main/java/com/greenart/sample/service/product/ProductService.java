@@ -11,8 +11,10 @@ public interface ProductService {
 	public List<ProductVO> getProductList(int start, int end, String searchOpt, String words);
 	//메인 ,베너 가지고 오는 부분
 	public List<ProductVO> getProductDisplay(String productDisplay, int start, int end);
-	//기본 불러 오는 부분
+	//new 불러 오는 부분
 	public List<ProductVO> getProductStatus(String productStatus, int start, int end);
+	
+	public List<ProductVO> selectedProductList(String majorName, String minorName);
 	
 	public int getProductCount(String searchOpt, String words);
 	

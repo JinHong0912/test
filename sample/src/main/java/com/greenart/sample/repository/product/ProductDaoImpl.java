@@ -79,6 +79,15 @@ public class ProductDaoImpl implements ProductDao {
 		return sql.selectList(NAMESPCE + ".getProductStatus", map);
 	}
 
+	@Override
+	public List<ProductVO> selectedProductList(String majorName, String minorName) {
+			
+		Map<String , Object> map = new HashMap<>();
+		map.put("majorName", majorName);
+		map.put("minorName", minorName);
+		return sql.selectList(NAMESPCE + ".selectedProductList", map);
+	}
+
 
 
 	

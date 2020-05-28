@@ -92,5 +92,9 @@
 				LIMIT #{start}, #{end}
 	</select>
 	
+	<select id="selectedProductList" resultType="productvo">
+		SELECT * FROM product WHERE majorName = #{majorName} AND minorName = #{minorName}
+	</select>
+	
 
 </mapper>

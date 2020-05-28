@@ -104,6 +104,7 @@ public class ArticleController {
 
 	}
 
+	//파일 가지고 오는 부분 
 	@RequestMapping(value = "/setArticle", method = RequestMethod.POST)
 	@ResponseBody
 	public String setArticle(@ModelAttribute ArticleVO avo, @RequestPart MultipartFile files) throws IllegalStateException, IOException {

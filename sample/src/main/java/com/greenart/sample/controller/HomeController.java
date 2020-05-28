@@ -45,6 +45,9 @@ public class HomeController {
 		
 //		베너 가지고 오는 부분
 		List<ProductVO> banner = proService.getProductDisplay("banner", 0, 2);
+
+//		기본 가지고 오는 부분
+		List<ProductVO> basic = proService.getProductDisplay("basic", 0, 5);
 		
 //		신상품 가지고 오는 부분
 		List<ProductVO> news = proService.getProductStatus("new", 0, 10);
@@ -54,8 +57,10 @@ public class HomeController {
 		mav.addObject("mypage", "view");
 		mav.addObject("siteInfo", sivo);
 		mav.addObject("majorList", mcvo);
+		//메인에 이미지 가지고 오는 부분
 		mav.addObject("owl", owl);
 		mav.addObject("banner", banner);
+		mav.addObject("basic", basic);
 		mav.addObject("news", news);
 		
 		mav.setViewName("home");
@@ -71,6 +76,8 @@ public class HomeController {
 		List<MajorCateVO> mcvo = majorCateService.getMajorCateList();
 		
 		List<MinorCateVO> mncs = minorCateService.selectedMinorCateList(majorName);
+
+		List<ProductVO> pvo = proService.selectedProductList(majorName, minorName);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("template", "category");
@@ -80,6 +87,8 @@ public class HomeController {
 		mav.addObject("minorList", mncs);
 		mav.addObject("majorName", majorName);
 		mav.addObject("minorName", minorName);
+		mav.addObject("pList", pvo);
+		
 		mav.setViewName("home");
 		
 		return  mav;//views/home.jsp
@@ -87,11 +96,13 @@ public class HomeController {
 	}
 //	상세 보기 부분
 	@RequestMapping("/getProductDetail")//localhost:8888/home
-	public ModelAndView getProductDetail(@RequestParam String majorName, @RequestParam String minorName) {
+	public ModelAndView getProductDetail(@RequestParam String majorName, @RequestParam String minorName, @RequestParam int pid) {
 		SiteInfoVO sivo = siService.getSiteInfo();
 		List<MajorCateVO> mcvo = majorCateService.getMajorCateList();
 		
 		List<MinorCateVO> mncs = minorCateService.selectedMinorCateList(majorName);
+		
+		ProductVO pvo = proService.getProductView(pid);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("template", "productDetail");
@@ -101,6 +112,8 @@ public class HomeController {
 		mav.addObject("minorList", mncs);
 		mav.addObject("majorName", majorName);
 		mav.addObject("minorName", minorName);
+		mav.addObject("pView",pvo);
+		
 		mav.setViewName("home");
 		
 		return  mav;//views/home.jsp
