@@ -321,6 +321,13 @@
 							<%@ include file="../siteInfo/getsiteInfoInc.jsp"%>
 						</c:if>
 						
+						<!-- scheduler 보는 부분 -->
+						<c:if test="${template eq 'scheduler' && mypage eq 'view'}">
+							<%@ include file="../scheduler/getSchedulerInc.jsp"%>
+						</c:if>
+						
+
+
 
 						<!-- //if -->
 					</div>

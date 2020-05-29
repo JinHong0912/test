@@ -21,6 +21,8 @@
 	</properties>
 
 	<dependencies>
+
+	
 		<!-- embeded tomcat jasper:개발할 때만 필요하고 배포할 때는 삭제 + approperties(server 
 			port 삭제) -->
 		<dependency>
@@ -54,7 +56,16 @@
 		<!-- ***************************************** -->
 
 		<!-- json(데이터 처리하는 javascript) -->
-
+		<!--의존성 추가 -->
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+			<dependency>
+				    <groupId>net.sf.json-lib</groupId>
+				    <artifactId>json-lib</artifactId>
+				    <version>2.4</version>
+					<classifier>jdk15</classifier>
+			</dependency>
+		
+	
 		<!-- ***************************************** -->
 
 		<!-- jstl : jsp 프로그램 처리하기 위한 태그 -->
