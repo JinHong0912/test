@@ -79,7 +79,7 @@
 				
 				ORDER BY pid DESC
 				
-				LIMIT #{start}, #{end}
+				LIMIT ${start}, ${end}
 	</select>
 
 		<select id="getProductStatus" resultType="productvo">

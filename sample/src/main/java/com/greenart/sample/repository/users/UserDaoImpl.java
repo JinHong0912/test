@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<UserVO> getUsersList(int start,int end,String searchOpt, String  words){
+	public List<UserVO> getUsersList(int start,int end, String searchOpt, String  words){
 		Map<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
