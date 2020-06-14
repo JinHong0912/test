@@ -51,7 +51,7 @@ public class CategoryController {
 		String msg = null;
 		if( totalCnt > 7 ) {
 			msg = "overflow";
-		}else if( isChecked == 1){
+		}else if( isChecked == 1 ){
 			msg = "checked";	
 		}else {
 			mcService.setMajorCate(mcvo);
@@ -87,7 +87,7 @@ public class CategoryController {
 		
 		String msg = null;
 		if( minorService.getMinorCateCountOne(mcvo) > 0) {
-			msg = "ckecked";
+			msg = "checked";
 			
 		}else {
 			msg = "OK";

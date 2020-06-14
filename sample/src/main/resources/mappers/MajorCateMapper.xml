@@ -13,14 +13,14 @@
 	
 	<!-- 대분류 보여 주는 부분 -->
 	<select id="getMajorCateList" resultType="minorvo">
-<!-- 	    SELECT 	 -->
-<!-- 	    		majorCode, majorName  -->
-<!-- 	    FROM 	 -->
-<!-- 	    		majorCate -->
-<!-- 		    ORDER BY  -->
-<!-- 	    		majorCode ASC -->
+ 	    SELECT 	
+	    		majorCode, majorName 
+	    FROM 	
+	    		majorCate
+		    ORDER BY 
+	    		majorCode ASC
 			
-			SELECT 
+			<!-- SELECT 
 					b.majorName,
 					b.majorCode,
 					s.minorName,
@@ -32,7 +32,7 @@
 			WHERE 	b.majorName = s.majorName 
 			
 			GROUP BY b.majorName
-			ORDER BY b.majorCode ASC
+			ORDER BY b.majorCode ASC -->
 
 	</select>
 	
