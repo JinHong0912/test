@@ -76,6 +76,7 @@
 					<td class="td-10"><select id="auth" class="sel-100"
 						onChange="authUpdate(this.value,'${usersList.uid}');"
 						<c:if test="${usersList.auth eq '관리자'}">disabled</c:if>>
+<!-- 						disabled관리자는 권한 변경 안되게 하는거 -->
 							<option value="관리자"
 								<c:if test="${usersList.auth eq '관리자'}">selected</c:if>>관리자</option>
 							<option value="회원"

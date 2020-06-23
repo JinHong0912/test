@@ -159,7 +159,7 @@
 					</div>
 					<div id="main-top-right" class="">
 						<i class="fas fa-sign-out-alt"></i>
-						<sapn class=""> <a href="/logout" class="eng">Logout</a> </sapn>
+						<span class=""> <a href="/logout" class="eng">Logout</a> </span>
 					</div>
 				</div>
 
